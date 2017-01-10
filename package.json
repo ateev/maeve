@@ -1,0 +1,19 @@
+{
+  "name": "maeve",
+  "version": "0.0.1",
+  "description": "Coming Soon",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ateev/maeve.git"
+  },
+  "author": "ateev",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ateev/maeve/issues"
+  },
+  "homepage": "https://github.com/ateev/maeve#readme"
+}
