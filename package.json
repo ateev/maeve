@@ -15,5 +15,8 @@
   "bugs": {
     "url": "https://github.com/ateev/maeve/issues"
   },
-  "homepage": "https://github.com/ateev/maeve#readme"
+  "homepage": "https://github.com/ateev/maeve#readme",
+  "devDependencies": {
+    "lerna": "2.0.0-beta.32"
+  }
 }
