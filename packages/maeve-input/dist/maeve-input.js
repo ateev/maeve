@@ -1,8 +1,8 @@
 (function (global, factory) {
   if (typeof define === "function" && define.amd) {
-    define(["exports", "react"], factory);
+    define(['exports', 'react'], factory);
   } else if (typeof exports !== "undefined") {
-    factory(exports, require("react"));
+    factory(exports, require('react'));
   } else {
     var mod = {
       exports: {}
@@ -11,7 +11,7 @@
     global.maeveInput = mod.exports;
   }
 })(this, function (exports, _react) {
-  "use strict";
+  'use strict';
 
   Object.defineProperty(exports, "__esModule", {
     value: true
@@ -24,6 +24,12 @@
       default: obj
     };
   }
+
+  var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) {
+    return typeof obj;
+  } : function (obj) {
+    return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj;
+  };
 
   function _classCallCheck(instance, Constructor) {
     if (!(instance instanceof Constructor)) {
@@ -76,19 +82,38 @@
   var MaeveInput = function (_React$Component) {
     _inherits(MaeveInput, _React$Component);
 
-    function MaeveInput() {
+    function MaeveInput(props) {
       _classCallCheck(this, MaeveInput);
 
-      return _possibleConstructorReturn(this, (MaeveInput.__proto__ || Object.getPrototypeOf(MaeveInput)).apply(this, arguments));
+      var _this = _possibleConstructorReturn(this, (MaeveInput.__proto__ || Object.getPrototypeOf(MaeveInput)).call(this, props));
+
+      _this.handleChange = function (event) {
+        _this.setState({
+          value: event.target.value
+        });
+
+        if (_typeof(_this.props.source) !== undefined) {
+          console.log(_this.props.source);
+        }
+      };
+
+      _this.state = {
+        value: ''
+      };
+      return _this;
     }
 
     _createClass(MaeveInput, [{
-      key: "render",
+      key: 'render',
       value: function render() {
         return _react2.default.createElement(
-          "div",
-          { className: "maeve-input" },
-          _react2.default.createElement("input", { type: "text", name: "maeve" })
+          'div',
+          { className: 'maeve-input' },
+          _react2.default.createElement('input', {
+            type: 'text',
+            name: 'maeve',
+            onChange: this.handleChange
+          })
         );
       }
     }]);
