@@ -2,6 +2,7 @@ exports[`test render maeve multi 1`] = `
 <div
   className="maeve-multi">
   <div>
+    Hi
     <div
       className="remove-button"
       onClick={[Function]}>
