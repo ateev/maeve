@@ -8,7 +8,7 @@
       exports: {}
     };
     factory(mod.exports, global.react);
-    global.index = mod.exports;
+    global.maeveInput = mod.exports;
   }
 })(this, function (exports, _react) {
   "use strict";
@@ -73,29 +73,29 @@
     if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass;
   }
 
-  var MaeveMultiInput = function (_React$Component) {
-    _inherits(MaeveMultiInput, _React$Component);
+  var MaeveInput = function (_React$Component) {
+    _inherits(MaeveInput, _React$Component);
 
-    function MaeveMultiInput() {
-      _classCallCheck(this, MaeveMultiInput);
+    function MaeveInput() {
+      _classCallCheck(this, MaeveInput);
 
-      return _possibleConstructorReturn(this, (MaeveMultiInput.__proto__ || Object.getPrototypeOf(MaeveMultiInput)).apply(this, arguments));
+      return _possibleConstructorReturn(this, (MaeveInput.__proto__ || Object.getPrototypeOf(MaeveInput)).apply(this, arguments));
     }
 
-    _createClass(MaeveMultiInput, [{
+    _createClass(MaeveInput, [{
       key: "render",
       value: function render() {
         return _react2.default.createElement(
           "div",
-          { className: "maeve-multi-input" },
+          { className: "maeve-input" },
           _react2.default.createElement("input", { type: "text", name: "maeve" })
         );
       }
     }]);
 
-    return MaeveMultiInput;
+    return MaeveInput;
   }(_react2.default.Component);
 
-  exports.default = MaeveMultiInput;
+  exports.default = MaeveInput;
   ;
 });
