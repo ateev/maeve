@@ -1,0 +1,17 @@
+exports[`test render maeve multi 1`] = `
+<div
+  className="maeve-multi">
+  <div>
+    <div
+      className="remove-button"
+      onClick={[Function]}>
+       - 
+    </div>
+  </div>
+  <div
+    className="add-button"
+    onClick={[Function]}>
+     + 
+  </div>
+</div>
+`;

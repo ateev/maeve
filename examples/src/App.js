@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import MaeveInput from 'maeve-input';
+import MaeveMulti from 'maeve-multi';
 import './App.css';
 
 class App extends Component {
@@ -7,7 +8,9 @@ class App extends Component {
     return (
       <div className="App">
         <h2>maeve-input</h2>
-        <MaeveInput />
+        <MaeveMulti>
+          <MaeveInput />
+        </MaeveMulti>
       </div>
     );
   }
