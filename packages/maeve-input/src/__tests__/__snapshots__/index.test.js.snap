@@ -1,0 +1,5 @@
+exports[`test render  1`] = `
+<div className="maeve-input">
+<input type="text" name="maeve" />
+</div>
+`;

@@ -1,0 +1,11 @@
+.App {
+  text-align: center;
+}
+
+.App .maeve-input input{
+  width: 200px;
+  height: 30px;
+  border: 1px solid gray;
+  padding: 10px;
+  font-size: 20px;
+}
