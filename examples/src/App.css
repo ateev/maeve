@@ -9,3 +9,31 @@
   padding: 10px;
   font-size: 20px;
 }
+
+.App .maeve-multi {
+  width: 500px;
+  margin: 0 auto;
+}
+
+.App .maeve-multi-item {
+  width: 100%;
+  float: left;
+  margin-bottom: 20px;
+}
+
+.App .maeve-input{
+  float: left;
+}
+
+.App .remove-button {
+  float: left;
+  margin-left: 20px;
+  font-size: 20px;
+}
+
+.App .add-button {
+  width: 100%;
+  float: left;
+  padding: 5px;
+  border: 1px solid gray;
+}

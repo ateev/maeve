@@ -1,7 +1,7 @@
 {
-  "name": "maeve-input",
-  "version": "0.0.6",
-  "description": "A input box on steroids",
+  "name": "maeve-multi",
+  "version": "0.0.7",
+  "description": "A component to add multi superpwers to any component",
   "main": "index.js",
   "scripts": {
     "test": "jest",

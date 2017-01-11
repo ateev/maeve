@@ -3302,9 +3302,17 @@ macaddress@^0.2.8:
   version "0.2.8"
   resolved "https://registry.yarnpkg.com/macaddress/-/macaddress-0.2.8.tgz#5904dc537c39ec6dbefeae902327135fa8511f12"
 
-maeve-multi-input:
+maeve-input@^0.0.1:
   version "0.0.1"
-  resolved "https://registry.yarnpkg.com/maeve-multi-input/-/maeve-multi-input-0.0.1.tgz#0434fb6a292b1db417a44fd2dda92a3dc1d4a2cd"
+  resolved "https://registry.yarnpkg.com/maeve-input/-/maeve-input-0.0.1.tgz#eff841d38e9eb3174406d30ea8ad60b306058615"
+  dependencies:
+    react "^15.4.2"
+
+maeve-multi:
+  version "0.0.1"
+  resolved "https://registry.yarnpkg.com/maeve-multi/-/maeve-multi-0.0.1.tgz#660bf593b3428cac713a8c794e9775c9996a132a"
+  dependencies:
+    react "^15.4.2"
 
 makeerror@1.0.x:
   version "1.0.11"
