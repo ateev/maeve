@@ -35,5 +35,12 @@
     "snapshotSerializers": [
       "<rootDir>/node_modules/jest-serializer-enzyme"
     ]
-  }
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/ateev/maeve/tree/master/packages/maeve-multi"
+  },
+  "keywords": [
+    "input"
+  ]
 }
