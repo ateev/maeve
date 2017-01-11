@@ -1,0 +1,19 @@
+{
+  "name": "maeve-input",
+  "version": "0.0.10",
+  "description": "A input box on steroids",
+  "main": "index.js",
+  "scripts": {
+    "test": "jest"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/ateev/maeve/tree/master/packages/maeve-input"
+  },
+  "keywords": [
+    "input",
+    "react"
+  ],
+  "author": "ateev",
+  "license": "ISC"
+}
