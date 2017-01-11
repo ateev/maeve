@@ -139,14 +139,14 @@
               "div",
               { key: val.id, className: "maeve-multi-item" },
               val.comp,
-              _react2.default.createElement(
+              _this2.state.childComponents.length > 1 ? _react2.default.createElement(
                 "div",
                 {
                   className: "remove-button",
                   onClick: _this2.removeComponent.bind(null, val.id)
                 },
                 " - "
-              )
+              ) : ''
             );
           }),
           _react2.default.createElement(

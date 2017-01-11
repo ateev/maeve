@@ -41,10 +41,13 @@ export default class MaeveMulti extends React.Component {
         { this.state.childComponents.map((val, key) => (
             <div key={val.id} className="maeve-multi-item">
               {val.comp}
+              { this.state.childComponents.length > 1 ?
               <div
                 className="remove-button"
                 onClick={ this.removeComponent.bind(null, val.id) }
               > - </div>
+              : ''
+              }
             </div>
         ))
         }
