@@ -1,7 +1,8 @@
 exports[`test render maeve multi 1`] = `
 <div
   className="maeve-multi">
-  <div>
+  <div
+    className="maeve-multi-item">
     Hi
     <div
       className="remove-button"

@@ -39,7 +39,7 @@ export default class MaeveMulti extends React.Component {
     return (
       <div className="maeve-multi">
         { this.state.childComponents.map((val, key) => (
-            <div key={val.id}>
+            <div key={val.id} className="maeve-multi-item">
               {val.comp}
               <div
                 className="remove-button"

@@ -137,7 +137,7 @@
           this.state.childComponents.map(function (val, key) {
             return _react2.default.createElement(
               "div",
-              { key: val.id },
+              { key: val.id, className: "maeve-multi-item" },
               val.comp,
               _react2.default.createElement(
                 "div",
