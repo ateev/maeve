@@ -98,12 +98,14 @@
         var updatedAutocompleteSuggestions = _this.state.autocompleteSuggestions;
         var source = _this.props.autocomplete.source;
 
-        if ((typeof source === 'undefined' ? 'undefined' : _typeof(source)) !== undefined) {
+        if ((typeof source === 'undefined' ? 'undefined' : _typeof(source)) !== undefined && updatedValue.length > 2) {
           if (source instanceof Array) {
             updatedAutocompleteSuggestions = source.filter(function (item) {
               return _this.filterResults(item, updatedValue);
             });
           }
+        } else {
+          updatedAutocompleteSuggestions = [];
         }
         _this.setState({
           value: updatedValue,

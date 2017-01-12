@@ -18,13 +18,15 @@ export default class MaeveInput extends React.Component {
     let updatedAutocompleteSuggestions = this.state.autocompleteSuggestions;
     const source = this.props.autocomplete.source;
 
-    if ( typeof source !== undefined ) {
+    if ( typeof source !== undefined && updatedValue.length > 2 ) {
       if ( source instanceof Array ) {
         updatedAutocompleteSuggestions = source
           .filter(
             item => this.filterResults(item, updatedValue)
           );
       }
+    } else {
+      updatedAutocompleteSuggestions = [];
     }
     this.setState({
       value: updatedValue,
