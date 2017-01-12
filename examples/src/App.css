@@ -13,6 +13,7 @@
 .App .maeve-multi {
   width: 500px;
   margin: 0 auto;
+  overflow: hidden;
 }
 
 .App .maeve-multi-item {
@@ -32,7 +33,7 @@
 }
 
 .App .add-button {
-  width: 100%;
+  width: 95%;
   float: left;
   padding: 5px;
   border: 1px solid gray;
