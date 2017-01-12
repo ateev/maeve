@@ -1,14 +1,13 @@
 {
-  "name": "maeve-input",
-  "version": "0.0.10",
-  "description": "A input box on steroids",
+  "name": "maeve-dropdown",
+  "version": "0.0.1",
+  "description": "A simple dropdown",
   "main": "index.js",
   "scripts": {
     "test": "jest",
     "prepublish": "babel --plugins transform-es2015-modules-umd src --ignore __tests__ --out-dir ./dist"
   },
-  "dependencies": {
-    "maeve-dropdown": "^0.0.1",
+    "dependencies": {
     "react": "^15.4.2"
   },
   "devDependencies": {
@@ -35,7 +34,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/ateev/maeve/tree/master/packages/maeve-input"
+    "url": "https://github.com/ateev/maeve/tree/master/packages/maeve-dropdown"
   },
   "keywords": [
     "input",

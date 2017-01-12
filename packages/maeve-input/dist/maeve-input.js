@@ -1,16 +1,16 @@
 (function (global, factory) {
   if (typeof define === "function" && define.amd) {
-    define(['exports', 'react'], factory);
+    define(['exports', 'react', 'maeve-dropdown'], factory);
   } else if (typeof exports !== "undefined") {
-    factory(exports, require('react'));
+    factory(exports, require('react'), require('maeve-dropdown'));
   } else {
     var mod = {
       exports: {}
     };
-    factory(mod.exports, global.react);
+    factory(mod.exports, global.react, global.maeveDropdown);
     global.maeveInput = mod.exports;
   }
-})(this, function (exports, _react) {
+})(this, function (exports, _react, _maeveDropdown) {
   'use strict';
 
   Object.defineProperty(exports, "__esModule", {
@@ -18,6 +18,8 @@
   });
 
   var _react2 = _interopRequireDefault(_react);
+
+  var _maeveDropdown2 = _interopRequireDefault(_maeveDropdown);
 
   function _interopRequireDefault(obj) {
     return obj && obj.__esModule ? obj : {
@@ -94,7 +96,7 @@
       _this.handleChange = function (event) {
         var updatedValue = event.target.value;
         var updatedAutocompleteSuggestions = _this.state.autocompleteSuggestions;
-        var source = _this.props.source;
+        var source = _this.props.autocomplete.source;
 
         if ((typeof source === 'undefined' ? 'undefined' : _typeof(source)) !== undefined) {
           if (source instanceof Array) {
@@ -103,10 +105,16 @@
             });
           }
         }
-        console.log(updatedAutocompleteSuggestions);
         _this.setState({
           value: updatedValue,
-          autoCompleteSuggestions: updatedAutocompleteSuggestions
+          autocompleteSuggestions: updatedAutocompleteSuggestions
+        });
+      };
+
+      _this.onItemSelect = function (value) {
+        _this.setState({
+          value: value,
+          autocompleteSuggestions: []
         });
       };
 
@@ -125,8 +133,14 @@
           { className: 'maeve-input' },
           _react2.default.createElement('input', {
             type: 'text',
-            name: 'maeve',
+            name: 'maeve-input',
+            value: this.state.value,
             onChange: this.handleChange
+          }),
+          _react2.default.createElement(_maeveDropdown2.default, {
+            items: this.state.autocompleteSuggestions,
+            options: this.props.autocomplete.options,
+            onSelect: this.onItemSelect
           })
         );
       }

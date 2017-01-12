@@ -5,12 +5,14 @@ import './App.css';
 
 class App extends Component {
   render() {
-    const source = ["apple", "banana", "cat", "appollo", "caterpillar"];
+    const autoComplete = {
+      source: ["apple", "banana", "cat", "appollo", "caterpillar"],
+    };
     return (
       <div className="App">
         <h2>maeve-input</h2>
         <MaeveMulti>
-          <MaeveInput source={source} />
+          <MaeveInput autocomplete={autoComplete} />
         </MaeveMulti>
       </div>
     );

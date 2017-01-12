@@ -1,4 +1,5 @@
 import React from 'react';
+import MaeveDropdown from 'maeve-dropdown';
 
 export default class MaeveInput extends React.Component {
 
@@ -15,7 +16,7 @@ export default class MaeveInput extends React.Component {
   handleChange = (event) => {
     let updatedValue = event.target.value;
     let updatedAutocompleteSuggestions = this.state.autocompleteSuggestions;
-    const source = this.props.source;
+    const source = this.props.autocomplete.source;
 
     if ( typeof source !== undefined ) {
       if ( source instanceof Array ) {
@@ -27,7 +28,14 @@ export default class MaeveInput extends React.Component {
     }
     this.setState({
       value: updatedValue,
-      autoCompleteSuggestions: updatedAutocompleteSuggestions,
+      autocompleteSuggestions: updatedAutocompleteSuggestions,
+    });
+  }
+
+  onItemSelect = (value) => {
+    this.setState({
+      value,
+      autocompleteSuggestions: [],
     });
   }
 
@@ -36,8 +44,14 @@ export default class MaeveInput extends React.Component {
       <div className="maeve-input">
         <input
           type="text"
-          name="maeve"
+          name="maeve-input"
+          value={this.state.value}
           onChange={this.handleChange}
+        />
+        <MaeveDropdown
+          items={this.state.autocompleteSuggestions}
+          options={this.props.autocomplete.options}
+          onSelect={this.onItemSelect}
         />
       </div>
     );
