@@ -13,15 +13,24 @@ export default class MaeveDropdown extends React.Component {
       'cursor': 'pointer',
     };
     if( items instanceof Array ) {
+
+      if (items.length === 0) {
+        return (
+          <li>
+            No result
+          </li>
+        );
+      }
+
       dropdownItems = items.map((value, key) => (
-        <div
+        <li
           style={dropdownItemStyle}
           className="dropdown-item"
           key={key}
           onClick={this.props.onSelect.bind(null, value)}
         >
           { value }
-        </div>
+        </li>
       ));
     }
     return dropdownItems;
@@ -30,7 +39,9 @@ export default class MaeveDropdown extends React.Component {
     const items = this.props.items;
     return (
       <div className="maeve-dropdown">
-        { this.getDropdownItems(items) }
+        <ul>
+          { this.getDropdownItems(items) }
+        </ul>
       </div>
     );
   }

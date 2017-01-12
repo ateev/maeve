@@ -107,7 +107,7 @@
             updatedAutocompleteSuggestions = source(updatedValue);
           }
         } else {
-          updatedAutocompleteSuggestions = [];
+          updatedAutocompleteSuggestions = null;
         }
         _this.setState({
           value: updatedValue,
@@ -118,13 +118,13 @@
       _this.onItemSelect = function (value) {
         _this.setState({
           value: value,
-          autocompleteSuggestions: []
+          autocompleteSuggestions: null
         });
       };
 
       _this.state = {
         value: '',
-        autocompleteSuggestions: []
+        autocompleteSuggestions: null
       };
       return _this;
     }
@@ -141,11 +141,11 @@
             value: this.state.value,
             onChange: this.handleChange
           }),
-          _react2.default.createElement(_maeveDropdown2.default, {
+          this.state.autocompleteSuggestions !== null ? _react2.default.createElement(_maeveDropdown2.default, {
             items: this.state.autocompleteSuggestions,
             options: this.props.autocomplete.options,
             onSelect: this.onItemSelect
-          })
+          }) : ''
         );
       }
     }]);

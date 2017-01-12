@@ -90,9 +90,18 @@
           'cursor': 'pointer'
         };
         if (items instanceof Array) {
+
+          if (items.length === 0) {
+            return _react2.default.createElement(
+              'li',
+              null,
+              'No result'
+            );
+          }
+
           dropdownItems = items.map(function (value, key) {
             return _react2.default.createElement(
-              'div',
+              'li',
               {
                 style: dropdownItemStyle,
                 className: 'dropdown-item',
@@ -116,7 +125,11 @@
         return _react2.default.createElement(
           'div',
           { className: 'maeve-dropdown' },
-          this.getDropdownItems(items)
+          _react2.default.createElement(
+            'ul',
+            null,
+            this.getDropdownItems(items)
+          )
         );
       }
     }]);

@@ -7,7 +7,7 @@ export default class MaeveInput extends React.Component {
     super(props);
     this.state = {
       value: '',
-      autocompleteSuggestions: [],
+      autocompleteSuggestions: null,
     };
   }
 
@@ -28,7 +28,7 @@ export default class MaeveInput extends React.Component {
         updatedAutocompleteSuggestions = source(updatedValue);
       }
     } else {
-      updatedAutocompleteSuggestions = [];
+      updatedAutocompleteSuggestions = null;
     }
     this.setState({
       value: updatedValue,
@@ -39,7 +39,7 @@ export default class MaeveInput extends React.Component {
   onItemSelect = (value) => {
     this.setState({
       value,
-      autocompleteSuggestions: [],
+      autocompleteSuggestions: null,
     });
   }
 
@@ -52,11 +52,14 @@ export default class MaeveInput extends React.Component {
           value={this.state.value}
           onChange={this.handleChange}
         />
-        <MaeveDropdown
-          items={this.state.autocompleteSuggestions}
-          options={this.props.autocomplete.options}
-          onSelect={this.onItemSelect}
-        />
+        { this.state.autocompleteSuggestions !== null ?
+          <MaeveDropdown
+            items={this.state.autocompleteSuggestions}
+            options={this.props.autocomplete.options}
+            onSelect={this.onItemSelect}
+          />
+          : ''
+        }
       </div>
     );
   }

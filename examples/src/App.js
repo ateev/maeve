@@ -13,9 +13,16 @@ class App extends Component {
     );
   }
 
+  onAddNew = (value) => {
+    console.log("adding new option" + value);
+  }
+
   render() {
     const autoComplete = {
       source: ["apple", "banana", "cat", "appollo", "caterpillar"],
+      options: {
+        onAddNew: this.onAddNew,
+      }
     };
     return (
       <div className="App">
