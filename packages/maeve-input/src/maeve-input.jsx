@@ -50,6 +50,7 @@ export default class MaeveInput extends React.Component {
           type="text"
           name="maeve-input"
           value={this.state.value}
+          placeholder={this.props.placeholder}
           onChange={this.handleChange}
         />
         <MaeveDropdown

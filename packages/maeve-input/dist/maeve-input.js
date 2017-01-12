@@ -139,6 +139,7 @@
             type: 'text',
             name: 'maeve-input',
             value: this.state.value,
+            placeholder: this.props.placeholder,
             onChange: this.handleChange
           }),
           _react2.default.createElement(_maeveDropdown2.default, {
