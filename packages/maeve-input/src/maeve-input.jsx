@@ -6,18 +6,29 @@ export default class MaeveInput extends React.Component {
     super(props);
     this.state = {
       value: '',
+      autocompleteSuggestions: [],
     };
   }
 
+  filterResults = (item, query) => item.toLowerCase().includes(query.toLowerCase())
+
   handleChange = (event) => {
-    this.setState({
-      value: event.target.value,
-    });
+    let updatedValue = event.target.value;
+    let updatedAutocompleteSuggestions = this.state.autocompleteSuggestions;
+    const source = this.props.source;
 
-    if ( typeof this.props.source !== undefined ) {
-      console.log(this.props.source);
+    if ( typeof source !== undefined ) {
+      if ( source instanceof Array ) {
+        updatedAutocompleteSuggestions = source
+          .filter(
+            item => this.filterResults(item, updatedValue)
+          );
+      }
     }
-
+    this.setState({
+      value: updatedValue,
+      autoCompleteSuggestions: updatedAutocompleteSuggestions,
+    });
   }
 
   render() {

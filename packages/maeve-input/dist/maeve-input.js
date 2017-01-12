@@ -87,18 +87,32 @@
 
       var _this = _possibleConstructorReturn(this, (MaeveInput.__proto__ || Object.getPrototypeOf(MaeveInput)).call(this, props));
 
-      _this.handleChange = function (event) {
-        _this.setState({
-          value: event.target.value
-        });
+      _this.filterResults = function (item, query) {
+        return item.toLowerCase().includes(query.toLowerCase());
+      };
 
-        if (_typeof(_this.props.source) !== undefined) {
-          console.log(_this.props.source);
+      _this.handleChange = function (event) {
+        var updatedValue = event.target.value;
+        var updatedAutocompleteSuggestions = _this.state.autocompleteSuggestions;
+        var source = _this.props.source;
+
+        if ((typeof source === 'undefined' ? 'undefined' : _typeof(source)) !== undefined) {
+          if (source instanceof Array) {
+            updatedAutocompleteSuggestions = source.filter(function (item) {
+              return _this.filterResults(item, updatedValue);
+            });
+          }
         }
+        console.log(updatedAutocompleteSuggestions);
+        _this.setState({
+          value: updatedValue,
+          autoCompleteSuggestions: updatedAutocompleteSuggestions
+        });
       };
 
       _this.state = {
-        value: ''
+        value: '',
+        autocompleteSuggestions: []
       };
       return _this;
     }

@@ -5,11 +5,12 @@ import './App.css';
 
 class App extends Component {
   render() {
+    const source = ["apple", "banana", "cat", "appollo", "caterpillar"];
     return (
       <div className="App">
         <h2>maeve-input</h2>
         <MaeveMulti>
-          <MaeveInput />
+          <MaeveInput source={source} />
         </MaeveMulti>
       </div>
     );
