@@ -1,13 +1,13 @@
 {
   "name": "maeve-dropdown",
-  "version": "0.0.1",
+  "version": "0.0.10",
   "description": "A simple dropdown",
   "main": "index.js",
   "scripts": {
     "test": "jest",
     "prepublish": "babel --plugins transform-es2015-modules-umd src --ignore __tests__ --out-dir ./dist"
   },
-    "dependencies": {
+  "dependencies": {
     "react": "^15.4.2"
   },
   "devDependencies": {
