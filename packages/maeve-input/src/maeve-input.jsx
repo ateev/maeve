@@ -24,6 +24,8 @@ export default class MaeveInput extends React.Component {
           .filter(
             item => this.filterResults(item, updatedValue)
           );
+      } else if ( typeof source === 'function' ) {
+        updatedAutocompleteSuggestions = source(updatedValue);
       }
     } else {
       updatedAutocompleteSuggestions = [];

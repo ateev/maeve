@@ -103,6 +103,8 @@
             updatedAutocompleteSuggestions = source.filter(function (item) {
               return _this.filterResults(item, updatedValue);
             });
+          } else if (typeof source === 'function') {
+            updatedAutocompleteSuggestions = source(updatedValue);
           }
         } else {
           updatedAutocompleteSuggestions = [];
