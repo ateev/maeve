@@ -93,6 +93,12 @@
         return item.toLowerCase().includes(query.toLowerCase());
       };
 
+      _this.updateValue = function (newState) {
+        var valueId = _this.props.multi === 'true' ? _this.props.valueId : _this.props.id;
+        _this.props.onValueUpdate(valueId, newState.value);
+        _this.setState(newState);
+      };
+
       _this.handleChange = function (event) {
         var updatedValue = event.target.value;
         var updatedAutocompleteSuggestions = [];
@@ -108,17 +114,14 @@
             updatedAutocompleteSuggestions = source(updatedValue);
           }
         }
-        console.log(_this.props.multi);
-        _this.props.onValueUpdate(_this.props.id, updatedValue);
-        _this.setState({
+        _this.updateValue({
           value: updatedValue,
           autocompleteSuggestions: updatedAutocompleteSuggestions
         });
       };
 
       _this.onItemSelect = function (value) {
-        _this.props.onValueUpdate(_this.props.id, value);
-        _this.setState({
+        _this.updateValue({
           value: value,
           autocompleteSuggestions: []
         });

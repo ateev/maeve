@@ -25,11 +25,13 @@ export default class MaeveMulti extends React.Component {
     });
   }
 
-  addPropsToComponent = (component) => {
+  addPropsToComponent = (component, key) => {
+    const newId = component.props.id + '[' + key + ']';
     return React.cloneElement(
       component,
       {
         multi: 'true',
+        valueId: newId
       }
     );
   }
@@ -49,7 +51,7 @@ export default class MaeveMulti extends React.Component {
       <div className="maeve-multi">
         { this.state.childComponents.map((val, key) => (
             <div key={val.id} className="maeve-multi-item">
-              { this.addPropsToComponent(val.comp) }
+              { this.addPropsToComponent(val.comp, key) }
               { this.state.childComponents.length > 1 ?
               <div
                 className="remove-button"

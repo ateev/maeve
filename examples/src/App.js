@@ -24,17 +24,15 @@ class App extends Component {
     return (
       <div className="App">
         <h2>Maeve-input</h2>
-        <MaeveMulti>
-          <MaeveInput
-            // Essentials
-            id="listAutocomplete"
-            onValueUpdate={this.onValueUpdate}
-            multiple="true"
-            // Optionals
-            autocomplete={autoComplete}
-            placeholder="hello"
-          />
-        </MaeveMulti>
+        <MaeveInput
+          // Essentials
+          id="listAutocomplete"
+          onValueUpdate={this.onValueUpdate}
+          multiple="true"
+          // Optionals
+          autocomplete={autoComplete}
+          placeholder="hello"
+        />
         <br />
         <div> <h2>Maeve-input with source as a function and a label</h2> </div>
         <MaeveMulti>

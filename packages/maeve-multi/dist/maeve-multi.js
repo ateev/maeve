@@ -106,9 +106,11 @@
         });
       };
 
-      _this.addPropsToComponent = function (component) {
+      _this.addPropsToComponent = function (component, key) {
+        var newId = component.props.id + '[' + key + ']';
         return _react2.default.cloneElement(component, {
-          multi: 'true'
+          multi: 'true',
+          valueId: newId
         });
       };
 
@@ -144,7 +146,7 @@
             return _react2.default.createElement(
               'div',
               { key: val.id, className: 'maeve-multi-item' },
-              _this2.addPropsToComponent(val.comp),
+              _this2.addPropsToComponent(val.comp, key),
               _this2.state.childComponents.length > 1 ? _react2.default.createElement(
                 'div',
                 {
