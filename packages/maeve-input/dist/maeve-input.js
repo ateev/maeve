@@ -93,12 +93,19 @@
         return item.toLowerCase().includes(query.toLowerCase());
       };
 
+      _this.updateValue = function (newState) {
+        var valueId = _this.props.multi === 'true' ? _this.props.valueId : _this.props.id;
+        _this.props.onValueUpdate(valueId, newState.value);
+        _this.setState(newState);
+      };
+
       _this.handleChange = function (event) {
         var updatedValue = event.target.value;
-        var updatedAutocompleteSuggestions = _this.state.autocompleteSuggestions;
-        var source = _this.props.autocomplete.source;
+        var updatedAutocompleteSuggestions = [];
 
-        if ((typeof source === 'undefined' ? 'undefined' : _typeof(source)) !== undefined && updatedValue.length > 2) {
+        if (typeof _this.props.autocomplete !== 'undefined' && updatedValue.length > 2) {
+          updatedAutocompleteSuggestions = _this.state.autocompleteSuggestions;
+          var source = _this.props.autocomplete.source;
           if (source instanceof Array) {
             updatedAutocompleteSuggestions = source.filter(function (item) {
               return _this.filterResults(item, updatedValue);
@@ -109,14 +116,14 @@
         } else {
           updatedAutocompleteSuggestions = null;
         }
-        _this.setState({
+        _this.updateValue({
           value: updatedValue,
           autocompleteSuggestions: updatedAutocompleteSuggestions
         });
       };
 
       _this.onItemSelect = function (value) {
-        _this.setState({
+        _this.updateValue({
           value: value,
           autocompleteSuggestions: null
         });
@@ -142,16 +149,24 @@
         return _react2.default.createElement(
           'div',
           { className: 'maeve-input' },
+          _typeof(this.props.label) !== undefined ? _react2.default.createElement(
+            'label',
+            { htmlFor: this.props.id },
+            this.props.label
+          ) : '',
           _react2.default.createElement('input', {
+            id: this.props.id,
             type: 'text',
             name: 'maeve-input',
             value: this.state.value,
+            placeholder: this.props.placeholder,
             onChange: this.handleChange
           }),
-          this.state.autocompleteSuggestions !== null ? _react2.default.createElement(_maeveDropdown2.default, {
+          typeof this.props.autocomplete !== 'undefined' ? _react2.default.createElement(_maeveDropdown2.default, {
             items: this.state.autocompleteSuggestions,
-            addNewItem: this.props.autocomplete !== undefined && this.props.autocomplete.options !== undefined && this.props.autocomplete.options.addNewItem !== undefined ? this.addNewItem : undefined,
-            onSelect: this.onItemSelect
+            options: this.props.autocomplete.options,
+            onSelect: this.onItemSelect,
+            addNewItem: this.props.autocomplete !== undefined && this.props.autocomplete.options !== undefined && this.props.autocomplete.options.addNewItem !== undefined ? this.addNewItem : null
           }) : ''
         );
       }
