@@ -19,14 +19,18 @@ class App extends Component {
     };
     return (
       <div className="App">
-        <h2>maeve-input</h2>
+        <h2>Maeve-input</h2>
         <MaeveMulti>
           <MaeveInput autocomplete={autoComplete} />
         </MaeveMulti>
         <br />
-        <div> <h2>maeve-input with source as a function</h2> </div>
+        <div> <h2>Maeve-input with source as a function and a label</h2> </div>
         <MaeveMulti>
-          <MaeveInput autocomplete={{ source: this.asyncFunction }} />
+          <MaeveInput
+            autocomplete={{ source: this.asyncFunction }}
+            id="items"
+            label="Searchable Items"
+          />
         </MaeveMulti>
       </div>
     );
