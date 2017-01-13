@@ -122,6 +122,13 @@
         });
       };
 
+      _this.addNewItem = function () {
+        _this.props.autocomplete.options.addNewItem(_this.state.value);
+        _this.setState({
+          autocompleteSuggestions: null
+        });
+      };
+
       _this.state = {
         value: '',
         autocompleteSuggestions: null
@@ -143,7 +150,7 @@
           }),
           this.state.autocompleteSuggestions !== null ? _react2.default.createElement(_maeveDropdown2.default, {
             items: this.state.autocompleteSuggestions,
-            options: this.props.autocomplete.options,
+            addNewItem: this.props.autocomplete !== undefined && this.props.autocomplete.options !== undefined && this.props.autocomplete.options.addNewItem !== undefined ? this.addNewItem : undefined,
             onSelect: this.onItemSelect
           }) : ''
         );

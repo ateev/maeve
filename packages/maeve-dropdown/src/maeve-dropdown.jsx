@@ -13,7 +13,6 @@ export default class MaeveDropdown extends React.Component {
       'cursor': 'pointer',
     };
     if( items instanceof Array ) {
-
       if (items.length === 0) {
         return (
           <li>
@@ -21,7 +20,6 @@ export default class MaeveDropdown extends React.Component {
           </li>
         );
       }
-
       dropdownItems = items.map((value, key) => (
         <li
           style={dropdownItemStyle}
@@ -33,6 +31,20 @@ export default class MaeveDropdown extends React.Component {
         </li>
       ));
     }
+
+    if (typeof this.props.addNewItem !== 'undefined') {
+      dropdownItems.push(
+        <li
+          style={dropdownItemStyle}
+          className="dropdown-item"
+          key={dropdownItems.length + 1}
+          onClick={this.props.addNewItem}
+        >
+        Add New +
+        </li>
+      )
+    }
+
     return dropdownItems;
   }
   render() {

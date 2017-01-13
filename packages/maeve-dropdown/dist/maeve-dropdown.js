@@ -90,7 +90,6 @@
           'cursor': 'pointer'
         };
         if (items instanceof Array) {
-
           if (items.length === 0) {
             return _react2.default.createElement(
               'li',
@@ -98,7 +97,6 @@
               'No result'
             );
           }
-
           dropdownItems = items.map(function (value, key) {
             return _react2.default.createElement(
               'li',
@@ -112,6 +110,20 @@
             );
           });
         }
+
+        if (typeof _this.props.addNewItem !== 'undefined') {
+          dropdownItems.push(_react2.default.createElement(
+            'li',
+            {
+              style: dropdownItemStyle,
+              className: 'dropdown-item',
+              key: dropdownItems.length + 1,
+              onClick: _this.props.addNewItem
+            },
+            'Add New +'
+          ));
+        }
+
         return dropdownItems;
       };
 

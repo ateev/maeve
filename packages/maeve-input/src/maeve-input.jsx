@@ -43,6 +43,13 @@ export default class MaeveInput extends React.Component {
     });
   }
 
+  addNewItem = () => {
+    this.props.autocomplete.options.addNewItem(this.state.value);
+    this.setState({
+      autocompleteSuggestions: null,
+    });
+  }
+
   render() {
     return (
       <div className="maeve-input">
@@ -55,7 +62,15 @@ export default class MaeveInput extends React.Component {
         { this.state.autocompleteSuggestions !== null ?
           <MaeveDropdown
             items={this.state.autocompleteSuggestions}
-            options={this.props.autocomplete.options}
+            addNewItem={
+              (
+                this.props.autocomplete !== undefined &&
+                this.props.autocomplete.options !== undefined &&
+                this.props.autocomplete.options.addNewItem !== undefined
+              ) ?
+              this.addNewItem
+              : undefined
+            }
             onSelect={this.onItemSelect}
           />
           : ''

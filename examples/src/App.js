@@ -13,7 +13,7 @@ class App extends Component {
     );
   }
 
-  onAddNew = (value) => {
+  addNewItem = (value) => {
     console.log("adding new option" + value);
   }
 
@@ -21,7 +21,7 @@ class App extends Component {
     const autoComplete = {
       source: ["apple", "banana", "cat", "appollo", "caterpillar"],
       options: {
-        onAddNew: this.onAddNew,
+        addNewItem: this.addNewItem,
       }
     };
     return (
