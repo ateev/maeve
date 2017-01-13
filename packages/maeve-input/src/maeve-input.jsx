@@ -13,6 +13,12 @@ export default class MaeveInput extends React.Component {
 
   filterResults = (item, query) => item.toLowerCase().includes(query.toLowerCase())
 
+  updateValue = (newState) => {
+    const valueId = this.props.multi === 'true' ? this.props.valueId : this.props.id;
+    this.props.onValueUpdate(valueId, newState.value);
+    this.setState(newState);
+  }
+
   handleChange = (event) => {
     let updatedValue = event.target.value;
     let updatedAutocompleteSuggestions = [];
@@ -29,15 +35,14 @@ export default class MaeveInput extends React.Component {
         updatedAutocompleteSuggestions = source(updatedValue);
       }
     }
-
-    this.setState({
+    this.updateValue({
       value: updatedValue,
       autocompleteSuggestions: updatedAutocompleteSuggestions,
     });
   }
 
   onItemSelect = (value) => {
-    this.setState({
+    this.updateValue({
       value,
       autocompleteSuggestions: [],
     });

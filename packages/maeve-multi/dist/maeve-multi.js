@@ -1,8 +1,8 @@
 (function (global, factory) {
   if (typeof define === "function" && define.amd) {
-    define(["exports", "react"], factory);
+    define(['exports', 'react'], factory);
   } else if (typeof exports !== "undefined") {
-    factory(exports, require("react"));
+    factory(exports, require('react'));
   } else {
     var mod = {
       exports: {}
@@ -11,7 +11,7 @@
     global.maeveMulti = mod.exports;
   }
 })(this, function (exports, _react) {
-  "use strict";
+  'use strict';
 
   Object.defineProperty(exports, "__esModule", {
     value: true
@@ -106,6 +106,14 @@
         });
       };
 
+      _this.addPropsToComponent = function (component, key) {
+        var newId = component.props.id + '[' + key + ']';
+        return _react2.default.cloneElement(component, {
+          multi: 'true',
+          valueId: newId
+        });
+      };
+
       _this.removeComponent = function (id) {
         var newComponents = _this.state.childComponents.filter(function (item) {
           return item.id !== id;
@@ -126,33 +134,33 @@
     }
 
     _createClass(MaeveMulti, [{
-      key: "render",
+      key: 'render',
       value: function render() {
         var _this2 = this;
 
         var self = this;
         return _react2.default.createElement(
-          "div",
-          { className: "maeve-multi" },
+          'div',
+          { className: 'maeve-multi' },
           this.state.childComponents.map(function (val, key) {
             return _react2.default.createElement(
-              "div",
-              { key: val.id, className: "maeve-multi-item" },
-              val.comp,
+              'div',
+              { key: val.id, className: 'maeve-multi-item' },
+              _this2.addPropsToComponent(val.comp, key),
               _this2.state.childComponents.length > 1 ? _react2.default.createElement(
-                "div",
+                'div',
                 {
-                  className: "remove-button",
+                  className: 'remove-button',
                   onClick: _this2.removeComponent.bind(null, val.id)
                 },
-                " - "
+                ' - '
               ) : ''
             );
           }),
           _react2.default.createElement(
-            "div",
-            { className: "add-button", onClick: this.addNewComponent.bind(null) },
-            " + "
+            'div',
+            { className: 'add-button', onClick: this.addNewComponent.bind(null) },
+            ' + '
           )
         );
       }
