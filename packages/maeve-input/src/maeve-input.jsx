@@ -44,24 +44,20 @@ export default class MaeveInput extends React.Component {
   }
 
   render() {
-    const inputField = (
-      <input
-        id={this.props.id}
-        type="text"
-        name="maeve-input"
-        value={this.state.value}
-        onChange={this.handleChange}
-      />
-    );
     return (
       <div className="maeve-input">
         { typeof this.props.label !== undefined ?
-          <label>{this.props.label}
-            {inputField}
-          </label>
+          <label htmlFor={this.props.id}>{this.props.label}</label>
           :
-          {inputField}
+          ''
         }
+        <input
+          id={this.props.id}
+          type="text"
+          name="maeve-input"
+          value={this.state.value}
+          onChange={this.handleChange}
+        />
         <MaeveDropdown
           items={this.state.autocompleteSuggestions}
           options={this.props.autocomplete.options}
