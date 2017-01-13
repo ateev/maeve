@@ -132,21 +132,22 @@
     _createClass(MaeveInput, [{
       key: 'render',
       value: function render() {
+        var inputField = _react2.default.createElement('input', {
+          id: this.props.id,
+          type: 'text',
+          name: 'maeve-input',
+          value: this.state.value,
+          onChange: this.handleChange
+        });
         return _react2.default.createElement(
           'div',
           { className: 'maeve-input' },
           _typeof(this.props.label) !== undefined ? _react2.default.createElement(
             'label',
-            { htmlFor: this.props.id },
-            this.props.label
-          ) : '',
-          _react2.default.createElement('input', {
-            id: this.props.id,
-            type: 'text',
-            name: 'maeve-input',
-            value: this.state.value,
-            onChange: this.handleChange
-          }),
+            null,
+            this.props.label,
+            inputField
+          ) : { inputField: inputField },
           _react2.default.createElement(_maeveDropdown2.default, {
             items: this.state.autocompleteSuggestions,
             options: this.props.autocomplete.options,
