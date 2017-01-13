@@ -21,7 +21,7 @@ class App extends Component {
       <div className="App">
         <h2>Maeve-input</h2>
         <MaeveMulti>
-          <MaeveInput autocomplete={autoComplete} placeholder="hello" />
+          <MaeveInput placeholder="hello" />
         </MaeveMulti>
         <br />
         <div> <h2>Maeve-input with source as a function and a label</h2> </div>
