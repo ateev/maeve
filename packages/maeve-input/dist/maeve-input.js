@@ -108,7 +108,8 @@
             updatedAutocompleteSuggestions = source(updatedValue);
           }
         }
-
+        console.log(_this.props.multi);
+        _this.props.onValueUpdate(_this.props.id, updatedValue);
         _this.setState({
           value: updatedValue,
           autocompleteSuggestions: updatedAutocompleteSuggestions
@@ -116,6 +117,7 @@
       };
 
       _this.onItemSelect = function (value) {
+        _this.props.onValueUpdate(_this.props.id, value);
         _this.setState({
           value: value,
           autocompleteSuggestions: []

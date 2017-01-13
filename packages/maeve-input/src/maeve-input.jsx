@@ -29,7 +29,8 @@ export default class MaeveInput extends React.Component {
         updatedAutocompleteSuggestions = source(updatedValue);
       }
     }
-
+    console.log(this.props.multi);
+    this.props.onValueUpdate(this.props.id, updatedValue);
     this.setState({
       value: updatedValue,
       autocompleteSuggestions: updatedAutocompleteSuggestions,
@@ -37,6 +38,7 @@ export default class MaeveInput extends React.Component {
   }
 
   onItemSelect = (value) => {
+    this.props.onValueUpdate(this.props.id, value);
     this.setState({
       value,
       autocompleteSuggestions: [],
