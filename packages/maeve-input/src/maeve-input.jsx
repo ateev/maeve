@@ -46,7 +46,13 @@ export default class MaeveInput extends React.Component {
   render() {
     return (
       <div className="maeve-input">
+        { typeof this.props.label !== undefined ?
+          <label htmlFor={this.props.id}>{this.props.label}</label>
+          :
+          ''
+        }
         <input
+          id={this.props.id}
           type="text"
           name="maeve-input"
           value={this.state.value}
