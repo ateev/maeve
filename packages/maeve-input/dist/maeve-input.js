@@ -95,10 +95,11 @@
 
       _this.handleChange = function (event) {
         var updatedValue = event.target.value;
-        var updatedAutocompleteSuggestions = _this.state.autocompleteSuggestions;
-        var source = _this.props.autocomplete.source;
+        var updatedAutocompleteSuggestions = [];
 
-        if ((typeof source === 'undefined' ? 'undefined' : _typeof(source)) !== undefined && updatedValue.length > 2) {
+        if (typeof _this.props.autocomplete !== 'undefined' && updatedValue.length > 2) {
+          updatedAutocompleteSuggestions = _this.state.autocompleteSuggestions;
+          var source = _this.props.autocomplete.source;
           if (source instanceof Array) {
             updatedAutocompleteSuggestions = source.filter(function (item) {
               return _this.filterResults(item, updatedValue);
@@ -106,9 +107,8 @@
           } else if (typeof source === 'function') {
             updatedAutocompleteSuggestions = source(updatedValue);
           }
-        } else {
-          updatedAutocompleteSuggestions = [];
         }
+
         _this.setState({
           value: updatedValue,
           autocompleteSuggestions: updatedAutocompleteSuggestions
@@ -148,11 +148,11 @@
             placeholder: this.props.placeholder,
             onChange: this.handleChange
           }),
-          _react2.default.createElement(_maeveDropdown2.default, {
+          typeof this.props.autocomplete !== 'undefined' ? _react2.default.createElement(_maeveDropdown2.default, {
             items: this.state.autocompleteSuggestions,
             options: this.props.autocomplete.options,
             onSelect: this.onItemSelect
-          })
+          }) : ''
         );
       }
     }]);
