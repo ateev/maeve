@@ -15,10 +15,11 @@ export default class MaeveInput extends React.Component {
 
   handleChange = (event) => {
     let updatedValue = event.target.value;
-    let updatedAutocompleteSuggestions = this.state.autocompleteSuggestions;
-    const source = this.props.autocomplete.source;
+    let updatedAutocompleteSuggestions = [];
 
-    if ( typeof source !== undefined && updatedValue.length > 2 ) {
+    if ( typeof this.props.autocomplete !== 'undefined' && updatedValue.length > 2 ) {
+      updatedAutocompleteSuggestions = this.state.autocompleteSuggestions;
+      const source = this.props.autocomplete.source;
       if ( source instanceof Array ) {
         updatedAutocompleteSuggestions = source
           .filter(
@@ -27,9 +28,8 @@ export default class MaeveInput extends React.Component {
       } else if ( typeof source === 'function' ) {
         updatedAutocompleteSuggestions = source(updatedValue);
       }
-    } else {
-      updatedAutocompleteSuggestions = [];
     }
+
     this.setState({
       value: updatedValue,
       autocompleteSuggestions: updatedAutocompleteSuggestions,
@@ -59,11 +59,14 @@ export default class MaeveInput extends React.Component {
           placeholder={this.props.placeholder}
           onChange={this.handleChange}
         />
+        { typeof this.props.autocomplete !== 'undefined' ?
         <MaeveDropdown
           items={this.state.autocompleteSuggestions}
           options={this.props.autocomplete.options}
           onSelect={this.onItemSelect}
         />
+        : ''
+        }
       </div>
     );
   }
