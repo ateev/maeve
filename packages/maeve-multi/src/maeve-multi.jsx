@@ -1,6 +1,6 @@
 import React from 'react';
 
-export default class MaeveMulti extends React.Component {
+class MaeveMulti extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
@@ -23,6 +23,9 @@ export default class MaeveMulti extends React.Component {
       childComponents: newComponents,
       addCounter: newAddCounter,
     });
+    if(typeof this.props.addCallback !== 'undefined') {
+      this.props.addCallback(newAddCounter);
+    }
   }
 
   addPropsToComponent = (component, key) => {
@@ -43,6 +46,9 @@ export default class MaeveMulti extends React.Component {
     this.setState({
       childComponents: newComponents,
     });
+    if(typeof this.props.removeCallback !== 'undefined') {
+      this.props.removeCallback(id);
+    }
   }
 
   render() {
@@ -67,3 +73,10 @@ export default class MaeveMulti extends React.Component {
     );
   }
 };
+
+MaeveMulti.propTypes = {
+  addCallback: React.PropTypes.func,
+  removeCallback: React.PropTypes.func,
+};
+
+export default MaeveMulti;
