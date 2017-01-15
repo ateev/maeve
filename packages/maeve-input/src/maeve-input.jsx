@@ -88,9 +88,8 @@ class MaeveInput extends React.Component {
         { typeof this.props.autocomplete !== 'undefined' ?
         <MaeveDropdown
           items={this.state.autocompleteSuggestions}
-          options={this.props.autocomplete.options}
+          addNewItem={this.addNewItem}
           onSelect={this.onItemSelect}
-          addNewItem={addNewItem}
         />
         : ''
         }

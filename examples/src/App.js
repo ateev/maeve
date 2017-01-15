@@ -14,7 +14,7 @@ class App extends Component {
   }
 
   addNewItem = (value) => {
-    console.log("adding new option" + value);
+    console.log("adding new option " + value);
   }
 
   onValueUpdate = (value) => {

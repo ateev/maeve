@@ -173,9 +173,8 @@
           }),
           typeof this.props.autocomplete !== 'undefined' ? _react2.default.createElement(_maeveDropdown2.default, {
             items: this.state.autocompleteSuggestions,
-            options: this.props.autocomplete.options,
-            onSelect: this.onItemSelect,
-            addNewItem: addNewItem
+            addNewItem: this.addNewItem,
+            onSelect: this.onItemSelect
           }) : ''
         );
       }

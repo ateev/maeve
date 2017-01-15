@@ -1,6 +1,6 @@
 import React from 'react';
 
-export default class MaeveDropdown extends React.Component {
+class MaeveDropdown extends React.Component {
   constructor(props){
     super(props);
   }
@@ -43,7 +43,6 @@ export default class MaeveDropdown extends React.Component {
         </li>
       )
     }
-
     return dropdownItems;
   }
   render() {
@@ -57,3 +56,11 @@ export default class MaeveDropdown extends React.Component {
     );
   }
 };
+
+MaeveDropdown.PropTypes = {
+  items: React.PropTypes.isRequired,
+  onSelect: React.PropTypes.func.isRequired,
+  addNewItem: React.PropTypes.func.isRequired,
+}
+
+export default MaeveDropdown;

@@ -122,7 +122,6 @@
             'Add New +'
           ));
         }
-
         return dropdownItems;
       };
 
@@ -148,6 +147,13 @@
     return MaeveDropdown;
   }(_react2.default.Component);
 
-  exports.default = MaeveDropdown;
   ;
+
+  MaeveDropdown.PropTypes = {
+    items: _react2.default.PropTypes.isRequired,
+    onSelect: _react2.default.PropTypes.func.isRequired,
+    addNewItem: _react2.default.PropTypes.func.isRequired
+  };
+
+  exports.default = MaeveDropdown;
 });
