@@ -104,6 +104,9 @@
           childComponents: newComponents,
           addCounter: newAddCounter
         });
+        if (typeof _this.props.addCallback !== 'undefined') {
+          _this.props.addCallback(newAddCounter);
+        }
       };
 
       _this.addPropsToComponent = function (component, key) {
@@ -121,6 +124,9 @@
         _this.setState({
           childComponents: newComponents
         });
+        if (typeof _this.props.removeCallback !== 'undefined') {
+          _this.props.removeCallback(id);
+        }
       };
 
       _this.state = {
@@ -169,6 +175,12 @@
     return MaeveMulti;
   }(_react2.default.Component);
 
-  exports.default = MaeveMulti;
   ;
+
+  MaeveMulti.propTypes = {
+    addCallback: _react2.default.PropTypes.func,
+    removeCallback: _react2.default.PropTypes.func
+  };
+
+  exports.default = MaeveMulti;
 });
