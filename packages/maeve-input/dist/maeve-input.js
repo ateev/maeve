@@ -133,6 +133,10 @@
 
       _this.addNewItem = function () {
         _this.props.autocomplete.options.addNewItem(_this.state.value);
+        _this.clearAutocomplete();
+      };
+
+      _this.clearAutocomplete = function () {
         _this.setState({
           autocompleteSuggestions: null
         });
@@ -169,7 +173,8 @@
             name: 'maeve-input',
             value: this.state.value,
             placeholder: this.props.placeholder,
-            onChange: (0, _throttle2.default)(this.handleChange, 100)
+            onChange: (0, _throttle2.default)(this.handleChange, 100),
+            onBlur: this.clearAutocomplete
           }),
           typeof this.props.autocomplete !== 'undefined' ? _react2.default.createElement(_maeveDropdown2.default, {
             items: this.state.autocompleteSuggestions,
