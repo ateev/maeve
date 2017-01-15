@@ -82,17 +82,24 @@
       var _this = _possibleConstructorReturn(this, (MaeveDropdown.__proto__ || Object.getPrototypeOf(MaeveDropdown)).call(this, props));
 
       _this.getDropdownItems = function (items) {
-        var dropdownItems = void 0;
         var dropdownItemStyle = {
           'padding': '7px',
           'border': '1px solid #ececec',
           'borderTop': '0px',
           'cursor': 'pointer'
         };
+        var dropdownItems = [];
         if (items instanceof Array) {
+          if (items.length === 0) {
+            dropdownItems.push(_react2.default.createElement(
+              'li',
+              null,
+              'No result'
+            ));
+          }
           dropdownItems = items.map(function (value, key) {
             return _react2.default.createElement(
-              'div',
+              'li',
               {
                 style: dropdownItemStyle,
                 className: 'dropdown-item',
@@ -102,6 +109,18 @@
               value
             );
           });
+        }
+        if (items !== null && _this.props.addNewItem !== undefined) {
+          dropdownItems.push(_react2.default.createElement(
+            'li',
+            {
+              style: dropdownItemStyle,
+              className: 'dropdown-item',
+              key: dropdownItems.length + 1,
+              onClick: _this.props.addNewItem
+            },
+            'Add New +'
+          ));
         }
         return dropdownItems;
       };
@@ -116,7 +135,11 @@
         return _react2.default.createElement(
           'div',
           { className: 'maeve-dropdown' },
-          this.getDropdownItems(items)
+          _react2.default.createElement(
+            'ul',
+            null,
+            this.getDropdownItems(items)
+          )
         );
       }
     }]);
@@ -124,6 +147,13 @@
     return MaeveDropdown;
   }(_react2.default.Component);
 
-  exports.default = MaeveDropdown;
   ;
+
+  MaeveDropdown.PropTypes = {
+    items: _react2.default.PropTypes.isRequired,
+    onSelect: _react2.default.PropTypes.func.isRequired,
+    addNewItem: _react2.default.PropTypes.func.isRequired
+  };
+
+  exports.default = MaeveDropdown;
 });

@@ -1,16 +1,16 @@
 (function (global, factory) {
   if (typeof define === "function" && define.amd) {
-    define(['exports', 'react', 'maeve-dropdown'], factory);
+    define(['exports', 'react', 'maeve-dropdown', 'lodash/throttle'], factory);
   } else if (typeof exports !== "undefined") {
-    factory(exports, require('react'), require('maeve-dropdown'));
+    factory(exports, require('react'), require('maeve-dropdown'), require('lodash/throttle'));
   } else {
     var mod = {
       exports: {}
     };
-    factory(mod.exports, global.react, global.maeveDropdown);
+    factory(mod.exports, global.react, global.maeveDropdown, global.throttle);
     global.maeveInput = mod.exports;
   }
-})(this, function (exports, _react, _maeveDropdown) {
+})(this, function (exports, _react, _maeveDropdown, _throttle) {
   'use strict';
 
   Object.defineProperty(exports, "__esModule", {
@@ -20,6 +20,8 @@
   var _react2 = _interopRequireDefault(_react);
 
   var _maeveDropdown2 = _interopRequireDefault(_maeveDropdown);
+
+  var _throttle2 = _interopRequireDefault(_throttle);
 
   function _interopRequireDefault(obj) {
     return obj && obj.__esModule ? obj : {
@@ -94,8 +96,8 @@
       };
 
       _this.updateValue = function (newState) {
-        var valueId = _this.props.multi === 'true' ? _this.props.valueId : _this.props.id;
-        _this.props.onValueUpdate(valueId, newState.value);
+        var valueId = _this.props.multi === true ? _this.props.valueId : _this.props.id;
+        _this.props.onValueUpdate(newState.value, valueId);
         _this.setState(newState);
       };
 
@@ -113,6 +115,8 @@
           } else if (typeof source === 'function') {
             updatedAutocompleteSuggestions = source(updatedValue);
           }
+        } else {
+          updatedAutocompleteSuggestions = null;
         }
         _this.updateValue({
           value: updatedValue,
@@ -123,13 +127,24 @@
       _this.onItemSelect = function (value) {
         _this.updateValue({
           value: value,
-          autocompleteSuggestions: []
+          autocompleteSuggestions: null
+        });
+      };
+
+      _this.addNewItem = function () {
+        _this.props.autocomplete.options.addNewItem(_this.state.value);
+        _this.clearAutocomplete();
+      };
+
+      _this.clearAutocomplete = function () {
+        _this.setState({
+          autocompleteSuggestions: null
         });
       };
 
       _this.state = {
         value: '',
-        autocompleteSuggestions: []
+        autocompleteSuggestions: null
       };
       return _this;
     }
@@ -137,6 +152,13 @@
     _createClass(MaeveInput, [{
       key: 'render',
       value: function render() {
+        var addNewItem = void 0;
+        if (this.props.autocomplete !== undefined && this.props.autocomplete.options !== undefined && this.props.autocomplete.options.addNewItem !== undefined) {
+          addNewItem = this.props.autocomplete.options.addNewItem;
+        } else {
+          addNewItem = undefined;
+        }
+
         return _react2.default.createElement(
           'div',
           { className: 'maeve-input' },
@@ -151,11 +173,12 @@
             name: 'maeve-input',
             value: this.state.value,
             placeholder: this.props.placeholder,
-            onChange: this.handleChange
+            onChange: (0, _throttle2.default)(this.handleChange, 100),
+            onBlur: this.clearAutocomplete
           }),
           typeof this.props.autocomplete !== 'undefined' ? _react2.default.createElement(_maeveDropdown2.default, {
             items: this.state.autocompleteSuggestions,
-            options: this.props.autocomplete.options,
+            addNewItem: this.addNewItem,
             onSelect: this.onItemSelect
           }) : ''
         );
@@ -165,6 +188,17 @@
     return MaeveInput;
   }(_react2.default.Component);
 
-  exports.default = MaeveInput;
   ;
+
+  MaeveInput.propTypes = {
+    id: _react2.default.PropTypes.string.isRequired,
+    onValueUpdate: _react2.default.PropTypes.func.isRequired,
+    valueId: _react2.default.PropTypes.string,
+    mult: _react2.default.PropTypes.bool,
+    placeholder: _react2.default.PropTypes.string,
+    autocomplete: _react2.default.PropTypes.object,
+    label: _react2.default.PropTypes.string
+  };
+
+  exports.default = MaeveInput;
 });
