@@ -105,7 +105,7 @@
           addCounter: newAddCounter
         });
         if (typeof _this.props.addCallback !== 'undefined') {
-          _this.props.addCallback(newAddCounter);
+          _this.props.addCallback(newAddCounter - 1);
         }
       };
 
@@ -125,7 +125,7 @@
           childComponents: newComponents
         });
         if (typeof _this.props.removeCallback !== 'undefined') {
-          _this.props.removeCallback(id);
+          _this.props.removeCallback(id - 1);
         }
       };
 
@@ -152,7 +152,7 @@
             return _react2.default.createElement(
               'div',
               { key: val.id, className: 'maeve-multi-item' },
-              _this2.addPropsToComponent(val.comp, key),
+              _this2.addPropsToComponent(val.comp, val.id),
               _this2.state.childComponents.length > 1 ? _react2.default.createElement(
                 'div',
                 {

@@ -24,7 +24,7 @@ class MaeveMulti extends React.Component {
       addCounter: newAddCounter,
     });
     if(typeof this.props.addCallback !== 'undefined') {
-      this.props.addCallback(newAddCounter);
+      this.props.addCallback(newAddCounter - 1);
     }
   }
 
@@ -47,7 +47,7 @@ class MaeveMulti extends React.Component {
       childComponents: newComponents,
     });
     if(typeof this.props.removeCallback !== 'undefined') {
-      this.props.removeCallback(id);
+      this.props.removeCallback(id - 1);
     }
   }
 
@@ -57,7 +57,7 @@ class MaeveMulti extends React.Component {
       <div className="maeve-multi">
         { this.state.childComponents.map((val, key) => (
             <div key={val.id} className="maeve-multi-item">
-              { this.addPropsToComponent(val.comp, key) }
+              { this.addPropsToComponent(val.comp, val.id) }
               { this.state.childComponents.length > 1 ?
               <div
                 className="remove-button"
