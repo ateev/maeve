@@ -56,7 +56,7 @@ class MaeveInput extends React.Component {
     this.clearAutocomplete();
   }
 
-  clearAutocomplete = () => {
+  clearAutocomplete = (event) => {
     this.setState({
       autocompleteSuggestions: null,
     });
@@ -88,7 +88,6 @@ class MaeveInput extends React.Component {
           value={this.state.value}
           placeholder={this.props.placeholder}
           onChange={throttle(this.handleChange, 100)}
-          onBlur={this.clearAutocomplete}
         />
         { typeof this.props.autocomplete !== 'undefined' ?
         <MaeveDropdown
