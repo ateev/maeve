@@ -11,8 +11,11 @@ class App extends Component {
     console.log("adding new option " + value);
   }
 
-  onValueUpdate = (value) => {
+  onValueUpdate = (value, id) => {
     console.log("Value updated to " + value);
+    if( typeof id !== 'undefined') {
+      console.log(id);
+    }
   }
 
   asyncFunction = (value) => {

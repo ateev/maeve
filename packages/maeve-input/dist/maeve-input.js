@@ -173,7 +173,7 @@
             name: 'maeve-input',
             value: this.state.value,
             placeholder: this.props.placeholder,
-            onChange: (0, _throttle2.default)(this.handleChange, 100)
+            onChange: (0, _throttle2.default)(this.handleChange, 10000)
           }),
           typeof this.props.autocomplete !== 'undefined' ? _react2.default.createElement(_maeveDropdown2.default, {
             items: this.state.autocompleteSuggestions,

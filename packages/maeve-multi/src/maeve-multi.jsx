@@ -30,7 +30,7 @@ export default class MaeveMulti extends React.Component {
     return React.cloneElement(
       component,
       {
-        multi: 'true',
+        multi: true,
         valueId: newId
       }
     );

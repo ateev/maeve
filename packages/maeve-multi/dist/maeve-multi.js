@@ -109,7 +109,7 @@
       _this.addPropsToComponent = function (component, key) {
         var newId = component.props.id + '[' + key + ']';
         return _react2.default.cloneElement(component, {
-          multi: 'true',
+          multi: true,
           valueId: newId
         });
       };
