@@ -1,16 +1,16 @@
 (function (global, factory) {
   if (typeof define === "function" && define.amd) {
-    define(['exports', 'react', 'maeve-dropdown'], factory);
+    define(['exports', 'react', 'maeve-dropdown', 'lodash/throttle'], factory);
   } else if (typeof exports !== "undefined") {
-    factory(exports, require('react'), require('maeve-dropdown'));
+    factory(exports, require('react'), require('maeve-dropdown'), require('lodash/throttle'));
   } else {
     var mod = {
       exports: {}
     };
-    factory(mod.exports, global.react, global.maeveDropdown);
+    factory(mod.exports, global.react, global.maeveDropdown, global.throttle);
     global.maeveInput = mod.exports;
   }
-})(this, function (exports, _react, _maeveDropdown) {
+})(this, function (exports, _react, _maeveDropdown, _throttle) {
   'use strict';
 
   Object.defineProperty(exports, "__esModule", {
@@ -20,6 +20,8 @@
   var _react2 = _interopRequireDefault(_react);
 
   var _maeveDropdown2 = _interopRequireDefault(_maeveDropdown);
+
+  var _throttle2 = _interopRequireDefault(_throttle);
 
   function _interopRequireDefault(obj) {
     return obj && obj.__esModule ? obj : {
@@ -146,6 +148,13 @@
     _createClass(MaeveInput, [{
       key: 'render',
       value: function render() {
+        var addNewItem = void 0;
+        if (this.props.autocomplete !== undefined && this.props.autocomplete.options !== undefined && this.props.autocomplete.options.addNewItem !== undefined) {
+          addNewItem = this.props.autocomplete.options.addNewItem;
+        } else {
+          addNewItem = undefined;
+        }
+
         return _react2.default.createElement(
           'div',
           { className: 'maeve-input' },
@@ -166,7 +175,7 @@
             items: this.state.autocompleteSuggestions,
             options: this.props.autocomplete.options,
             onSelect: this.onItemSelect,
-            addNewItem: this.props.autocomplete !== undefined && this.props.autocomplete.options !== undefined && this.props.autocomplete.options.addNewItem !== undefined ? this.addNewItem : null
+            addNewItem: addNewItem
           }) : ''
         );
       }
@@ -175,6 +184,17 @@
     return MaeveInput;
   }(_react2.default.Component);
 
-  exports.default = MaeveInput;
   ;
+
+  MaeveInput.propTypes = {
+    id: _react2.default.PropTypes.string.isRequired,
+    onValueUpdate: _react2.default.PropTypes.func.isRequired,
+    valueId: _react2.default.PropTypes.string,
+    multiple: _react2.default.PropTypes.bool,
+    placeholder: _react2.default.PropTypes.string,
+    autocomplete: _react2.default.PropTypes.object,
+    label: _react2.default.PropTypes.string
+  };
+
+  exports.default = MaeveInput;
 });

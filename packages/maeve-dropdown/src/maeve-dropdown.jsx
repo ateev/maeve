@@ -5,13 +5,13 @@ export default class MaeveDropdown extends React.Component {
     super(props);
   }
   getDropdownItems = (items) => {
-    let dropdownItems;
     const dropdownItemStyle = {
       'padding': '7px',
       'border': '1px solid #ececec',
       'borderTop': '0px',
       'cursor': 'pointer',
     };
+    let dropdownItems = [];
     if( items instanceof Array ) {
       if (items.length === 0) {
         return (
@@ -31,8 +31,7 @@ export default class MaeveDropdown extends React.Component {
         </li>
       ));
     }
-
-    if (typeof this.props.addNewItem !== 'undefined') {
+    if (this.props.addNewItem !== undefined) {
       dropdownItems.push(
         <li
           style={dropdownItemStyle}

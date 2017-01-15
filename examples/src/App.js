@@ -17,6 +17,10 @@ class App extends Component {
     console.log("adding new option" + value);
   }
 
+  onValueUpdate = (value) => {
+    console.log("Value updated");
+  }
+
   render() {
     const autoComplete = {
       source: ["apple", "banana", "cat", "appollo", "caterpillar"],
@@ -31,10 +35,10 @@ class App extends Component {
           // Essentials
           id="listAutocomplete"
           onValueUpdate={this.onValueUpdate}
-          multiple="true"
           // Optionals
-          autocomplete={autoComplete}
           placeholder="hello"
+          multiple={true}
+          autocomplete={autoComplete}
         />
         <br />
         <div> <h2>Maeve-input with source as a function and a label</h2> </div>

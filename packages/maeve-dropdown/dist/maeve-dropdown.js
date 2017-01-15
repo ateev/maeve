@@ -82,13 +82,13 @@
       var _this = _possibleConstructorReturn(this, (MaeveDropdown.__proto__ || Object.getPrototypeOf(MaeveDropdown)).call(this, props));
 
       _this.getDropdownItems = function (items) {
-        var dropdownItems = void 0;
         var dropdownItemStyle = {
           'padding': '7px',
           'border': '1px solid #ececec',
           'borderTop': '0px',
           'cursor': 'pointer'
         };
+        var dropdownItems = [];
         if (items instanceof Array) {
           if (items.length === 0) {
             return _react2.default.createElement(
@@ -110,8 +110,7 @@
             );
           });
         }
-
-        if (typeof _this.props.addNewItem !== 'undefined') {
+        if (_this.props.addNewItem !== undefined) {
           dropdownItems.push(_react2.default.createElement(
             'li',
             {

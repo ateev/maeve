@@ -1,7 +1,8 @@
 import React from 'react';
 import MaeveDropdown from 'maeve-dropdown';
+import throttle from 'lodash/throttle';
 
-export default class MaeveInput extends React.Component {
+class MaeveInput extends React.Component {
 
   constructor(props) {
     super(props);
@@ -58,6 +59,17 @@ export default class MaeveInput extends React.Component {
   }
 
   render() {
+    let addNewItem;
+    if (
+      this.props.autocomplete !== undefined &&
+      this.props.autocomplete.options !== undefined &&
+      this.props.autocomplete.options.addNewItem !== undefined
+    ) {
+      addNewItem = this.props.autocomplete.options.addNewItem;
+    } else {
+      addNewItem = undefined;
+    }
+
     return (
       <div className="maeve-input">
         { typeof this.props.label !== undefined ?
@@ -78,15 +90,7 @@ export default class MaeveInput extends React.Component {
           items={this.state.autocompleteSuggestions}
           options={this.props.autocomplete.options}
           onSelect={this.onItemSelect}
-          addNewItem={
-              (
-                this.props.autocomplete !== undefined &&
-                this.props.autocomplete.options !== undefined &&
-                this.props.autocomplete.options.addNewItem !== undefined
-              ) ?
-              this.addNewItem
-              : undefined
-            }
+          addNewItem={addNewItem}
         />
         : ''
         }
@@ -94,3 +98,15 @@ export default class MaeveInput extends React.Component {
     );
   }
 };
+
+MaeveInput.propTypes = {
+  id: React.PropTypes.string.isRequired,
+  onValueUpdate: React.PropTypes.func.isRequired,
+  valueId: React.PropTypes.string,
+  multiple: React.PropTypes.bool,
+  placeholder: React.PropTypes.string,
+  autocomplete: React.PropTypes.object,
+  label: React.PropTypes.string,
+};
+
+export default MaeveInput;
