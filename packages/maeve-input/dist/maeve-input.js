@@ -96,8 +96,8 @@
       };
 
       _this.updateValue = function (newState) {
-        var valueId = _this.props.multi === 'true' ? _this.props.valueId : _this.props.id;
-        _this.props.onValueUpdate(valueId, newState.value);
+        var valueId = _this.props.multi === true ? _this.props.valueId : _this.props.id;
+        _this.props.onValueUpdate(newState.value, valueId);
         _this.setState(newState);
       };
 
@@ -189,7 +189,7 @@
     id: _react2.default.PropTypes.string.isRequired,
     onValueUpdate: _react2.default.PropTypes.func.isRequired,
     valueId: _react2.default.PropTypes.string,
-    multiple: _react2.default.PropTypes.bool,
+    mult: _react2.default.PropTypes.bool,
     placeholder: _react2.default.PropTypes.string,
     autocomplete: _react2.default.PropTypes.object,
     label: _react2.default.PropTypes.string

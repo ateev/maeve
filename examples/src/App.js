@@ -37,7 +37,7 @@ class App extends Component {
           onValueUpdate={this.onValueUpdate}
           // Optionals
           placeholder="hello"
-          multiple={true}
+          multi={true}
           autocomplete={autoComplete}
         />
         <br />

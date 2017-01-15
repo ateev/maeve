@@ -15,8 +15,8 @@ class MaeveInput extends React.Component {
   filterResults = (item, query) => item.toLowerCase().includes(query.toLowerCase())
 
   updateValue = (newState) => {
-    const valueId = this.props.multi === 'true' ? this.props.valueId : this.props.id;
-    this.props.onValueUpdate(valueId, newState.value);
+    const valueId = this.props.multi === true ? this.props.valueId : this.props.id;
+    this.props.onValueUpdate(newState.value, valueId);
     this.setState(newState);
   }
 
@@ -102,7 +102,7 @@ MaeveInput.propTypes = {
   id: React.PropTypes.string.isRequired,
   onValueUpdate: React.PropTypes.func.isRequired,
   valueId: React.PropTypes.string,
-  multiple: React.PropTypes.bool,
+  mult: React.PropTypes.bool,
   placeholder: React.PropTypes.string,
   autocomplete: React.PropTypes.object,
   label: React.PropTypes.string,

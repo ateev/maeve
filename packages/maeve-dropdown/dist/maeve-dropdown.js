@@ -91,11 +91,11 @@
         var dropdownItems = [];
         if (items instanceof Array) {
           if (items.length === 0) {
-            return _react2.default.createElement(
+            dropdownItems.push(_react2.default.createElement(
               'li',
               null,
               'No result'
-            );
+            ));
           }
           dropdownItems = items.map(function (value, key) {
             return _react2.default.createElement(
@@ -110,7 +110,7 @@
             );
           });
         }
-        if (_this.props.addNewItem !== undefined) {
+        if (items !== null && _this.props.addNewItem !== undefined) {
           dropdownItems.push(_react2.default.createElement(
             'li',
             {

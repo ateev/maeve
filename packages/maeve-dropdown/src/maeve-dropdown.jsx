@@ -14,7 +14,7 @@ class MaeveDropdown extends React.Component {
     let dropdownItems = [];
     if( items instanceof Array ) {
       if (items.length === 0) {
-        return (
+        dropdownItems.push(
           <li>
             No result
           </li>
@@ -31,7 +31,7 @@ class MaeveDropdown extends React.Component {
         </li>
       ));
     }
-    if (this.props.addNewItem !== undefined) {
+    if (items !== null && this.props.addNewItem !== undefined) {
       dropdownItems.push(
         <li
           style={dropdownItemStyle}
