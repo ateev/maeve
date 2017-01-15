@@ -52,7 +52,8 @@ class MaeveInput extends React.Component {
   }
 
   addNewItem = () => {
-    this.props.autocomplete.options.addNewItem(this.state.value);
+    const valueId = this.props.multi === true ? this.props.valueId : this.props.id;
+    this.props.autocomplete.options.addNewItem(this.state.value, valueId);
     this.clearAutocomplete();
   }
 
