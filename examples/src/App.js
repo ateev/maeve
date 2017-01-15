@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import MaeveInput from 'maeve-input';
+import MaeveMulti from 'maeve-multi';
 import './App.css';
 
 class App extends Component {
@@ -31,15 +32,16 @@ class App extends Component {
     return (
       <div className="App">
         <h2>Maeve-input</h2>
-        <MaeveInput
-          // Essentials
-          id="listAutocomplete"
-          onValueUpdate={this.onValueUpdate}
-          // Optionals
-          placeholder="hello"
-          multi={true}
-          autocomplete={autoComplete}
-        />
+        <MaeveMulti>
+          <MaeveInput
+            // Essentials
+            id="listAutocomplete"
+            onValueUpdate={this.onValueUpdate}
+            // Optionals
+            placeholder="hello"
+            autocomplete={autoComplete}
+          />
+        </MaeveMulti>
         <br />
         <div> <h2>Maeve-input with source as a function and a label</h2> </div>
         <MaeveInput
