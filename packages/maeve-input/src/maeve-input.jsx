@@ -83,7 +83,7 @@ class MaeveInput extends React.Component {
           name="maeve-input"
           value={this.state.value}
           placeholder={this.props.placeholder}
-          onChange={this.handleChange}
+          onChange={throttle(this.handleChange, 100)}
         />
         { typeof this.props.autocomplete !== 'undefined' ?
         <MaeveDropdown
