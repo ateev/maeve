@@ -132,7 +132,8 @@
       };
 
       _this.addNewItem = function () {
-        _this.props.autocomplete.options.addNewItem(_this.state.value);
+        var valueId = _this.props.multi === true ? _this.props.valueId : _this.props.id;
+        _this.props.autocomplete.options.addNewItem(_this.state.value, valueId);
         _this.clearAutocomplete();
       };
 
