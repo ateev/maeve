@@ -1,6 +1,6 @@
 {
   "name": "maeve-input",
-  "version": "0.0.17",
+  "version": "0.0.18",
   "description": "A input box on steroids",
   "main": "index.js",
   "scripts": {
@@ -8,7 +8,7 @@
     "prepublish": "babel --plugins transform-es2015-modules-umd src --ignore __tests__ --out-dir ./dist"
   },
   "dependencies": {
-    "maeve-dropdown": "^0.0.11",
+    "maeve-dropdown": "^0.0.12",
     "react": "^15.4.2"
   },
   "devDependencies": {
