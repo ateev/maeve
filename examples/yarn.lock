@@ -3308,9 +3308,18 @@ maeve-dropdown:
   dependencies:
     react "^15.4.2"
 
-maeve-input@^0.0.10:
-  version "0.0.10"
-  resolved "https://registry.yarnpkg.com/maeve-input/-/maeve-input-0.0.10.tgz#6460f5f237c81f05941ca66cde345ac1f9364c27"
+maeve-dropdown@^0.0.11:
+  version "0.0.11"
+  resolved "https://registry.yarnpkg.com/maeve-dropdown/-/maeve-dropdown-0.0.11.tgz#28ed8ca3d7564a35ed40d5578eed1271776e42cf"
+  dependencies:
+    react "^15.4.2"
+
+maeve-input@^0.0.17:
+  version "0.0.17"
+  resolved "https://registry.yarnpkg.com/maeve-input/-/maeve-input-0.0.17.tgz#541a5ac53df2cc8c052bdf92e500bba334fa0d90"
+  dependencies:
+    maeve-dropdown "^0.0.11"
+    react "^15.4.2"
 
 maeve-multi:
   version "0.0.1"
