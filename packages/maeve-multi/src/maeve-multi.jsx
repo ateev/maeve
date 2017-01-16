@@ -3,23 +3,24 @@ import React from 'react';
 class MaeveMulti extends React.Component {
   constructor(props) {
     super(props)
-    const childComponent = this.props.children;
-    const newId = `${childComponent.props.id}-1}`;
     this.state = {
-      childComponents: [{
-        component: childComponent,
-        componentId: newId,
-      }],
-      componentsCounter: 1,
+      childComponents: [],
+      componentsCounter: 0,
     };
+  }
+
+  componentDidMount() {
+    this.addNewComponent();
   }
 
   addNewComponent = () => {
     const newAddCounter = this.state.componentsCounter + 1;
-    const newComponentId = `${childComponent.props.id}-${newAddCounter}}`;
+    const childComponent = this.props.children;
+    const newComponentId = `${childComponent.props.id}-${newAddCounter}`;
+    const component = this.addPropsToComponent(this.props.children, newComponentId);
     const newComponent = {
       componentId: newComponentId,
-      component: this.props.children,
+      component,
     };
     const newComponents = [...this.state.childComponents, newComponent];
     this.setState({
@@ -31,8 +32,7 @@ class MaeveMulti extends React.Component {
     }
   }
 
-  addPropsToComponent = (component, key) => {
-    const newId = component.props.id + '[' + key + ']';
+  addPropsToComponent = (component, newId) => {
     return React.cloneElement(
       component,
       {
@@ -59,12 +59,12 @@ class MaeveMulti extends React.Component {
     return (
       <div className="maeve-multi">
         { this.state.childComponents.map((val, key) => (
-            <div key={val.id} className="maeve-multi-item">
-              { this.addPropsToComponent(val.comp, val.id) }
+            <div key={val.componentId} className="maeve-multi-item">
+              { val.component }
               { this.state.childComponents.length > 1 ?
               <div
                 className="remove-button"
-                onClick={ this.removeComponent.bind(null, val.id) }
+                onClick={ this.removeComponent.bind(null, val.componentId) }
               > - </div>
               : ''
               }

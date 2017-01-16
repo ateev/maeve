@@ -94,52 +94,56 @@
       var _this = _possibleConstructorReturn(this, (MaeveMulti.__proto__ || Object.getPrototypeOf(MaeveMulti)).call(this, props));
 
       _this.addNewComponent = function () {
-        var newAddCounter = _this.state.addCounter + 1;
-        var newComp = {
-          id: newAddCounter,
-          comp: _this.props.children
+        var newAddCounter = _this.state.componentsCounter + 1;
+        var childComponent = _this.props.children;
+        var newComponentId = childComponent.props.id + '-' + newAddCounter;
+        var component = _this.addPropsToComponent(_this.props.children, newComponentId);
+        var newComponent = {
+          componentId: newComponentId,
+          component: component
         };
-        var newComponents = [].concat(_toConsumableArray(_this.state.childComponents), [newComp]);
+        var newComponents = [].concat(_toConsumableArray(_this.state.childComponents), [newComponent]);
         _this.setState({
           childComponents: newComponents,
-          addCounter: newAddCounter
+          componentsCounter: newAddCounter
         });
         if (typeof _this.props.addCallback !== 'undefined') {
-          _this.props.addCallback(newAddCounter - 1);
+          _this.props.addCallback(newComponentId);
         }
       };
 
-      _this.addPropsToComponent = function (component, key) {
-        var newId = component.props.id + '[' + key + ']';
+      _this.addPropsToComponent = function (component, newId) {
         return _react2.default.cloneElement(component, {
           multi: true,
           valueId: newId
         });
       };
 
-      _this.removeComponent = function (id) {
+      _this.removeComponent = function (componentId) {
         var newComponents = _this.state.childComponents.filter(function (item) {
-          return item.id !== id;
+          return item.componentId !== componentId;
         });
         _this.setState({
           childComponents: newComponents
         });
         if (typeof _this.props.removeCallback !== 'undefined') {
-          _this.props.removeCallback(id - 1);
+          _this.props.removeCallback(componentId);
         }
       };
 
       _this.state = {
-        childComponents: [{
-          id: 0,
-          comp: _this.props.children
-        }],
-        addCounter: 1
+        childComponents: [],
+        componentsCounter: 0
       };
       return _this;
     }
 
     _createClass(MaeveMulti, [{
+      key: 'componentDidMount',
+      value: function componentDidMount() {
+        this.addNewComponent();
+      }
+    }, {
       key: 'render',
       value: function render() {
         var _this2 = this;
@@ -151,13 +155,13 @@
           this.state.childComponents.map(function (val, key) {
             return _react2.default.createElement(
               'div',
-              { key: val.id, className: 'maeve-multi-item' },
-              _this2.addPropsToComponent(val.comp, val.id),
+              { key: val.componentId, className: 'maeve-multi-item' },
+              val.component,
               _this2.state.childComponents.length > 1 ? _react2.default.createElement(
                 'div',
                 {
                   className: 'remove-button',
-                  onClick: _this2.removeComponent.bind(null, val.id)
+                  onClick: _this2.removeComponent.bind(null, val.componentId)
                 },
                 ' - '
               ) : ''
