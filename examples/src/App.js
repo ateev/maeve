@@ -18,6 +18,14 @@ class App extends Component {
     }
   }
 
+  onNewMultipleAdded = (id) => {
+    console.log("added new component " + id);
+  }
+
+  onNewMultipleRemoved = (id) => {
+    console.log("removed new component " + id);
+  }
+
   asyncFunction = (value) => {
     return ["apple", "banana", "cat", "appollo", "caterpillar"]
     .filter(
@@ -35,7 +43,10 @@ class App extends Component {
     return (
       <div className="App">
         <h2>Maeve-input</h2>
-        <MaeveMulti>
+        <MaeveMulti
+          addCallback={this.onNewMultipleAdded}
+          removeCallback={this.onNewMultipleRemoved}
+        >
           <MaeveInput
             // Essentials
             id="listAutocomplete"

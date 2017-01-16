@@ -1,32 +1,38 @@
 import React from 'react';
 
-export default class MaeveMulti extends React.Component {
+class MaeveMulti extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
-      childComponents: [{
-        id: 0,
-        comp: this.props.children,
-      }],
-      addCounter: 1,
+      childComponents: [],
+      componentsCounter: 0,
     };
+  }
+
+  componentDidMount() {
+    this.addNewComponent();
   }
 
   addNewComponent = () => {
-    const newAddCounter = this.state.addCounter + 1;
-    const newComp = {
-      id: newAddCounter,
-      comp: this.props.children,
+    const newAddCounter = this.state.componentsCounter + 1;
+    const childComponent = this.props.children;
+    const newComponentId = `${childComponent.props.id}-${newAddCounter}`;
+    const component = this.addPropsToComponent(this.props.children, newComponentId);
+    const newComponent = {
+      componentId: newComponentId,
+      component,
     };
-    const newComponents = [...this.state.childComponents, newComp];
+    const newComponents = [...this.state.childComponents, newComponent];
     this.setState({
       childComponents: newComponents,
-      addCounter: newAddCounter,
+      componentsCounter: newAddCounter,
     });
+    if(typeof this.props.addCallback !== 'undefined') {
+      this.props.addCallback(newComponentId);
+    }
   }
 
-  addPropsToComponent = (component, key) => {
-    const newId = component.props.id + '[' + key + ']';
+  addPropsToComponent = (component, newId) => {
     return React.cloneElement(
       component,
       {
@@ -36,13 +42,16 @@ export default class MaeveMulti extends React.Component {
     );
   }
 
-  removeComponent = (id) => {
+  removeComponent = (componentId) => {
     const newComponents = this.state.childComponents.filter(item =>
-      item.id !== id
+      item.componentId !== componentId
     );
     this.setState({
       childComponents: newComponents,
     });
+    if(typeof this.props.removeCallback !== 'undefined') {
+      this.props.removeCallback(componentId);
+    }
   }
 
   render() {
@@ -50,12 +59,12 @@ export default class MaeveMulti extends React.Component {
     return (
       <div className="maeve-multi">
         { this.state.childComponents.map((val, key) => (
-            <div key={val.id} className="maeve-multi-item">
-              { this.addPropsToComponent(val.comp, key) }
+            <div key={val.componentId} className="maeve-multi-item">
+              { val.component }
               { this.state.childComponents.length > 1 ?
               <div
                 className="remove-button"
-                onClick={ this.removeComponent.bind(null, val.id) }
+                onClick={ this.removeComponent.bind(null, val.componentId) }
               > - </div>
               : ''
               }
@@ -67,3 +76,10 @@ export default class MaeveMulti extends React.Component {
     );
   }
 };
+
+MaeveMulti.propTypes = {
+  addCallback: React.PropTypes.func,
+  removeCallback: React.PropTypes.func,
+};
+
+export default MaeveMulti;
