@@ -3,28 +3,31 @@ import React from 'react';
 class MaeveMulti extends React.Component {
   constructor(props) {
     super(props)
+    const childComponent = this.props.children;
+    const newId = `${childComponent.props.id}-1}`;
     this.state = {
       childComponents: [{
-        id: 0,
-        comp: this.props.children,
+        component: childComponent,
+        componentId: newId,
       }],
-      addCounter: 1,
+      componentsCounter: 1,
     };
   }
 
   addNewComponent = () => {
-    const newAddCounter = this.state.addCounter + 1;
-    const newComp = {
-      id: newAddCounter,
-      comp: this.props.children,
+    const newAddCounter = this.state.componentsCounter + 1;
+    const newComponentId = `${childComponent.props.id}-${newAddCounter}}`;
+    const newComponent = {
+      componentId: newComponentId,
+      component: this.props.children,
     };
-    const newComponents = [...this.state.childComponents, newComp];
+    const newComponents = [...this.state.childComponents, newComponent];
     this.setState({
       childComponents: newComponents,
-      addCounter: newAddCounter,
+      componentsCounter: newAddCounter,
     });
     if(typeof this.props.addCallback !== 'undefined') {
-      this.props.addCallback(newAddCounter - 1);
+      this.props.addCallback(newComponentId);
     }
   }
 
@@ -39,15 +42,15 @@ class MaeveMulti extends React.Component {
     );
   }
 
-  removeComponent = (id) => {
+  removeComponent = (componentId) => {
     const newComponents = this.state.childComponents.filter(item =>
-      item.id !== id
+      item.componentId !== componentId
     );
     this.setState({
       childComponents: newComponents,
     });
     if(typeof this.props.removeCallback !== 'undefined') {
-      this.props.removeCallback(id - 1);
+      this.props.removeCallback(componentId);
     }
   }
 
