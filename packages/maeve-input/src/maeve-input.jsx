@@ -51,7 +51,10 @@ class MaeveInput extends React.Component {
 
     if (
       typeof this.autocomplete !== 'undefined' &&
-      updatedValue.length > this.autoCompleteTrigger
+      (
+        updatedValue.length > this.autoCompleteTrigger ||
+        ( updatedValue.length === 0 && this.autoCompleteTrigger === 0 )
+      )
     ) {
       updatedAutocompleteSuggestions = this.state.autocompleteSuggestions;
       const source = this.autocomplete.source;

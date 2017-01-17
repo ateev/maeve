@@ -109,7 +109,7 @@
         var updatedValue = event.target.value;
         var updatedAutocompleteSuggestions = [];
 
-        if (typeof _this.autocomplete !== 'undefined' && updatedValue.length > _this.autoCompleteTrigger) {
+        if (typeof _this.autocomplete !== 'undefined' && (updatedValue.length > _this.autoCompleteTrigger || updatedValue.length === 0 && _this.autoCompleteTrigger === 0)) {
           updatedAutocompleteSuggestions = _this.state.autocompleteSuggestions;
           var source = _this.autocomplete.source;
           if (source instanceof Array) {

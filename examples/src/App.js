@@ -64,7 +64,6 @@ class App extends Component {
             onValueUpdate={this.onValueUpdate}
             // Optionals
             autocomplete={autoComplete}
-            value="default values be like"
             placeholder="hello"
           />
         </section>
