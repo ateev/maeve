@@ -105,7 +105,7 @@
         var updatedValue = event.target.value;
         var updatedAutocompleteSuggestions = [];
 
-        if (typeof _this.props.autocomplete !== 'undefined' && updatedValue.length > 2) {
+        if (typeof _this.props.autocomplete !== 'undefined' && updatedValue.length > _this.autoCompleteTrigger) {
           updatedAutocompleteSuggestions = _this.state.autocompleteSuggestions;
           var source = _this.props.autocomplete.source;
           if (source instanceof Array) {
@@ -143,8 +143,17 @@
         });
       };
 
+      var defaultVal = props.value || '';
+      if (props.multi === true) {
+        defaultVal = '';
+      }
+      try {
+        _this.autoCompleteTrigger = _this.props.autocomplete.options.trigger - 1 || 0;
+      } catch (e) {
+        _this.autoCompleteTrigger = 0;
+      }
       _this.state = {
-        value: '',
+        value: defaultVal,
         autocompleteSuggestions: null
       };
       return _this;
@@ -154,10 +163,20 @@
       key: 'render',
       value: function render() {
         var addNewItem = void 0;
-        if (this.props.autocomplete !== undefined && this.props.autocomplete.options !== undefined && this.props.autocomplete.options.addNewItem !== undefined) {
+        try {
           addNewItem = this.props.autocomplete.options.addNewItem;
-        } else {
+        } catch (e) {
           addNewItem = undefined;
+        }
+        var inputProps = {
+          id: this.props.id,
+          type: 'text',
+          value: this.state.value,
+          placeholder: this.props.placeholder,
+          onChange: (0, _throttle2.default)(this.handleChange, 10000)
+        };
+        if (this.autoCompleteTrigger === 0) {
+          inputProps.onFocus = this.handleChange;
         }
 
         return _react2.default.createElement(
@@ -168,14 +187,7 @@
             { htmlFor: this.props.id },
             this.props.label
           ) : '',
-          _react2.default.createElement('input', {
-            id: this.props.id,
-            type: 'text',
-            name: 'maeve-input',
-            value: this.state.value,
-            placeholder: this.props.placeholder,
-            onChange: (0, _throttle2.default)(this.handleChange, 10000)
-          }),
+          _react2.default.createElement('input', inputProps),
           typeof this.props.autocomplete !== 'undefined' ? _react2.default.createElement(_maeveDropdown2.default, {
             items: this.state.autocompleteSuggestions,
             addNewItem: this.addNewItem,
@@ -194,7 +206,7 @@
     id: _react2.default.PropTypes.string.isRequired,
     onValueUpdate: _react2.default.PropTypes.func.isRequired,
     valueId: _react2.default.PropTypes.string,
-    mult: _react2.default.PropTypes.bool,
+    multi: _react2.default.PropTypes.bool,
     placeholder: _react2.default.PropTypes.string,
     autocomplete: _react2.default.PropTypes.object,
     label: _react2.default.PropTypes.string

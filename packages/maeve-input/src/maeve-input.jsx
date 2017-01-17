@@ -6,8 +6,17 @@ class MaeveInput extends React.Component {
 
   constructor(props) {
     super(props);
+    let defaultVal = props.value || '';
+    if(props.multi === true) {
+      defaultVal = '';
+    }
+    try{
+      this.autoCompleteTrigger = this.props.autocomplete.options.trigger - 1 || 0;
+    } catch(e){
+      this.autoCompleteTrigger = 0;
+    }
     this.state = {
-      value: '',
+      value: defaultVal,
       autocompleteSuggestions: null,
     };
   }
@@ -24,7 +33,10 @@ class MaeveInput extends React.Component {
     let updatedValue = event.target.value;
     let updatedAutocompleteSuggestions = [];
 
-    if ( typeof this.props.autocomplete !== 'undefined' && updatedValue.length > 2 ) {
+    if (
+      typeof this.props.autocomplete !== 'undefined' &&
+      updatedValue.length > this.autoCompleteTrigger
+    ) {
       updatedAutocompleteSuggestions = this.state.autocompleteSuggestions;
       const source = this.props.autocomplete.source;
       if ( source instanceof Array ) {
@@ -65,14 +77,20 @@ class MaeveInput extends React.Component {
 
   render() {
     let addNewItem;
-    if (
-      this.props.autocomplete !== undefined &&
-      this.props.autocomplete.options !== undefined &&
-      this.props.autocomplete.options.addNewItem !== undefined
-    ) {
+    try{
       addNewItem = this.props.autocomplete.options.addNewItem;
-    } else {
+    } catch(e) {
       addNewItem = undefined;
+    }
+    let inputProps = {
+      id: this.props.id,
+      type: 'text',
+      value: this.state.value,
+      placeholder: this.props.placeholder,
+      onChange: throttle(this.handleChange, 10000),
+    }
+    if (this.autoCompleteTrigger === 0) {
+      inputProps.onFocus = this.handleChange;
     }
 
     return (
@@ -83,12 +101,7 @@ class MaeveInput extends React.Component {
           ''
         }
         <input
-          id={this.props.id}
-          type="text"
-          name="maeve-input"
-          value={this.state.value}
-          placeholder={this.props.placeholder}
-          onChange={throttle(this.handleChange, 10000)}
+          {...inputProps}
         />
         { typeof this.props.autocomplete !== 'undefined' ?
         <MaeveDropdown
@@ -107,7 +120,7 @@ MaeveInput.propTypes = {
   id: React.PropTypes.string.isRequired,
   onValueUpdate: React.PropTypes.func.isRequired,
   valueId: React.PropTypes.string,
-  mult: React.PropTypes.bool,
+  multi: React.PropTypes.bool,
   placeholder: React.PropTypes.string,
   autocomplete: React.PropTypes.object,
   label: React.PropTypes.string,
