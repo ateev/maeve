@@ -143,14 +143,14 @@
         });
       };
 
-      var defaultVal = props.value || '';
-      if (props.multi === true) {
-        defaultVal = '';
-      }
       try {
         _this.autoCompleteTrigger = _this.props.autocomplete.options.trigger - 1 || 0;
       } catch (e) {
         _this.autoCompleteTrigger = 0;
+      }
+      var defaultVal = props.value || '';
+      if (props.multi === true) {
+        defaultVal = '';
       }
       _this.state = {
         value: defaultVal,
@@ -163,10 +163,12 @@
       key: 'render',
       value: function render() {
         var addNewItem = void 0;
-        try {
-          addNewItem = this.props.autocomplete.options.addNewItem;
-        } catch (e) {
-          addNewItem = undefined;
+        if (typeof this.props.autocomplete !== 'undefined') {
+          try {
+            addNewItem = this.props.autocomplete.options.addNewItem;
+          } catch (e) {
+            addNewItem = undefined;
+          }
         }
         var inputProps = {
           id: this.props.id,
@@ -190,7 +192,7 @@
           _react2.default.createElement('input', inputProps),
           typeof this.props.autocomplete !== 'undefined' ? _react2.default.createElement(_maeveDropdown2.default, {
             items: this.state.autocompleteSuggestions,
-            addNewItem: this.addNewItem,
+            addNewItem: addNewItem,
             onSelect: this.onItemSelect
           }) : ''
         );

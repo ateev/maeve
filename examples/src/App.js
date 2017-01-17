@@ -61,6 +61,7 @@ class App extends Component {
             onValueUpdate={this.onValueUpdate}
             // Optionals
             placeholder="hello"
+            autocomplete={autoComplete}
           />
         </section>
         <section>
@@ -78,7 +79,7 @@ class App extends Component {
             id="listAutocomplete"
             onValueUpdate={this.onValueUpdate}
             // Optionals
-            autocomplete={autoCompleteWithAddNew}
+            autocomplete={autoComplete}
             value="default values be like"
             placeholder="hello"
           />

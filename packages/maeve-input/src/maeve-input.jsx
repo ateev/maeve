@@ -6,14 +6,14 @@ class MaeveInput extends React.Component {
 
   constructor(props) {
     super(props);
-    let defaultVal = props.value || '';
-    if(props.multi === true) {
-      defaultVal = '';
-    }
     try{
       this.autoCompleteTrigger = this.props.autocomplete.options.trigger - 1 || 0;
     } catch(e){
       this.autoCompleteTrigger = 0;
+    }
+    let defaultVal = props.value || '';
+    if(props.multi === true) {
+      defaultVal = '';
     }
     this.state = {
       value: defaultVal,
@@ -77,10 +77,12 @@ class MaeveInput extends React.Component {
 
   render() {
     let addNewItem;
-    try{
-      addNewItem = this.props.autocomplete.options.addNewItem;
-    } catch(e) {
-      addNewItem = undefined;
+    if ( typeof this.props.autocomplete !== 'undefined' ) {
+      try{
+        addNewItem = this.props.autocomplete.options.addNewItem;
+      } catch(e) {
+        addNewItem = undefined;
+      }
     }
     let inputProps = {
       id: this.props.id,
@@ -106,7 +108,7 @@ class MaeveInput extends React.Component {
         { typeof this.props.autocomplete !== 'undefined' ?
         <MaeveDropdown
           items={this.state.autocompleteSuggestions}
-          addNewItem={this.addNewItem}
+          addNewItem={addNewItem}
           onSelect={this.onItemSelect}
         />
         : ''
