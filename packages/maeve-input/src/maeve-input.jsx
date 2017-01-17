@@ -31,7 +31,13 @@ class MaeveInput extends React.Component {
     };
   }
 
-  filterResults = (item, query) => item.toLowerCase().includes(query.toLowerCase())
+  filterResults = (item, query) => {
+    if (this.autoCompleteTrigger === 0) {
+      return item;
+    } else {
+      return item.toLowerCase().includes(query.toLowerCase())
+    }
+  }
 
   updateValue = (newState) => {
     const valueId = this.props.multi === true ? this.props.valueId : this.props.id;
@@ -92,7 +98,7 @@ class MaeveInput extends React.Component {
       value: this.state.value,
       placeholder: this.props.placeholder,
       onChange: throttle(this.handleChange, 10000),
-    }
+    };
     if (this.autoCompleteTrigger === 0) {
       inputProps.onFocus = this.handleChange;
     }

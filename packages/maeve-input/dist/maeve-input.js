@@ -92,7 +92,11 @@
       var _this = _possibleConstructorReturn(this, (MaeveInput.__proto__ || Object.getPrototypeOf(MaeveInput)).call(this, props));
 
       _this.filterResults = function (item, query) {
-        return item.toLowerCase().includes(query.toLowerCase());
+        if (_this.autoCompleteTrigger === 0) {
+          return item;
+        } else {
+          return item.toLowerCase().includes(query.toLowerCase());
+        }
       };
 
       _this.updateValue = function (newState) {

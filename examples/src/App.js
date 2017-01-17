@@ -48,32 +48,16 @@ class App extends Component {
       <div className="App">
         <section>
           <h2>Simple Maeve-input</h2>
-          <code>
-              // Essentials
-              id="simpleMaeveInput"
-              onValueUpdate={this.onValueUpdate}
-              // Optionals
-              placeholder="hello"
-          </code>
           <MaeveInput
             // Essentials
             id="listAutocomplete"
             onValueUpdate={this.onValueUpdate}
             // Optionals
             placeholder="hello"
-            autocomplete={autoComplete}
           />
         </section>
         <section>
           <h2>Simple Maeve-input with default value and autocomplete.</h2>
-          <code>
-              // Essentials
-              id="listAutocomplete"
-              onValueUpdate={this.onValueUpdate}
-              // Optionals
-              value="default values be like"
-              placeholder="hello"
-          </code>
           <MaeveInput
             // Essentials
             id="listAutocomplete"
@@ -85,14 +69,7 @@ class App extends Component {
           />
         </section>
         <section>
-          <h2>Maeve-input with autocomplete</h2>
-          <code>
-              // Essentials
-              id="listAutocomplete"
-              onValueUpdate={this.onValueUpdate}
-              // Optionals
-              placeholder="hello"
-          </code>
+          <h2>Maeve-input with autocomplete, trigger and add new callback</h2>
           <MaeveMulti
             addCallback={this.onNewMultipleAdded}
             removeCallback={this.onNewMultipleRemoved}
@@ -102,7 +79,7 @@ class App extends Component {
               id="listAutocomplete"
               onValueUpdate={this.onValueUpdate}
               // Optionals
-              autocomplete={autoComplete}
+              autocomplete={autoCompleteWithAddNew}
               placeholder="hello"
             />
           </MaeveMulti>
