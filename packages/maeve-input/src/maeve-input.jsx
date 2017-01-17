@@ -6,11 +6,21 @@ class MaeveInput extends React.Component {
 
   constructor(props) {
     super(props);
-    try{
-      this.autoCompleteTrigger = this.props.autocomplete.options.trigger - 1 || 0;
-    } catch(e){
-      this.autoCompleteTrigger = 0;
+
+    this.autocomplete = this.props.autocomplete;
+    if ( typeof this.autocomplete !== 'undefined' ) {
+      try{
+        this.addNewItem = this.autocomplete.options.addNewItem;
+      } catch(e) {
+        this.addNewItem = undefined;
+      }
+      try{
+        this.autoCompleteTrigger = this.autocomplete.options.trigger - 1;
+      } catch(e){
+        this.autoCompleteTrigger = 0;
+      }
     }
+
     let defaultVal = props.value || '';
     if(props.multi === true) {
       defaultVal = '';
@@ -34,11 +44,11 @@ class MaeveInput extends React.Component {
     let updatedAutocompleteSuggestions = [];
 
     if (
-      typeof this.props.autocomplete !== 'undefined' &&
+      typeof this.autocomplete !== 'undefined' &&
       updatedValue.length > this.autoCompleteTrigger
     ) {
       updatedAutocompleteSuggestions = this.state.autocompleteSuggestions;
-      const source = this.props.autocomplete.source;
+      const source = this.autocomplete.source;
       if ( source instanceof Array ) {
         updatedAutocompleteSuggestions = source
           .filter(
@@ -63,9 +73,9 @@ class MaeveInput extends React.Component {
     });
   }
 
-  addNewItem = () => {
+  onAddNewItem = () => {
     const valueId = this.props.multi === true ? this.props.valueId : this.props.id;
-    this.props.autocomplete.options.addNewItem(this.state.value, valueId);
+    this.autocomplete.options.addNewItem(this.state.value, valueId);
     this.clearAutocomplete();
   }
 
@@ -76,14 +86,6 @@ class MaeveInput extends React.Component {
   }
 
   render() {
-    let addNewItem;
-    if ( typeof this.props.autocomplete !== 'undefined' ) {
-      try{
-        addNewItem = this.props.autocomplete.options.addNewItem;
-      } catch(e) {
-        addNewItem = undefined;
-      }
-    }
     let inputProps = {
       id: this.props.id,
       type: 'text',
@@ -93,6 +95,15 @@ class MaeveInput extends React.Component {
     }
     if (this.autoCompleteTrigger === 0) {
       inputProps.onFocus = this.handleChange;
+    }
+
+    let dropdownProps = {
+      items: this.state.autocompleteSuggestions,
+      onSelect: this.onItemSelect,
+    }
+
+    if( typeof this.addNewItem !== 'undefined' ) {
+      dropdownProps.addNewItem = this.onAddNewItem;
     }
 
     return (
@@ -107,9 +118,7 @@ class MaeveInput extends React.Component {
         />
         { typeof this.props.autocomplete !== 'undefined' ?
         <MaeveDropdown
-          items={this.state.autocompleteSuggestions}
-          addNewItem={addNewItem}
-          onSelect={this.onItemSelect}
+          {...dropdownProps}
         />
         : ''
         }

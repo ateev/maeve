@@ -105,9 +105,9 @@
         var updatedValue = event.target.value;
         var updatedAutocompleteSuggestions = [];
 
-        if (typeof _this.props.autocomplete !== 'undefined' && updatedValue.length > _this.autoCompleteTrigger) {
+        if (typeof _this.autocomplete !== 'undefined' && updatedValue.length > _this.autoCompleteTrigger) {
           updatedAutocompleteSuggestions = _this.state.autocompleteSuggestions;
-          var source = _this.props.autocomplete.source;
+          var source = _this.autocomplete.source;
           if (source instanceof Array) {
             updatedAutocompleteSuggestions = source.filter(function (item) {
               return _this.filterResults(item, updatedValue);
@@ -131,9 +131,9 @@
         });
       };
 
-      _this.addNewItem = function () {
+      _this.onAddNewItem = function () {
         var valueId = _this.props.multi === true ? _this.props.valueId : _this.props.id;
-        _this.props.autocomplete.options.addNewItem(_this.state.value, valueId);
+        _this.autocomplete.options.addNewItem(_this.state.value, valueId);
         _this.clearAutocomplete();
       };
 
@@ -143,11 +143,20 @@
         });
       };
 
-      try {
-        _this.autoCompleteTrigger = _this.props.autocomplete.options.trigger - 1 || 0;
-      } catch (e) {
-        _this.autoCompleteTrigger = 0;
+      _this.autocomplete = _this.props.autocomplete;
+      if (typeof _this.autocomplete !== 'undefined') {
+        try {
+          _this.addNewItem = _this.autocomplete.options.addNewItem;
+        } catch (e) {
+          _this.addNewItem = undefined;
+        }
+        try {
+          _this.autoCompleteTrigger = _this.autocomplete.options.trigger - 1;
+        } catch (e) {
+          _this.autoCompleteTrigger = 0;
+        }
       }
+
       var defaultVal = props.value || '';
       if (props.multi === true) {
         defaultVal = '';
@@ -162,14 +171,6 @@
     _createClass(MaeveInput, [{
       key: 'render',
       value: function render() {
-        var addNewItem = void 0;
-        if (typeof this.props.autocomplete !== 'undefined') {
-          try {
-            addNewItem = this.props.autocomplete.options.addNewItem;
-          } catch (e) {
-            addNewItem = undefined;
-          }
-        }
         var inputProps = {
           id: this.props.id,
           type: 'text',
@@ -181,6 +182,15 @@
           inputProps.onFocus = this.handleChange;
         }
 
+        var dropdownProps = {
+          items: this.state.autocompleteSuggestions,
+          onSelect: this.onItemSelect
+        };
+
+        if (typeof this.addNewItem !== 'undefined') {
+          dropdownProps.addNewItem = this.onAddNewItem;
+        }
+
         return _react2.default.createElement(
           'div',
           { className: 'maeve-input' },
@@ -190,11 +200,7 @@
             this.props.label
           ) : '',
           _react2.default.createElement('input', inputProps),
-          typeof this.props.autocomplete !== 'undefined' ? _react2.default.createElement(_maeveDropdown2.default, {
-            items: this.state.autocompleteSuggestions,
-            addNewItem: addNewItem,
-            onSelect: this.onItemSelect
-          }) : ''
+          typeof this.props.autocomplete !== 'undefined' ? _react2.default.createElement(_maeveDropdown2.default, dropdownProps) : ''
         );
       }
     }]);
