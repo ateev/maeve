@@ -36,36 +36,65 @@ class App extends Component {
   render() {
     const autoComplete = {
       source: ["apple", "banana", "cat", "appollo", "caterpillar"],
+    };
+    const autoCompleteWithAddNew = {
+      source: ["apple", "banana", "cat", "appollo", "caterpillar"],
       options: {
+        trigger: 3,
         addNewItem: this.addNewItem,
       }
     };
     return (
       <div className="App">
-        <h2>Maeve-input</h2>
-        <MaeveMulti
-          addCallback={this.onNewMultipleAdded}
-          removeCallback={this.onNewMultipleRemoved}
-        >
+        <section>
+          <h2>Simple Maeve-input</h2>
           <MaeveInput
             // Essentials
             id="listAutocomplete"
             onValueUpdate={this.onValueUpdate}
             // Optionals
             placeholder="hello"
-            autocomplete={autoComplete}
           />
-        </MaeveMulti>
-        <br />
-        <div> <h2>Maeve-input with source as a function and a label</h2> </div>
-        <MaeveInput
-          // Essentials
-          id="asyncAutoComplete"
-          onValueUpdate={this.onValueUpdate}
-          // Optionals
-          autocomplete={{ source: this.asyncFunction }}
-          label="Searchable Items"
-        />
+        </section>
+        <section>
+          <h2>Simple Maeve-input with default value and autocomplete.</h2>
+          <MaeveInput
+            // Essentials
+            id="listAutocomplete"
+            onValueUpdate={this.onValueUpdate}
+            // Optionals
+            autocomplete={autoComplete}
+            value="default values be like"
+            placeholder="hello"
+          />
+        </section>
+        <section>
+          <h2>Maeve-input with autocomplete, trigger and add new callback</h2>
+          <MaeveMulti
+            addCallback={this.onNewMultipleAdded}
+            removeCallback={this.onNewMultipleRemoved}
+          >
+            <MaeveInput
+              // Essentials
+              id="listAutocomplete"
+              onValueUpdate={this.onValueUpdate}
+              // Optionals
+              autocomplete={autoCompleteWithAddNew}
+              placeholder="hello"
+            />
+          </MaeveMulti>
+        </section>
+        <section>
+          <div> <h2>Maeve-input with source as a function and a label</h2> </div>
+          <MaeveInput
+            // Essentials
+            id="asyncAutoComplete"
+            onValueUpdate={this.onValueUpdate}
+            // Optionals
+            autocomplete={{ source: this.asyncFunction }}
+            label="Searchable Items"
+          />
+        </section>
       </div>
     );
   }

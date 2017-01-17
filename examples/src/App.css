@@ -1,5 +1,6 @@
 .App {
-  text-align: center;
+  width: 80%;
+  margin: 0 auto;
 }
 
 .App .maeve-input input{
@@ -12,18 +13,20 @@
 
 .App .maeve-multi {
   width: 500px;
-  margin: 0 auto;
+  margin: 50px 0px;
   overflow: hidden;
+}
+
+.App .maeve-multi .add-button{
+  width: 50px;
+  text-align: center;
+  cursor: pointer;
 }
 
 .App .maeve-multi-item {
   width: 100%;
   float: left;
   margin-bottom: 20px;
-}
-
-.App .maeve-input{
-  float: left;
 }
 
 .App .remove-button {

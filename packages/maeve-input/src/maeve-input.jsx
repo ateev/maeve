@@ -6,13 +6,38 @@ class MaeveInput extends React.Component {
 
   constructor(props) {
     super(props);
+
+    this.autocomplete = this.props.autocomplete;
+    if ( typeof this.autocomplete !== 'undefined' ) {
+      try{
+        this.addNewItem = this.autocomplete.options.addNewItem;
+      } catch(e) {
+        this.addNewItem = undefined;
+      }
+      try{
+        this.autoCompleteTrigger = this.autocomplete.options.trigger - 1;
+      } catch(e){
+        this.autoCompleteTrigger = 0;
+      }
+    }
+
+    let defaultVal = props.value || '';
+    if(props.multi === true) {
+      defaultVal = '';
+    }
     this.state = {
-      value: '',
+      value: defaultVal,
       autocompleteSuggestions: null,
     };
   }
 
-  filterResults = (item, query) => item.toLowerCase().includes(query.toLowerCase())
+  filterResults = (item, query) => {
+    if (this.autoCompleteTrigger === 0) {
+      return item;
+    } else {
+      return item.toLowerCase().includes(query.toLowerCase())
+    }
+  }
 
   updateValue = (newState) => {
     const valueId = this.props.multi === true ? this.props.valueId : this.props.id;
@@ -24,9 +49,12 @@ class MaeveInput extends React.Component {
     let updatedValue = event.target.value;
     let updatedAutocompleteSuggestions = [];
 
-    if ( typeof this.props.autocomplete !== 'undefined' && updatedValue.length > 2 ) {
+    if (
+      typeof this.autocomplete !== 'undefined' &&
+      updatedValue.length > this.autoCompleteTrigger
+    ) {
       updatedAutocompleteSuggestions = this.state.autocompleteSuggestions;
-      const source = this.props.autocomplete.source;
+      const source = this.autocomplete.source;
       if ( source instanceof Array ) {
         updatedAutocompleteSuggestions = source
           .filter(
@@ -51,9 +79,9 @@ class MaeveInput extends React.Component {
     });
   }
 
-  addNewItem = () => {
+  onAddNewItem = () => {
     const valueId = this.props.multi === true ? this.props.valueId : this.props.id;
-    this.props.autocomplete.options.addNewItem(this.state.value, valueId);
+    this.autocomplete.options.addNewItem(this.state.value, valueId);
     this.clearAutocomplete();
   }
 
@@ -64,15 +92,24 @@ class MaeveInput extends React.Component {
   }
 
   render() {
-    let addNewItem;
-    if (
-      this.props.autocomplete !== undefined &&
-      this.props.autocomplete.options !== undefined &&
-      this.props.autocomplete.options.addNewItem !== undefined
-    ) {
-      addNewItem = this.props.autocomplete.options.addNewItem;
-    } else {
-      addNewItem = undefined;
+    let inputProps = {
+      id: this.props.id,
+      type: 'text',
+      value: this.state.value,
+      placeholder: this.props.placeholder,
+      onChange: throttle(this.handleChange, 10000),
+    };
+    if (this.autoCompleteTrigger === 0) {
+      inputProps.onFocus = this.handleChange;
+    }
+
+    let dropdownProps = {
+      items: this.state.autocompleteSuggestions,
+      onSelect: this.onItemSelect,
+    }
+
+    if( typeof this.addNewItem !== 'undefined' ) {
+      dropdownProps.addNewItem = this.onAddNewItem;
     }
 
     return (
@@ -83,18 +120,11 @@ class MaeveInput extends React.Component {
           ''
         }
         <input
-          id={this.props.id}
-          type="text"
-          name="maeve-input"
-          value={this.state.value}
-          placeholder={this.props.placeholder}
-          onChange={throttle(this.handleChange, 10000)}
+          {...inputProps}
         />
         { typeof this.props.autocomplete !== 'undefined' ?
         <MaeveDropdown
-          items={this.state.autocompleteSuggestions}
-          addNewItem={this.addNewItem}
-          onSelect={this.onItemSelect}
+          {...dropdownProps}
         />
         : ''
         }
@@ -107,7 +137,7 @@ MaeveInput.propTypes = {
   id: React.PropTypes.string.isRequired,
   onValueUpdate: React.PropTypes.func.isRequired,
   valueId: React.PropTypes.string,
-  mult: React.PropTypes.bool,
+  multi: React.PropTypes.bool,
   placeholder: React.PropTypes.string,
   autocomplete: React.PropTypes.object,
   label: React.PropTypes.string,

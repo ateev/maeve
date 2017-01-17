@@ -92,7 +92,11 @@
       var _this = _possibleConstructorReturn(this, (MaeveInput.__proto__ || Object.getPrototypeOf(MaeveInput)).call(this, props));
 
       _this.filterResults = function (item, query) {
-        return item.toLowerCase().includes(query.toLowerCase());
+        if (_this.autoCompleteTrigger === 0) {
+          return item;
+        } else {
+          return item.toLowerCase().includes(query.toLowerCase());
+        }
       };
 
       _this.updateValue = function (newState) {
@@ -105,9 +109,9 @@
         var updatedValue = event.target.value;
         var updatedAutocompleteSuggestions = [];
 
-        if (typeof _this.props.autocomplete !== 'undefined' && updatedValue.length > 2) {
+        if (typeof _this.autocomplete !== 'undefined' && updatedValue.length > _this.autoCompleteTrigger) {
           updatedAutocompleteSuggestions = _this.state.autocompleteSuggestions;
-          var source = _this.props.autocomplete.source;
+          var source = _this.autocomplete.source;
           if (source instanceof Array) {
             updatedAutocompleteSuggestions = source.filter(function (item) {
               return _this.filterResults(item, updatedValue);
@@ -131,9 +135,9 @@
         });
       };
 
-      _this.addNewItem = function () {
+      _this.onAddNewItem = function () {
         var valueId = _this.props.multi === true ? _this.props.valueId : _this.props.id;
-        _this.props.autocomplete.options.addNewItem(_this.state.value, valueId);
+        _this.autocomplete.options.addNewItem(_this.state.value, valueId);
         _this.clearAutocomplete();
       };
 
@@ -143,8 +147,26 @@
         });
       };
 
+      _this.autocomplete = _this.props.autocomplete;
+      if (typeof _this.autocomplete !== 'undefined') {
+        try {
+          _this.addNewItem = _this.autocomplete.options.addNewItem;
+        } catch (e) {
+          _this.addNewItem = undefined;
+        }
+        try {
+          _this.autoCompleteTrigger = _this.autocomplete.options.trigger - 1;
+        } catch (e) {
+          _this.autoCompleteTrigger = 0;
+        }
+      }
+
+      var defaultVal = props.value || '';
+      if (props.multi === true) {
+        defaultVal = '';
+      }
       _this.state = {
-        value: '',
+        value: defaultVal,
         autocompleteSuggestions: null
       };
       return _this;
@@ -153,11 +175,24 @@
     _createClass(MaeveInput, [{
       key: 'render',
       value: function render() {
-        var addNewItem = void 0;
-        if (this.props.autocomplete !== undefined && this.props.autocomplete.options !== undefined && this.props.autocomplete.options.addNewItem !== undefined) {
-          addNewItem = this.props.autocomplete.options.addNewItem;
-        } else {
-          addNewItem = undefined;
+        var inputProps = {
+          id: this.props.id,
+          type: 'text',
+          value: this.state.value,
+          placeholder: this.props.placeholder,
+          onChange: (0, _throttle2.default)(this.handleChange, 10000)
+        };
+        if (this.autoCompleteTrigger === 0) {
+          inputProps.onFocus = this.handleChange;
+        }
+
+        var dropdownProps = {
+          items: this.state.autocompleteSuggestions,
+          onSelect: this.onItemSelect
+        };
+
+        if (typeof this.addNewItem !== 'undefined') {
+          dropdownProps.addNewItem = this.onAddNewItem;
         }
 
         return _react2.default.createElement(
@@ -168,19 +203,8 @@
             { htmlFor: this.props.id },
             this.props.label
           ) : '',
-          _react2.default.createElement('input', {
-            id: this.props.id,
-            type: 'text',
-            name: 'maeve-input',
-            value: this.state.value,
-            placeholder: this.props.placeholder,
-            onChange: (0, _throttle2.default)(this.handleChange, 10000)
-          }),
-          typeof this.props.autocomplete !== 'undefined' ? _react2.default.createElement(_maeveDropdown2.default, {
-            items: this.state.autocompleteSuggestions,
-            addNewItem: this.addNewItem,
-            onSelect: this.onItemSelect
-          }) : ''
+          _react2.default.createElement('input', inputProps),
+          typeof this.props.autocomplete !== 'undefined' ? _react2.default.createElement(_maeveDropdown2.default, dropdownProps) : ''
         );
       }
     }]);
@@ -194,7 +218,7 @@
     id: _react2.default.PropTypes.string.isRequired,
     onValueUpdate: _react2.default.PropTypes.func.isRequired,
     valueId: _react2.default.PropTypes.string,
-    mult: _react2.default.PropTypes.bool,
+    multi: _react2.default.PropTypes.bool,
     placeholder: _react2.default.PropTypes.string,
     autocomplete: _react2.default.PropTypes.object,
     label: _react2.default.PropTypes.string
