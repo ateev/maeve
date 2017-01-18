@@ -91,11 +91,20 @@
 
       var _this = _possibleConstructorReturn(this, (MaeveInput.__proto__ || Object.getPrototypeOf(MaeveInput)).call(this, props));
 
-      _this.filterResults = function (item, query) {
-        if (_this.autoCompleteTrigger === 0) {
-          return item;
-        } else {
-          return item.toLowerCase().includes(query.toLowerCase());
+      _this.componentWillReceiveProps = function (newProps) {
+        if (typeof newProps.autocomplete !== 'undefined') {
+          (function () {
+            var newSuggestions = newProps.autocomplete.source;
+            var oldSuggestions = _this.props.autocomplete.source;
+
+            if ((newSuggestions.length === oldSuggestions.length && newSuggestions.every(function (v, i) {
+              return v === oldSuggestions[i];
+            })) === false) {
+              _this.setState({
+                autocompleteSuggestions: newProps.autocomplete.source
+              });
+            }
+          })();
         }
       };
 
@@ -106,25 +115,8 @@
       };
 
       _this.handleChange = function (event) {
-        var updatedValue = event.target.value;
-        var updatedAutocompleteSuggestions = [];
-
-        if (typeof _this.autocomplete !== 'undefined' && (updatedValue.length > _this.autoCompleteTrigger || updatedValue.length === 0 && _this.autoCompleteTrigger === 0)) {
-          updatedAutocompleteSuggestions = _this.state.autocompleteSuggestions;
-          var source = _this.autocomplete.source;
-          if (source instanceof Array) {
-            updatedAutocompleteSuggestions = source.filter(function (item) {
-              return _this.filterResults(item, updatedValue);
-            });
-          } else if (typeof source === 'function') {
-            updatedAutocompleteSuggestions = source(updatedValue);
-          }
-        } else {
-          updatedAutocompleteSuggestions = null;
-        }
         _this.updateValue({
-          value: updatedValue,
-          autocompleteSuggestions: updatedAutocompleteSuggestions
+          value: event.target.value
         });
       };
 
@@ -137,7 +129,7 @@
 
       _this.onAddNewItem = function () {
         var valueId = _this.props.multi === true ? _this.props.valueId : _this.props.id;
-        _this.autocomplete.options.addNewItem(_this.state.value, valueId);
+        _this.autocomplete.addNewItem(_this.state.value, valueId);
         _this.clearAutocomplete();
       };
 
@@ -147,28 +139,17 @@
         });
       };
 
-      _this.autocomplete = _this.props.autocomplete;
-      if (typeof _this.autocomplete !== 'undefined') {
-        try {
-          _this.addNewItem = _this.autocomplete.options.addNewItem;
-        } catch (e) {
-          _this.addNewItem = undefined;
-        }
-        try {
-          _this.autoCompleteTrigger = _this.autocomplete.options.trigger - 1;
-        } catch (e) {
-          _this.autoCompleteTrigger = 0;
-        }
-      }
-
       var defaultVal = props.value || '';
       if (props.multi === true) {
         defaultVal = '';
       }
       _this.state = {
-        value: defaultVal,
-        autocompleteSuggestions: null
+        value: defaultVal
       };
+
+      if (typeof props.autocomplete !== 'undefined') {
+        _this.state.autocompleteSuggestions = props.autocomplete.source || null;
+      }
       return _this;
     }
 
@@ -182,17 +163,24 @@
           placeholder: this.props.placeholder,
           onChange: (0, _throttle2.default)(this.handleChange, 10000)
         };
-        if (this.autoCompleteTrigger === 0) {
-          inputProps.onFocus = this.handleChange;
-        }
 
-        var dropdownProps = {
-          items: this.state.autocompleteSuggestions,
-          onSelect: this.onItemSelect
-        };
+        var autocomplete = this.props.autocomplete;
+        console.log("input props are ");
+        console.log(this.props.autocomplete);
+        var dropdown = '';
 
-        if (typeof this.addNewItem !== 'undefined') {
-          dropdownProps.addNewItem = this.onAddNewItem;
+        if (typeof autocomplete !== 'undefined') {
+          if (autocomplete.trigger === 0) {
+            inputProps.onFocus = this.handleChange;
+          }
+          var dropdownProps = {
+            items: this.state.autocompleteSuggestions,
+            onSelect: this.onItemSelect
+          };
+          if (typeof autocomplete.addNewItem !== 'undefined') {
+            dropdownProps.addNewItem = this.onAddNewItem;
+          }
+          dropdown = _react2.default.createElement(_maeveDropdown2.default, dropdownProps);
         }
 
         return _react2.default.createElement(
@@ -204,7 +192,7 @@
             this.props.label
           ) : '',
           _react2.default.createElement('input', inputProps),
-          typeof this.props.autocomplete !== 'undefined' ? _react2.default.createElement(_maeveDropdown2.default, dropdownProps) : ''
+          dropdown
         );
       }
     }]);
