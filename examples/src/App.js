@@ -12,10 +12,7 @@ class App extends Component {
   }
 
   onValueUpdate = (value, id) => {
-    console.log("Value updated to " + value);
-    if( typeof id !== 'undefined') {
-      console.log(id);
-    }
+    console.log(id + " Value updated to " + value);
   }
 
   onNewMultipleAdded = (id) => {
@@ -39,10 +36,8 @@ class App extends Component {
     };
     const autoCompleteWithAddNew = {
       source: ["apple", "banana", "cat", "appollo", "caterpillar"],
-      options: {
-        trigger: 3,
-        addNewItem: this.addNewItem,
-      }
+      trigger: 3,
+      addNewItem: this.addNewItem,
     };
     return (
       <div className="App">
