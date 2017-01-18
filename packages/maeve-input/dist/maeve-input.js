@@ -124,6 +124,7 @@
           value: value,
           autocompleteSuggestions: null
         });
+        _this.setFocus(false);
       };
 
       _this.onAddNewItem = function () {
@@ -138,12 +139,19 @@
         });
       };
 
+      _this.setFocus = function (isFocus) {
+        _this.setState({
+          isFocus: isFocus
+        });
+      };
+
       var defaultVal = props.value || '';
       if (props.multi === true) {
         defaultVal = '';
       }
       _this.state = {
-        value: defaultVal
+        value: defaultVal,
+        isFocus: false
       };
       if (typeof props.autocomplete !== 'undefined') {
         _this.state.autocompleteSuggestions = props.autocomplete.source || null;
@@ -160,13 +168,11 @@
           value: this.state.value,
           placeholder: this.props.placeholder,
           onChange: (0, _throttle2.default)(this.handleChange, 10000),
-          onFocus: show
+          onFocus: this.setFocus.bind(null, true)
         };
-
         var dropdown = '';
-
         var autocomplete = this.props.autocomplete;
-        if (typeof autocomplete !== 'undefined') {
+        if (typeof autocomplete !== 'undefined' && this.state.isFocus === true) {
           if (autocomplete.trigger === 0) {
             inputProps.onFocus = this.handleChange;
           }
