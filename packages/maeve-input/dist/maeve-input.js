@@ -96,10 +96,9 @@
           (function () {
             var newSuggestions = newProps.autocomplete.source;
             var oldSuggestions = _this.props.autocomplete.source;
-
-            if ((newSuggestions.length === oldSuggestions.length && newSuggestions.every(function (v, i) {
-              return v === oldSuggestions[i];
-            })) === false) {
+            if (newSuggestions.length !== oldSuggestions.length || newSuggestions.every(function (v, i) {
+              return v !== oldSuggestions[i];
+            })) {
               _this.setState({
                 autocompleteSuggestions: newProps.autocomplete.source
               });
@@ -164,11 +163,9 @@
           onChange: (0, _throttle2.default)(this.handleChange, 10000)
         };
 
-        var autocomplete = this.props.autocomplete;
-        console.log("input props are ");
-        console.log(this.props.autocomplete);
         var dropdown = '';
 
+        var autocomplete = this.props.autocomplete;
         if (typeof autocomplete !== 'undefined') {
           if (autocomplete.trigger === 0) {
             inputProps.onFocus = this.handleChange;
