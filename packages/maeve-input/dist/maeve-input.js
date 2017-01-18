@@ -107,16 +107,16 @@
         }
       };
 
-      _this.updateValue = function (newState) {
-        var valueId = _this.props.multi === true ? _this.props.valueId : _this.props.id;
-        _this.props.onValueUpdate(newState.value, valueId);
-        _this.setState(newState);
-      };
-
       _this.handleChange = function (event) {
         _this.updateValue({
           value: event.target.value
         });
+      };
+
+      _this.updateValue = function (newState) {
+        var valueId = _this.props.multi === true ? _this.props.valueId : _this.props.id;
+        _this.props.onValueUpdate(newState.value, valueId);
+        _this.setState(newState);
       };
 
       _this.onItemSelect = function (value) {
@@ -145,7 +145,6 @@
       _this.state = {
         value: defaultVal
       };
-
       if (typeof props.autocomplete !== 'undefined') {
         _this.state.autocompleteSuggestions = props.autocomplete.source || null;
       }
@@ -160,7 +159,8 @@
           type: 'text',
           value: this.state.value,
           placeholder: this.props.placeholder,
-          onChange: (0, _throttle2.default)(this.handleChange, 10000)
+          onChange: (0, _throttle2.default)(this.handleChange, 10000),
+          onFocus: show
         };
 
         var dropdown = '';
