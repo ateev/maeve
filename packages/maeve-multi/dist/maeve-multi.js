@@ -27,9 +27,7 @@
 
   function _toConsumableArray(arr) {
     if (Array.isArray(arr)) {
-      for (var i = 0, arr2 = Array(arr.length); i < arr.length; i++) {
-        arr2[i] = arr[i];
-      }
+      for (var i = 0, arr2 = Array(arr.length); i < arr.length; i++) arr2[i] = arr[i];
 
       return arr2;
     } else {
@@ -93,43 +91,7 @@
 
       var _this = _possibleConstructorReturn(this, (MaeveMulti.__proto__ || Object.getPrototypeOf(MaeveMulti)).call(this, props));
 
-      _this.addNewComponent = function () {
-        var newAddCounter = _this.state.componentsCounter + 1;
-        var childComponent = _this.props.children;
-        var newComponentId = childComponent.props.id + '-' + newAddCounter;
-        var component = _this.addPropsToComponent(_this.props.children, newComponentId);
-        var newComponent = {
-          componentId: newComponentId,
-          component: component
-        };
-        var newComponents = [].concat(_toConsumableArray(_this.state.childComponents), [newComponent]);
-        _this.setState({
-          childComponents: newComponents,
-          componentsCounter: newAddCounter
-        });
-        if (typeof _this.props.addCallback !== 'undefined') {
-          _this.props.addCallback(newComponentId);
-        }
-      };
-
-      _this.addPropsToComponent = function (component, newId) {
-        return _react2.default.cloneElement(component, {
-          multi: true,
-          valueId: newId
-        });
-      };
-
-      _this.removeComponent = function (componentId) {
-        var newComponents = _this.state.childComponents.filter(function (item) {
-          return item.componentId !== componentId;
-        });
-        _this.setState({
-          childComponents: newComponents
-        });
-        if (typeof _this.props.removeCallback !== 'undefined') {
-          _this.props.removeCallback(componentId);
-        }
-      };
+      _initialiseProps.call(_this);
 
       _this.state = {
         childComponents: [],
@@ -141,12 +103,27 @@
     _createClass(MaeveMulti, [{
       key: 'componentDidMount',
       value: function componentDidMount() {
-        this.addNewComponent();
+        var _this2 = this;
+
+        if (typeof this.props.componentProps !== 'undefined') {
+          (function () {
+            var newComponents = [];
+            var componentsList = _this2.props.componentProps.map(function (props, key) {
+              newComponents.push(_this2.getNewComponent(props));
+            });
+            _this2.setState({
+              childComponents: newComponents,
+              componentsCounter: newComponents.length
+            });
+          })();
+        } else {
+          this.addNewComponent();
+        }
       }
     }, {
       key: 'render',
       value: function render() {
-        var _this2 = this;
+        var _this3 = this;
 
         var self = this;
         return _react2.default.createElement(
@@ -157,11 +134,11 @@
               'div',
               { key: val.componentId, className: 'maeve-multi-item' },
               val.component,
-              _this2.state.childComponents.length > 1 ? _react2.default.createElement(
+              _this3.state.childComponents.length > 1 ? _react2.default.createElement(
                 'div',
                 {
                   className: 'remove-button',
-                  onClick: _this2.removeComponent.bind(null, val.componentId)
+                  onClick: _this3.removeComponent.bind(null, val.componentId)
                 },
                 ' - '
               ) : ''
@@ -179,11 +156,66 @@
     return MaeveMulti;
   }(_react2.default.Component);
 
+  var _initialiseProps = function _initialiseProps() {
+    var _this4 = this;
+
+    this.getNewComponent = function () {
+      var props = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
+
+      var component = _this4.props.children;
+      var newProps = {};
+      var newAddCounter = _this4.state.componentsCounter + 1;
+      Object.assign(newProps, component.props, props, {
+        multi: true
+      });
+      newProps.valueId = newProps.valueId || component.props.id + '-' + newAddCounter;
+      var newComponent = _react2.default.cloneElement(component, newProps);
+      var newComponentObj = {
+        componentId: newComponent.props.valueId || newComponent.props.id,
+        component: newComponent
+      };
+      return newComponentObj;
+    };
+
+    this.addNewComponent = function () {
+      var newAddCounter = _this4.state.componentsCounter + 1;
+      var newComponentObj = _this4.getNewComponent();
+      var newComponents = [].concat(_toConsumableArray(_this4.state.childComponents), [newComponentObj]);
+      _this4.setState({
+        childComponents: newComponents,
+        componentsCounter: newAddCounter
+      });
+      if (typeof _this4.props.addCallback !== 'undefined') {
+        _this4.props.addCallback(newComponentObj.component.props.id);
+      }
+    };
+
+    this.addPropsToComponent = function (component, newId) {
+      return _react2.default.cloneElement(component, {
+        multi: true,
+        valueId: newId
+      });
+    };
+
+    this.removeComponent = function (componentId) {
+      var newComponents = _this4.state.childComponents.filter(function (item) {
+        return item.componentId !== componentId;
+      });
+      _this4.setState({
+        childComponents: newComponents
+      });
+      if (typeof _this4.props.removeCallback !== 'undefined') {
+        _this4.props.removeCallback(componentId);
+      }
+    };
+  };
+
   ;
 
   MaeveMulti.propTypes = {
     addCallback: _react2.default.PropTypes.func,
-    removeCallback: _react2.default.PropTypes.func
+    removeCallback: _react2.default.PropTypes.func,
+    componentProps: _react2.default.PropTypes.array
   };
 
   exports.default = MaeveMulti;

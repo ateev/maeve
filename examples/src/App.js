@@ -39,6 +39,28 @@ class App extends Component {
       trigger: 3,
       addNewItem: this.addNewItem,
     };
+    const componentProps = [{
+      valueId: 'autoFillMulti-1',
+      value: 'default 1',
+      autocomplete: autoCompleteWithAddNew,
+      onValueUpdate: this.onValueUpdate,
+    },{
+      valueId: 'autoFillMulti-2',
+      value: 'default 2',
+      autocomplete: autoComplete,
+      onValueUpdate: this.onValueUpdate,
+    },{
+      valueId: 'autoFillMulti-3',
+      value: 'default 3',
+      autocomplete: autoCompleteWithAddNew,
+      onValueUpdate: this.onValueUpdate,
+    },{
+      valueId: 'autoFillMulti-4',
+      value: 'default 4',
+      autocomplete: autoCompleteWithAddNew,
+      onValueUpdate: this.onValueUpdate,
+    }];
+
     return (
       <div className="App">
         <section>
@@ -88,6 +110,19 @@ class App extends Component {
             autocomplete={{ source: this.asyncFunction }}
             label="Searchable Items"
           />
+        </section>
+        <section>
+          <div> <h2>Maeve-input with default values, multi and autocomplete</h2> </div>
+          <MaeveMulti
+            addCallback={this.onNewMultipleAdded}
+            removeCallback={this.onNewMultipleRemoved}
+            componentProps={componentProps}
+          >
+            <MaeveInput
+              id='autoFillMulti'
+              onValueUpdate={this.onValueUpdate}
+            />
+          </MaeveMulti>
         </section>
       </div>
     );
