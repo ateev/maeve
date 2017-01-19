@@ -133,7 +133,6 @@
     _createClass(MaeveInput, [{
       key: 'render',
       value: function render() {
-        console.log(this.state.isFocus);
         var inputProps = {
           id: this.props.id,
           type: 'text',

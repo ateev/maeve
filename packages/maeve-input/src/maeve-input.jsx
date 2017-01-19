@@ -45,7 +45,6 @@ class MaeveInput extends React.Component {
   }
 
   render() {
-    console.log(this.state.isFocus);
     let inputProps = {
       id: this.props.id,
       type: 'text',
