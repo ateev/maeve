@@ -30,11 +30,11 @@ class MaeveMulti extends React.Component {
     const newAddCounter = this.state.componentsCounter + 1;
     Object.assign(newProps, component.props, props, {
       multi: true,
-      valueId: `${component.props.id}-${newAddCounter}`,
     });
+    newProps.valueId = newProps.valueId || `${component.props.id}-${newAddCounter}`;
     const newComponent = React.cloneElement(component, newProps);
     const newComponentObj = {
-      componentId: newComponent.props.id,
+      componentId: newComponent.props.valueId || newComponent.props.id,
       component: newComponent,
     };
     return newComponentObj;

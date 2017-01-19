@@ -166,12 +166,12 @@
       var newProps = {};
       var newAddCounter = _this4.state.componentsCounter + 1;
       Object.assign(newProps, component.props, props, {
-        multi: true,
-        valueId: component.props.id + '-' + newAddCounter
+        multi: true
       });
+      newProps.valueId = newProps.valueId || component.props.id + '-' + newAddCounter;
       var newComponent = _react2.default.cloneElement(component, newProps);
       var newComponentObj = {
-        componentId: newComponent.props.id,
+        componentId: newComponent.props.valueId || newComponent.props.id,
         component: newComponent
       };
       return newComponentObj;

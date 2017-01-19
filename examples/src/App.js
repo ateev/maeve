@@ -40,22 +40,22 @@ class App extends Component {
       addNewItem: this.addNewItem,
     };
     const componentProps = [{
-      id: 'autoFillMulti-1',
+      valueId: 'autoFillMulti-1',
       value: 'default 1',
       autocomplete: autoCompleteWithAddNew,
       onValueUpdate: this.onValueUpdate,
     },{
-      id: 'autoFillMulti-2',
+      valueId: 'autoFillMulti-2',
       value: 'default 2',
       autocomplete: autoComplete,
       onValueUpdate: this.onValueUpdate,
     },{
-      id: 'autoFillMulti-3',
+      valueId: 'autoFillMulti-3',
       value: 'default 3',
       autocomplete: autoCompleteWithAddNew,
       onValueUpdate: this.onValueUpdate,
     },{
-      id: 'autoFillMulti-4',
+      valueId: 'autoFillMulti-4',
       value: 'default 4',
       autocomplete: autoCompleteWithAddNew,
       onValueUpdate: this.onValueUpdate,
@@ -118,7 +118,10 @@ class App extends Component {
             removeCallback={this.onNewMultipleRemoved}
             componentProps={componentProps}
           >
-            <MaeveInput/>
+            <MaeveInput
+              id='autoFillMulti'
+              onValueUpdate={this.onValueUpdate}
+            />
           </MaeveMulti>
         </section>
       </div>
