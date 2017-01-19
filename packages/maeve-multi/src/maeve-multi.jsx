@@ -49,7 +49,7 @@ class MaeveMulti extends React.Component {
       componentsCounter: newAddCounter,
     });
     if(typeof this.props.addCallback !== 'undefined') {
-      this.props.addCallback(newComponentObj.component.props.id);
+      this.props.addCallback(newComponentObj.componentId);
     }
   }
 
