@@ -11,24 +11,6 @@ class MaeveInput extends React.Component {
       value: defaultVal,
       isFocus: false,
     };
-    if ( typeof props.autocomplete !== 'undefined' ) {
-      this.state.autocompleteSuggestions = props.autocomplete.source || null;
-    }
-  }
-
-  componentWillReceiveProps = (newProps) => {
-    if ( typeof newProps.autocomplete !== 'undefined' ) {
-      const newSuggestions = newProps.autocomplete.source;
-      const oldSuggestions = this.props.autocomplete.source;
-      if (
-            newSuggestions.length !== oldSuggestions.length ||
-            newSuggestions.every((v,i)=> v !== oldSuggestions[i])
-        ) {
-        this.setState({
-          autocompleteSuggestions: newProps.autocomplete.source,
-        });
-      }
-    }
   }
 
   handleChange = (event) => {
@@ -46,7 +28,6 @@ class MaeveInput extends React.Component {
   onItemSelect = (value) => {
     this.updateValue({
       value,
-      autocompleteSuggestions: null,
     });
     this.setFocus(false);
   }
@@ -54,13 +35,7 @@ class MaeveInput extends React.Component {
   onAddNewItem = () => {
     const valueId = this.props.multi === true ? this.props.valueId : this.props.id;
     this.props.autocomplete.addNewItem(this.state.value, valueId);
-    this.clearAutocomplete();
-  }
-
-  clearAutocomplete = (event) => {
-    this.setState({
-      autocompleteSuggestions: null,
-    });
+    this.setFocus(false);
   }
 
   setFocus = (isFocus) => {
@@ -70,6 +45,7 @@ class MaeveInput extends React.Component {
   }
 
   render() {
+    console.log(this.state.isFocus);
     let inputProps = {
       id: this.props.id,
       type: 'text',
@@ -85,7 +61,7 @@ class MaeveInput extends React.Component {
         inputProps.onFocus = this.handleChange;
       }
       let dropdownProps = {
-        items: this.state.autocompleteSuggestions,
+        items: autocomplete.source,
         onSelect: this.onItemSelect,
       }
       if( typeof autocomplete.addNewItem !== 'undefined' ) {

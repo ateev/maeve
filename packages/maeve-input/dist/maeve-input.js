@@ -91,22 +91,6 @@
 
       var _this = _possibleConstructorReturn(this, (MaeveInput.__proto__ || Object.getPrototypeOf(MaeveInput)).call(this, props));
 
-      _this.componentWillReceiveProps = function (newProps) {
-        if (typeof newProps.autocomplete !== 'undefined') {
-          (function () {
-            var newSuggestions = newProps.autocomplete.source;
-            var oldSuggestions = _this.props.autocomplete.source;
-            if (newSuggestions.length !== oldSuggestions.length || newSuggestions.every(function (v, i) {
-              return v !== oldSuggestions[i];
-            })) {
-              _this.setState({
-                autocompleteSuggestions: newProps.autocomplete.source
-              });
-            }
-          })();
-        }
-      };
-
       _this.handleChange = function (event) {
         _this.updateValue({
           value: event.target.value
@@ -121,8 +105,7 @@
 
       _this.onItemSelect = function (value) {
         _this.updateValue({
-          value: value,
-          autocompleteSuggestions: null
+          value: value
         });
         _this.setFocus(false);
       };
@@ -130,13 +113,7 @@
       _this.onAddNewItem = function () {
         var valueId = _this.props.multi === true ? _this.props.valueId : _this.props.id;
         _this.props.autocomplete.addNewItem(_this.state.value, valueId);
-        _this.clearAutocomplete();
-      };
-
-      _this.clearAutocomplete = function (event) {
-        _this.setState({
-          autocompleteSuggestions: null
-        });
+        _this.setFocus(false);
       };
 
       _this.setFocus = function (isFocus) {
@@ -150,15 +127,13 @@
         value: defaultVal,
         isFocus: false
       };
-      if (typeof props.autocomplete !== 'undefined') {
-        _this.state.autocompleteSuggestions = props.autocomplete.source || null;
-      }
       return _this;
     }
 
     _createClass(MaeveInput, [{
       key: 'render',
       value: function render() {
+        console.log(this.state.isFocus);
         var inputProps = {
           id: this.props.id,
           type: 'text',
@@ -174,7 +149,7 @@
             inputProps.onFocus = this.handleChange;
           }
           var dropdownProps = {
-            items: this.state.autocompleteSuggestions,
+            items: autocomplete.source,
             onSelect: this.onItemSelect
           };
           if (typeof autocomplete.addNewItem !== 'undefined') {
