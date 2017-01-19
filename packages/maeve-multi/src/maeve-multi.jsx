@@ -10,25 +10,46 @@ class MaeveMulti extends React.Component {
   }
 
   componentDidMount() {
-    this.addNewComponent();
+    if(typeof this.props.componentProps !== 'undefined') {
+      const newComponents = [];
+      const componentsList = this.props.componentProps.map((props, key) => {
+        newComponents.push(this.getNewComponent(props));
+      })
+      this.setState({
+        childComponents: newComponents,
+        componentsCounter: newComponents.length,
+      });
+    } else {
+      this.addNewComponent();
+    }
+  }
+
+  getNewComponent = (props = {}) => {
+    const component = this.props.children;
+    const newProps = {};
+    const newAddCounter = this.state.componentsCounter + 1;
+    Object.assign(newProps, component.props, props, {
+      multi: true,
+      valueId: `${component.props.id}-${newAddCounter}`,
+    });
+    const newComponent = React.cloneElement(component, newProps);
+    const newComponentObj = {
+      componentId: newComponent.props.id,
+      component: newComponent,
+    };
+    return newComponentObj;
   }
 
   addNewComponent = () => {
     const newAddCounter = this.state.componentsCounter + 1;
-    const childComponent = this.props.children;
-    const newComponentId = `${childComponent.props.id}-${newAddCounter}`;
-    const component = this.addPropsToComponent(this.props.children, newComponentId);
-    const newComponent = {
-      componentId: newComponentId,
-      component,
-    };
-    const newComponents = [...this.state.childComponents, newComponent];
+    const newComponentObj = this.getNewComponent();
+    const newComponents = [...this.state.childComponents, newComponentObj];
     this.setState({
       childComponents: newComponents,
       componentsCounter: newAddCounter,
     });
     if(typeof this.props.addCallback !== 'undefined') {
-      this.props.addCallback(newComponentId);
+      this.props.addCallback(newComponentObj.component.props.id);
     }
   }
 
@@ -80,6 +101,7 @@ class MaeveMulti extends React.Component {
 MaeveMulti.propTypes = {
   addCallback: React.PropTypes.func,
   removeCallback: React.PropTypes.func,
+  componentProps: React.PropTypes.array,
 };
 
 export default MaeveMulti;

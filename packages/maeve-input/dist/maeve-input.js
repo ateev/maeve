@@ -129,7 +129,7 @@
 
       _this.onAddNewItem = function () {
         var valueId = _this.props.multi === true ? _this.props.valueId : _this.props.id;
-        _this.autocomplete.addNewItem(_this.state.value, valueId);
+        _this.props.autocomplete.addNewItem(_this.state.value, valueId);
         _this.clearAutocomplete();
       };
 
@@ -146,9 +146,6 @@
       };
 
       var defaultVal = props.value || '';
-      if (props.multi === true) {
-        defaultVal = '';
-      }
       _this.state = {
         value: defaultVal,
         isFocus: false
@@ -206,8 +203,8 @@
   ;
 
   MaeveInput.propTypes = {
-    id: _react2.default.PropTypes.string.isRequired,
-    onValueUpdate: _react2.default.PropTypes.func.isRequired,
+    id: _react2.default.PropTypes.string,
+    onValueUpdate: _react2.default.PropTypes.func,
     valueId: _react2.default.PropTypes.string,
     multi: _react2.default.PropTypes.bool,
     placeholder: _react2.default.PropTypes.string,

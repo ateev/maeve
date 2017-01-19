@@ -7,9 +7,6 @@ class MaeveInput extends React.Component {
   constructor(props) {
     super(props);
     let defaultVal = props.value || '';
-    if(props.multi === true) {
-      defaultVal = '';
-    }
     this.state = {
       value: defaultVal,
       isFocus: false,
@@ -56,7 +53,7 @@ class MaeveInput extends React.Component {
 
   onAddNewItem = () => {
     const valueId = this.props.multi === true ? this.props.valueId : this.props.id;
-    this.autocomplete.addNewItem(this.state.value, valueId);
+    this.props.autocomplete.addNewItem(this.state.value, valueId);
     this.clearAutocomplete();
   }
 
@@ -114,8 +111,8 @@ class MaeveInput extends React.Component {
 };
 
 MaeveInput.propTypes = {
-  id: React.PropTypes.string.isRequired,
-  onValueUpdate: React.PropTypes.func.isRequired,
+  id: React.PropTypes.string,
+  onValueUpdate: React.PropTypes.func,
   valueId: React.PropTypes.string,
   multi: React.PropTypes.bool,
   placeholder: React.PropTypes.string,
