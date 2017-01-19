@@ -1,6 +1,6 @@
 {
   "name": "maeve-input",
-  "version": "0.0.23",
+  "version": "0.0.24",
   "description": "A input box on steroids",
   "main": "index.js",
   "scripts": {
