@@ -186,7 +186,7 @@
         componentsCounter: newAddCounter
       });
       if (typeof _this4.props.addCallback !== 'undefined') {
-        _this4.props.addCallback(newComponentObj.component.props.id);
+        _this4.props.addCallback(newComponentObj.componentId);
       }
     };
 
