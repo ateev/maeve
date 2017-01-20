@@ -5,7 +5,9 @@
   "main": "index.js",
   "scripts": {
     "test": "jest",
-    "prepublish": "babel --plugins transform-es2015-modules-umd src --ignore __tests__ --out-dir ./dist"
+    "uglify": "uglifyjs dist/maeve-multi.js --compress -o dist/maeve-multi.js",
+    "babel": "babel --plugins transform-es2015-modules-umd src --ignore __tests__ --out-dir ./dist",
+    "prepublish": "npm-run-all babel uglify"
   },
   "author": "ateev",
   "license": "ISC",
@@ -26,8 +28,11 @@
     "jest": "^18.1.0",
     "jest-cli": "^18.1.0",
     "jest-serializer-enzyme": "^1.0.0",
+    "npm-run-all": "^4.0.1",
     "react-addons-test-utils": "^15.4.2",
-    "react-dom": "^15.4.2"
+    "react-dom": "^15.4.2",
+    "uglify": "^0.1.5",
+    "uglify-js": "^2.7.5"
   },
   "jest": {
     "snapshotSerializers": [
