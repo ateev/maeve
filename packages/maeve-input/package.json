@@ -1,6 +1,6 @@
 {
   "name": "maeve-input",
-  "version": "0.0.24",
+  "version": "0.0.25",
   "description": "A input box on steroids",
   "main": "index.js",
   "scripts": {
@@ -10,7 +10,7 @@
     "prepublish": "npm-run-all babel uglify"
   },
   "dependencies": {
-    "maeve-dropdown": "^0.0.12",
+    "maeve-dropdown": "^0.0.13",
     "react": "^15.4.2"
   },
   "devDependencies": {
