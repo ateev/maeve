@@ -25,10 +25,12 @@ class App extends Component {
   }
 
   asyncFunction = (value) => {
-    return ["apple", "banana", "cat", "appollo", "caterpillar"]
+    const newArray =
+    ["apple", "banana", "cat", "appollo", "caterpillar"]
     .filter(
       item => this.filterResults(item, value)
     );
+    return newArray;
   }
 
   render() {

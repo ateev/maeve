@@ -55,8 +55,14 @@ class MaeveInput extends React.Component {
         autocomplete.trigger <= this.state.value.length
       )
     ) {
+      let source;
+      if ( typeof autocomplete.source === 'object' ) {
+        source = autocomplete.source;
+      } else if ( typeof autocomplete.source === 'function' ) {
+        source = autocomplete.source(this.state.value);
+      }
       let dropdownProps = {
-        items: autocomplete.source,
+        items: source,
         onSelect: this.onItemSelect,
       }
       if( typeof autocomplete.addNewItem !== 'undefined' ) {
