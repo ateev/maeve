@@ -1,6 +1,6 @@
 {
   "name": "maeve-dropdown",
-  "version": "0.0.13",
+  "version": "0.0.14",
   "description": "A simple dropdown",
   "main": "index.js",
   "scripts": {
