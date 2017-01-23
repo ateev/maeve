@@ -174,6 +174,18 @@ class App extends Component {
           />
         </section>
         <section>
+          <div> <h2>Maeve-input with source as a function and a label</h2> </div>
+          <Code embed={example4} />
+          <MaeveInput
+            // Essentials
+            id="asyncAutoComplete"
+            onValueUpdate={this.onValueUpdate}
+            // Optionals
+            autocomplete={{ source: this.asyncFunction }}
+            label="Searchable Items"
+          />
+        </section>
+        <section>
           <h2>Multi Maeve without any options. Input with autocomplete.</h2>
           <Code embed={example3} />
           <MaeveMulti
@@ -187,18 +199,6 @@ class App extends Component {
               placeholder="hello"
             />
           </MaeveMulti>
-        </section>
-        <section>
-          <div> <h2>Maeve-input with source as a function and a label</h2> </div>
-          <Code embed={example4} />
-          <MaeveInput
-            // Essentials
-            id="asyncAutoComplete"
-            onValueUpdate={this.onValueUpdate}
-            // Optionals
-            autocomplete={{ source: this.asyncFunction }}
-            label="Searchable Items"
-          />
         </section>
         <section>
           <h2>Multi-Maeve with callbacks and 0 inital elements. Maeve-Input with autocomplete.</h2>
