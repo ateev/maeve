@@ -78,12 +78,15 @@ class MaeveMulti extends React.Component {
 
   render() {
     const self = this;
+    let removeButtonLimit = this.props.initWithZero === true ? 0 : 1;
     return (
       <div className="maeve-multi">
         { this.state.childComponents.map((val, key) => (
             <div key={val.componentId} className="maeve-multi-item">
               { val.component }
-              { this.state.childComponents.length > 1 ?
+              {
+                this.state.childComponents.length > removeButtonLimit
+              ?
               <div
                 className="remove-button"
                 onClick={ this.removeComponent.bind(null, val.componentId) }
