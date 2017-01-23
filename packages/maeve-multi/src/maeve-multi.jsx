@@ -20,10 +20,8 @@ class MaeveMulti extends React.Component {
         childComponents: newComponents,
         componentsCounter: newComponents.length,
       });
-    } else if (typeof self.props.initCount !== 'undefined') {
-      for(let i = 0; i < self.props.initCount; i++) {
-        this.addNewComponent();
-      }
+    } else if (self.props.initWithZero !== true) {
+      this.addNewComponent();
     }
   }
 

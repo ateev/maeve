@@ -107,7 +107,7 @@ class App extends Component {
       <MaeveMulti
         addCallback={this.onNewMultipleAdded}
         removeCallback={this.onNewMultipleRemoved}
-        initCount={0}
+        initWithZero={true}
       >
         <MaeveInput
           // Essentials
@@ -124,7 +124,6 @@ class App extends Component {
       <MaeveMulti
         addCallback={this.onNewMultipleAdded}
         removeCallback={this.onNewMultipleRemoved}
-        initCount={2}
       >
         <MaeveInput
           // Essentials
@@ -206,7 +205,7 @@ class App extends Component {
           <MaeveMulti
             addCallback={this.onNewMultipleAdded}
             removeCallback={this.onNewMultipleRemoved}
-            initCount={0}
+            initWithZero={true}
           >
             <MaeveInput
               // Essentials
@@ -219,12 +218,11 @@ class App extends Component {
           </MaeveMulti>
         </section>
         <section>
-          <h2>Maeve-Multi with 2 defaults. Maeve-input with autocomplete, trigger and add new callback.</h2>
+          <h2>Maeve-Multi. Maeve-input with autocomplete, trigger and add new callback.</h2>
           <Code embed={example6} />
           <MaeveMulti
             addCallback={this.onNewMultipleAdded}
             removeCallback={this.onNewMultipleRemoved}
-            initCount={2}
           >
             <MaeveInput
               // Essentials
