@@ -85,10 +85,28 @@ class App extends Component {
           />
         </section>
         <section>
-          <h2>Maeve-input with autocomplete, trigger and add new callback</h2>
+          <h2>Multi Maeve without any options</h2>
           <MaeveMulti
             addCallback={this.onNewMultipleAdded}
             removeCallback={this.onNewMultipleRemoved}
+            initCount={0}
+          >
+            <MaeveInput
+              // Essentials
+              id="listAutocomplete"
+              onValueUpdate={this.onValueUpdate}
+              // Optionals
+              autocomplete={autoCompleteWithAddNew}
+              placeholder="hello"
+            />
+          </MaeveMulti>
+        </section>
+        <section>
+          <h2>Maeve-input with autocomplete, trigger and add new callback. Also 2 defaults</h2>
+          <MaeveMulti
+            addCallback={this.onNewMultipleAdded}
+            removeCallback={this.onNewMultipleRemoved}
+            initCount={2}
           >
             <MaeveInput
               // Essentials
