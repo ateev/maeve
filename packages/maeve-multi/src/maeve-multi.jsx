@@ -10,6 +10,7 @@ class MaeveMulti extends React.Component {
   }
 
   componentDidMount() {
+    const self = this;
     if(typeof this.props.componentProps !== 'undefined') {
       const newComponents = [];
       const componentsList = this.props.componentProps.map((props, key) => {
@@ -19,7 +20,7 @@ class MaeveMulti extends React.Component {
         childComponents: newComponents,
         componentsCounter: newComponents.length,
       });
-    } else {
+    } else if (self.props.initWithZero !== true) {
       this.addNewComponent();
     }
   }

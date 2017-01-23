@@ -6,9 +6,10 @@
 .App .maeve-input input{
   width: 200px;
   height: 30px;
-  border: 1px solid gray;
+  border: 1px solid #efeeff;
   padding: 10px;
   font-size: 20px;
+  border-radius: 2px;
 }
 
 .App .maeve-multi {
@@ -40,4 +41,17 @@
   float: left;
   padding: 5px;
   border: 1px solid gray;
+}
+
+.App section {
+  border: 1px solid #efefef;
+  margin: 10px 0px;
+  padding: 10px;
+  width: 70%;
+  border-radius: 4px;
+}
+
+.App .maeve-input,
+.App .maeve-multi {
+  margin-top: 20px;
 }

@@ -44,6 +44,29 @@ class MaeveInput extends React.Component {
     });
   }
 
+  getDropdown() {
+    let dropdown = '';
+    const autocomplete = this.props.autocomplete;
+    if (
+      typeof autocomplete !== 'undefined' &&
+      this.state.isFocus === true &&
+      (
+        typeof autocomplete.trigger === 'undefined' ||
+        autocomplete.trigger <= this.state.value.length
+      )
+    ) {
+      let dropdownProps = {
+        items: autocomplete.source,
+        onSelect: this.onItemSelect,
+      }
+      if( typeof autocomplete.addNewItem !== 'undefined' ) {
+        dropdownProps.addNewItem = this.onAddNewItem;
+      }
+      dropdown = <MaeveDropdown {...dropdownProps}/>
+    }
+    return dropdown;
+  }
+
   render() {
     let inputProps = {
       id: this.props.id,
@@ -56,17 +79,11 @@ class MaeveInput extends React.Component {
     let dropdown = '';
     const autocomplete = this.props.autocomplete;
     if ( typeof autocomplete !== 'undefined' && this.state.isFocus === true ) {
-      if (autocomplete.trigger === 0) {
+      const trigger = autocomplete.trigger;
+      if (trigger === 0) {
         inputProps.onFocus = this.handleChange;
       }
-      let dropdownProps = {
-        items: autocomplete.source,
-        onSelect: this.onItemSelect,
-      }
-      if( typeof autocomplete.addNewItem !== 'undefined' ) {
-        dropdownProps.addNewItem = this.onAddNewItem;
-      }
-      dropdown = <MaeveDropdown {...dropdownProps}/>
+      dropdown = this.getDropdown();
     }
 
     return (
