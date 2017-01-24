@@ -10,7 +10,6 @@ class MaeveMulti extends React.Component {
   }
 
   componentDidMount() {
-    const self = this;
     this.addInitialComponents(this.props);
   }
 
@@ -67,7 +66,10 @@ class MaeveMulti extends React.Component {
       childComponents: newComponents,
       componentsCounter: newAddCounter,
     });
-    if(typeof this.props.addCallback !== 'undefined') {
+    if(
+      typeof this.props.addCallback !== 'undefined' &&
+      typeof this.props.componentProps !== 'undefined'
+    ) {
       this.props.addCallback(newComponentObj.componentId);
     }
   }
