@@ -13,6 +13,14 @@ class MaeveInput extends React.Component {
     };
   }
 
+  componentWillReceiveProps(newProps) {
+    if ( newProps.value !== this.state.value ) {
+      this.setState({
+        value: newProps.value,
+      });
+    }
+  }
+
   handleChange = (event) => {
     this.updateValue({
       value: event.target.value,
