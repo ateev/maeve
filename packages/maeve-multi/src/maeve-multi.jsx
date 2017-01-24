@@ -66,10 +66,7 @@ class MaeveMulti extends React.Component {
       childComponents: newComponents,
       componentsCounter: newAddCounter,
     });
-    if(
-      typeof this.props.addCallback !== 'undefined' &&
-      typeof this.props.componentProps < 1
-    ) {
+    if(typeof this.props.addCallback !== 'undefined') {
       this.props.addCallback(newComponentObj.componentId);
     }
   }
