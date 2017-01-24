@@ -1,4 +1,4 @@
-# maeve
+# maeve [![Build Status](https://travis-ci.org/ateev/maeve.svg?branch=master)](https://travis-ci.org/ateev/maeve)
 
 
 > Some people choose to see the ugliness in this world, the disarray. I choose to see the beauty. To believe there is an order to our days. A purpose. 
