@@ -38,7 +38,7 @@ class MaeveMulti extends React.Component {
       oldInitComponents === undefined ||
       newInitComponents.length !== oldInitComponents.length
     ) {
-      this.addNewComponent(newProps);
+      this.addInitialComponents(newProps);
     }
   }
 
@@ -68,7 +68,7 @@ class MaeveMulti extends React.Component {
     });
     if(
       typeof this.props.addCallback !== 'undefined' &&
-      typeof this.props.componentProps !== 'undefined'
+      typeof this.props.componentProps < 1
     ) {
       this.props.addCallback(newComponentObj.componentId);
     }
