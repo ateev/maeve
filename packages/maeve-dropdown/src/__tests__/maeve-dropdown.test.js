@@ -1,10 +1,10 @@
 import React from 'react';
 import { shallow } from 'enzyme';
-import MaeveInput from '../maeve-input.js';
+import MaeveDropdown from '../maeve-dropdown.jsx';
 
 test('render maeve input', () => {
   const component = shallow(
-    <MaeveInput />
+    <MaeveDropdown />
   );
   expect(component).toMatchSnapshot();
 });

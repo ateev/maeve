@@ -5,6 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "jest",
+    "test-update": "jest -u",
     "uglify": "uglifyjs dist/maeve-multi.js --compress -o dist/maeve-multi.js",
     "babel": "babel --plugins transform-es2015-modules-umd src --ignore __tests__ --out-dir ./dist",
     "prepublish": "npm-run-all babel uglify"
@@ -35,6 +36,9 @@
     "uglify-js": "^2.7.5"
   },
   "jest": {
+    "transform": {
+      "^.+\\.jsx?$": "babel-jest"
+    },
     "snapshotSerializers": [
       "<rootDir>/node_modules/jest-serializer-enzyme"
     ]

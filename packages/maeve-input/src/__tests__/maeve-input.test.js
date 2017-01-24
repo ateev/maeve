@@ -1,6 +1,6 @@
 import React from 'react';
 import { shallow } from 'enzyme';
-import MaeveInput from '../maeve-input.js';
+import MaeveInput from '../maeve-input.jsx';
 
 test('render maeve input', () => {
   const component = shallow(

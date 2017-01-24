@@ -1,0 +1,11 @@
+exports[`test render maeve input 1`] = `
+<div
+  className="maeve-input">
+  <label />
+  <input
+    onChange={[Function]}
+    onFocus={[Function]}
+    type="text"
+    value="" />
+</div>
+`;
