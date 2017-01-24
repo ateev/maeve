@@ -6,12 +6,18 @@
   "scripts": {
     "test": "jest",
     "test-update": "jest -u",
-    "prepublish": "babel --plugins transform-es2015-modules-umd src --ignore __tests__ --out-dir ./dist"
+    "uglify": "uglifyjs dist/maeve-input.js --compress -o dist/maeve-input.js",
+    "lint": "./node_modules/.bin/eslint --config=.eslintrc ./src/**/.jsx",
+    "babel": "babel --plugins transform-es2015-modules-umd src --ignore __tests__ --out-dir ./dist",
+    "prepublish": "npm-run-all babel uglify"
   },
   "dependencies": {
-    "react": "^15.4.2"
+    "react": "^15.4.2",
+    "uglify": "^0.1.5",
+    "uglify-js": "^2.7.5"
   },
   "devDependencies": {
+    "babel": "^6.5.2",
     "babel-cli": "^6.18.0",
     "babel-core": "^6.21.0",
     "babel-eslint": "^7.1.1",
@@ -22,11 +28,19 @@
     "babel-preset-react": "^6.16.0",
     "babel-preset-stage-2": "^6.18.0",
     "enzyme": "^2.7.0",
+    "eslint": "^3.14.0",
+    "eslint-config-airbnb": "^14.0.0",
+    "eslint-plugin-import": "^2.2.0",
+    "eslint-plugin-jsx-a11y": "^3.0.2",
+    "eslint-plugin-react": "^6.9.0",
     "jest": "^18.1.0",
     "jest-cli": "^18.1.0",
     "jest-serializer-enzyme": "^1.0.0",
+    "npm-run-all": "^4.0.1",
     "react-addons-test-utils": "^15.4.2",
-    "react-dom": "^15.4.2"
+    "react-dom": "^15.4.2",
+    "uglify": "^0.1.5",
+    "uglify-js": "^2.7.5"
   },
   "jest": {
     "transform": {
