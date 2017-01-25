@@ -29,17 +29,7 @@ class MaeveMulti extends React.Component {
   }
 
   componentWillReceiveProps(newProps) {
-    const newInitComponents = newProps.componentProps;
-    const oldInitComponents = this.props.componentProps;
-    if(newInitComponents === undefined) {
-      return;
-    }
-    if (
-      oldInitComponents === undefined ||
-      JSON.stringify(newInitComponents) !== JSON.stringify(oldInitComponents)
-    ) {
-      this.addInitialComponents(newProps);
-    }
+    this.addInitialComponents(newProps);
   }
 
   getNewComponent = (props = {}) => {
