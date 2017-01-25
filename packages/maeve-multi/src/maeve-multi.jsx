@@ -36,7 +36,7 @@ class MaeveMulti extends React.Component {
     }
     if (
       oldInitComponents === undefined ||
-      newInitComponents.length !== oldInitComponents.length
+      JSON.stringify(newInitComponents) !== JSON.stringify(oldInitComponents)
     ) {
       this.addInitialComponents(newProps);
     }
