@@ -18,10 +18,11 @@ class MaeveMulti extends React.Component {
       const newComponents = [];
       const componentsList = props.componentProps.map((props, key) => {
         newComponents.push(this.getNewComponent(props));
-      })
+      });
+      const newCounter = Math.max(newComponents.length, this.state.componentsCounter);
       this.setState({
         childComponents: newComponents,
-        componentsCounter: newComponents.length,
+        componentsCounter: newCounter,
       });
     } else if (props.initWithZero !== true) {
       this.addNewComponent();
