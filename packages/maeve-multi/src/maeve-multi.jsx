@@ -30,7 +30,10 @@ class MaeveMulti extends React.Component {
   }
 
   componentWillReceiveProps(newProps) {
-    this.addInitialComponents(newProps);
+    typeof(this.props.componentProps) !== 'undefined' &&
+      this.props.componentProps.length === 0 &&
+      newProps.componentProps.length !== 0 &&
+      this.addInitialComponents(newProps);
   }
 
   getNewComponent = (props = {}) => {
