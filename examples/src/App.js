@@ -160,6 +160,7 @@ class App extends Component {
             // Essentials
             id="listAutocomplete"
             onValueUpdate={this.onValueUpdate}
+            debounceTime={0}
           />
         </section>
         <section>
