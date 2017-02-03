@@ -1,6 +1,7 @@
 import React from 'react';
 import MaeveDropdown from 'maeve-dropdown';
 import throttle from 'lodash/throttle';
+import debounce from 'lodash/debounce';
 
 class MaeveInput extends React.Component {
 
@@ -11,6 +12,7 @@ class MaeveInput extends React.Component {
       value: defaultVal,
       isFocus: false,
     };
+    this.valueChangeCallback = debounce(this.valueChangeCallback, 500);
   }
 
   componentWillReceiveProps(newProps) {
@@ -31,9 +33,13 @@ class MaeveInput extends React.Component {
   }
 
   updateValue = (newState) => {
+    this.valueChangeCallback(newState);
+    this.setState(newState);
+  }
+
+  valueChangeCallback = (newState) => {
     const valueId = this.props.multi === true ? this.props.valueId : this.props.id;
     this.props.onValueUpdate(newState.value, valueId);
-    this.setState(newState);
   }
 
   onItemSelect = (value) => {
