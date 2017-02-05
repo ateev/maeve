@@ -15,10 +15,7 @@ class MaeveMulti extends React.Component {
 
   addInitialComponents = (props) => {
     if(typeof props.componentProps !== 'undefined') {
-      const newComponents = [];
-      const componentsList = props.componentProps.map((props, key) => {
-        newComponents.push(this.getNewComponent(props));
-      });
+      const newComponents = props.componentProps.map((props, key) => this.getNewComponent(props));
       const newCounter = Math.max(newComponents.length, this.state.componentsCounter);
       this.setState({
         childComponents: newComponents,
@@ -30,10 +27,7 @@ class MaeveMulti extends React.Component {
   }
 
   componentWillReceiveProps(newProps) {
-    typeof(this.props.componentProps) !== 'undefined' &&
-      this.props.componentProps.length === 0 &&
-      newProps.componentProps.length !== 0 &&
-      this.addInitialComponents(newProps);
+    this.addInitialComponents(newProps);
   }
 
   getNewComponent = (props = {}) => {
@@ -53,15 +47,20 @@ class MaeveMulti extends React.Component {
   }
 
   addNewComponent = () => {
-    const newAddCounter = this.state.componentsCounter + 1;
-    const newComponentObj = this.getNewComponent();
-    const newComponents = [...this.state.childComponents, newComponentObj];
-    this.setState({
-      childComponents: newComponents,
-      componentsCounter: newAddCounter,
-    });
     if(typeof this.props.addCallback !== 'undefined') {
-      this.props.addCallback(newComponentObj.componentId);
+      const component = this.props.children;
+      this.props.addCallback(`${component.props.id}-${this.state.componentsCounter + 1}`);
+      this.setState({
+        componentsCounter: this.state.componentsCounter + 1,
+      });
+    } else {
+      const newAddCounter = this.state.componentsCounter + 1;
+      const newComponentObj = this.getNewComponent();
+      const newComponents = [...this.state.childComponents, newComponentObj];
+      this.setState({
+        childComponents: newComponents,
+        componentsCounter: newAddCounter,
+      });
     }
   }
 
@@ -79,11 +78,12 @@ class MaeveMulti extends React.Component {
     const newComponents = this.state.childComponents.filter(item =>
       item.componentId !== componentId
     );
-    this.setState({
-      childComponents: newComponents,
-    });
     if(typeof this.props.removeCallback !== 'undefined') {
       this.props.removeCallback(componentId);
+    } else {
+      this.setState({
+        childComponents: newComponents,
+      });
     }
   }
 
