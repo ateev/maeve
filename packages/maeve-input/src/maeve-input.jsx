@@ -12,7 +12,7 @@ class MaeveInput extends React.Component {
       value: defaultVal,
       isFocus: false,
     };
-    this.valueChangeCallback = debounce(this.valueChangeCallback, props.debounceTime || 500);
+    this.valueChangeCallback = debounce(this.valueChangeCallback, props.debounceTime || 20);
   }
 
   componentWillReceiveProps(newProps) {
