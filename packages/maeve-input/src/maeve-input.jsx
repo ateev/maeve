@@ -1,6 +1,5 @@
 import React from 'react';
 import MaeveDropdown from 'maeve-dropdown';
-import throttle from 'lodash/throttle';
 import debounce from 'lodash/debounce';
 
 class MaeveInput extends React.Component {
@@ -96,7 +95,7 @@ class MaeveInput extends React.Component {
       type: 'text',
       value: this.state.value,
       placeholder: this.props.placeholder,
-      onChange: throttle(this.handleChange, 10000),
+      onChange: this.handleChange,
       onFocus: this.setFocus.bind(null, true),
     };
     let dropdown = '';
