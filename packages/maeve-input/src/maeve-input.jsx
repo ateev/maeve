@@ -41,7 +41,8 @@ class MaeveInput extends React.Component {
     this.props.onValueUpdate(newState.value, valueId);
   }
 
-  onItemSelect = (value) => {
+  onItemSelect = (value, event) => {
+    event.preventDefault();
     this.updateValue({
       value,
     });
@@ -58,6 +59,10 @@ class MaeveInput extends React.Component {
     this.setState({
       isFocus: isFocus,
     });
+  }
+
+  onPageClick = (event) => {
+    event.target.id !== this.props.id && this.setFocus(false);
   }
 
   getDropdown() {
@@ -80,6 +85,7 @@ class MaeveInput extends React.Component {
       let dropdownProps = {
         items: source,
         onSelect: this.onItemSelect,
+        onPageClick: this.onPageClick,
       }
       if( typeof autocomplete.addNewItem !== 'undefined' ) {
         dropdownProps.addNewItem = this.onAddNewItem;

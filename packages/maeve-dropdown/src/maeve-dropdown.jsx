@@ -4,6 +4,15 @@ class MaeveDropdown extends React.Component {
   constructor(props){
     super(props);
   }
+
+  componentDidMount() {
+    window.addEventListener('click', this.props.onPageClick, false);
+  }
+
+  componentWillUnmount() {
+    window.removeEventListener('click', this.props.onPageClick, false);
+  }
+
   getDropdownItems = (items) => {
     const dropdownItemStyle = {
       'padding': '7px',
