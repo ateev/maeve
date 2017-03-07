@@ -37,6 +37,9 @@ class App extends Component {
     const autoComplete = {
       source: ["apple", "banana", "cat", "appollo", "caterpillar"],
     };
+    const htmlAutoComplete = {
+      source: ["<b>apple</b>", "<i>banana</i>", "<u>cat</u>", "<strike>appollo</strike>", "<b>caterpillar</b>"],
+    };
     const autoCompleteWithAddNew = {
       source: ["apple", "banana", "cat", "appollo", "caterpillar"],
       trigger: 3,
@@ -82,6 +85,29 @@ class App extends Component {
     `;
 
     const example3 = `
+      <MaeveInput
+        // Essentials
+        id="asyncAutoComplete"
+        onValueUpdate={this.onValueUpdate}
+        // Optionals
+        autocomplete={{ source: this.asyncFunction }}
+        label="Searchable Items"
+      />
+    `;
+
+    const example4 = `
+      <MaeveInput
+        // Essentials
+        id="listAutocomplete"
+        onValueUpdate={this.onValueUpdate}
+        // Optionals
+        autocomplete={htmlAutoComplete}
+        placeholder="hello"
+        isSourceHtml
+      />
+    `;
+
+    const example5 = `
       <MaeveMulti>
         <MaeveInput
           // Essentials
@@ -94,18 +120,7 @@ class App extends Component {
       </MaeveMulti>
     `;
 
-    const example4 = `
-      <MaeveInput
-        // Essentials
-        id="asyncAutoComplete"
-        onValueUpdate={this.onValueUpdate}
-        // Optionals
-        autocomplete={{ source: this.asyncFunction }}
-        label="Searchable Items"
-      />
-    `;
-
-    const example5 = `
+    const example6 = `
       <MaeveMulti
         addCallback={this.onNewMultipleAdded}
         removeCallback={this.onNewMultipleRemoved}
@@ -122,7 +137,7 @@ class App extends Component {
       </MaeveMulti>
     `;
 
-    const example6 = `
+    const example7 = `
       <MaeveMulti
         addCallback={this.onNewMultipleAdded}
         removeCallback={this.onNewMultipleRemoved}
@@ -138,7 +153,7 @@ class App extends Component {
       </MaeveMulti>
     `;
 
-    const example7 = `
+    const example8 = `
       <MaeveMulti
         addCallback={this.onNewMultipleAdded}
         removeCallback={this.onNewMultipleRemoved}
@@ -177,7 +192,7 @@ class App extends Component {
         </section>
         <section>
           <div> <h2>Maeve-input with source as a function and a label</h2> </div>
-          <Code embed={example4} />
+          <Code embed={example3} />
           <MaeveInput
             // Essentials
             id="asyncAutoComplete"
@@ -188,8 +203,21 @@ class App extends Component {
           />
         </section>
         <section>
+          <h2>Simple Maeve-input with default value and autocomplete as dangerously set HTML.</h2>
+          <Code embed={example4} />
+          <MaeveInput
+            // Essentials
+            id="listAutocomplete"
+            onValueUpdate={this.onValueUpdate}
+            // Optionals
+            autocomplete={htmlAutoComplete}
+            placeholder="hello"
+            isSourceHtml
+          />
+        </section>
+        <section>
           <h2>Multi Maeve without any options. Input with autocomplete.</h2>
-          <Code embed={example3} />
+          <Code embed={example5} />
           <MaeveMulti
           >
             <MaeveInput
@@ -204,7 +232,7 @@ class App extends Component {
         </section>
         <section>
           <h2>Multi-Maeve with callbacks and 0 inital elements. Maeve-Input with autocomplete.</h2>
-          <Code embed={example5} />
+          <Code embed={example6} />
           <MaeveMulti
             addCallback={this.onNewMultipleAdded}
             removeCallback={this.onNewMultipleRemoved}
@@ -222,7 +250,7 @@ class App extends Component {
         </section>
         <section>
           <h2>Maeve-Multi. Maeve-input with autocomplete, trigger and add new callback.</h2>
-          <Code embed={example6} />
+          <Code embed={example7} />
           <MaeveMulti
             addCallback={this.onNewMultipleAdded}
             removeCallback={this.onNewMultipleRemoved}
@@ -239,7 +267,7 @@ class App extends Component {
         </section>
         <section>
           <div> <h2>Multi with auto-filled values, array of inputs.</h2> </div>
-          <Code embed={example7} />
+          <Code embed={example8} />
           <MaeveMulti
             addCallback={this.onNewMultipleAdded}
             removeCallback={this.onNewMultipleRemoved}
