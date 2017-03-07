@@ -80,7 +80,7 @@ class MaeveInput extends React.Component {
       let dropdownProps = {
         items: source,
         onSelect: this.onItemSelect,
-        isSourceHtml: this.props.isSourceHtml,
+        isSourceHtml: autocomplete.isSourceHtml,
       }
       if( typeof autocomplete.addNewItem !== 'undefined' ) {
         dropdownProps.addNewItem = this.onAddNewItem;
