@@ -42,7 +42,7 @@ class MaeveInput extends React.Component {
   }
 
   onItemSelect = (value, event) => {
-    event.preventDefault();
+    event.stopPropagation();
     this.updateValue({
       value,
     });
@@ -56,6 +56,8 @@ class MaeveInput extends React.Component {
   }
 
   setFocus = (isFocus) => {
+    isFocus === false &&
+      window.removeEventListener('click', this.onPageClick, false);
     this.setState({
       isFocus: isFocus,
     });
@@ -85,12 +87,12 @@ class MaeveInput extends React.Component {
       let dropdownProps = {
         items: source,
         onSelect: this.onItemSelect,
-        onPageClick: this.onPageClick,
       }
       if( typeof autocomplete.addNewItem !== 'undefined' ) {
         dropdownProps.addNewItem = this.onAddNewItem;
       }
       dropdown = <MaeveDropdown {...dropdownProps}/>
+      window.addEventListener('click', this.onPageClick, false);
     }
     return dropdown;
   }

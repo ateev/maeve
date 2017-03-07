@@ -5,14 +5,6 @@ class MaeveDropdown extends React.Component {
     super(props);
   }
 
-  componentDidMount() {
-    window.addEventListener('click', this.props.onPageClick, false);
-  }
-
-  componentWillUnmount() {
-    window.removeEventListener('click', this.props.onPageClick, false);
-  }
-
   getDropdownItems = (items) => {
     const dropdownItemStyle = {
       'padding': '7px',
@@ -34,7 +26,7 @@ class MaeveDropdown extends React.Component {
           style={dropdownItemStyle}
           className="dropdown-item"
           key={key}
-          onClick={this.props.onSelect.bind(null, value)}
+          onClick={(event) => this.props.onSelect(value, event)}
         >
           { value }
         </li>
