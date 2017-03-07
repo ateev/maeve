@@ -6,6 +6,7 @@ exports[`render maeve input should render component with just essential props 1`
     onChange={[Function]}
     onFocus={[Function]}
     type="text"
-    value="" />
+    value=""
+  />
 </div>
 `;
