@@ -1,15 +1,11 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
-
-exports[`render maeve input 1`] = `
+exports[`test render maeve input 1`] = `
 <div
-  className="maeve-input"
->
+  className="maeve-input">
   <label />
   <input
     onChange={[Function]}
     onFocus={[Function]}
     type="text"
-    value=""
-  />
+    value="" />
 </div>
 `;
