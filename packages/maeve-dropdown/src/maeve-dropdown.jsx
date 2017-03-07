@@ -27,7 +27,10 @@ class MaeveDropdown extends React.Component {
           key={key}
           onClick={this.props.onSelect.bind(null, value)}
         >
-          { value }
+          {
+            this.props.isSourceHtml === true ? <div dangerouslySetInnerHTML={{ __html: value }} />
+              : value
+          }
         </li>
       ));
     }
