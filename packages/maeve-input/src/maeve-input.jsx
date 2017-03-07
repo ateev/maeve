@@ -107,10 +107,9 @@ class MaeveInput extends React.Component {
       }
       dropdown = this.getDropdown();
     }
-
     return (
       <div className="maeve-input">
-        { typeof this.props.label !== undefined ?
+        { typeof this.props.label !== 'undefined' ?
           <label htmlFor={this.props.id}>{this.props.label}</label>
           :
           ''
@@ -125,8 +124,8 @@ class MaeveInput extends React.Component {
 };
 
 MaeveInput.propTypes = {
-  id: React.PropTypes.string,
-  onValueUpdate: React.PropTypes.func,
+  id: React.PropTypes.string.isRequired,
+  onValueUpdate: React.PropTypes.func.isRequired,
   valueId: React.PropTypes.string,
   multi: React.PropTypes.bool,
   placeholder: React.PropTypes.string,

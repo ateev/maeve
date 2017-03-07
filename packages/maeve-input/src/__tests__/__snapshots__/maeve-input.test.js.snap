@@ -1,8 +1,8 @@
-exports[`test render maeve input 1`] = `
+exports[`render maeve input should render component with just essential props 1`] = `
 <div
   className="maeve-input">
-  <label />
   <input
+    id="testComponent"
     onChange={[Function]}
     onFocus={[Function]}
     type="text"
