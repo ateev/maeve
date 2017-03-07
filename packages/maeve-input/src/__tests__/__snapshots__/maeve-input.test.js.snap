@@ -1,6 +1,9 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
 exports[`render maeve input should render component with just essential props 1`] = `
 <div
-  className="maeve-input">
+  className="maeve-input"
+>
   <input
     id="testComponent"
     onChange={[Function]}
