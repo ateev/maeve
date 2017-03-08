@@ -39,6 +39,7 @@ class App extends Component {
     };
     const htmlAutoComplete = {
       source: ["<b>apple</b>", "<i>banana</i>", "<u>cat</u>", "<strike>appollo</strike>", "<b>caterpillar</b>"],
+      isSourceHtml: true,
     };
     const autoCompleteWithAddNew = {
       source: ["apple", "banana", "cat", "appollo", "caterpillar"],
@@ -103,7 +104,6 @@ class App extends Component {
         // Optionals
         autocomplete={htmlAutoComplete}
         placeholder="hello"
-        isSourceHtml
       />
     `;
 
@@ -212,7 +212,6 @@ class App extends Component {
             // Optionals
             autocomplete={htmlAutoComplete}
             placeholder="hello"
-            isSourceHtml
           />
         </section>
         <section>
