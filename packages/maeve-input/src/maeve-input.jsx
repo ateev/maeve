@@ -119,6 +119,7 @@ class MaeveInput extends React.Component {
           {...inputProps}
         />
         {dropdown}
+        {this.props.children}
       </div>
     );
   }
