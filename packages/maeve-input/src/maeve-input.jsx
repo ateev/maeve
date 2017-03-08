@@ -56,7 +56,8 @@ class MaeveInput extends React.Component {
   }
 
   setFocus = (isFocus) => {
-    isFocus === false &&
+    isFocus === true ?
+      window.addEventListener('click', this.onPageClick, false) :
       window.removeEventListener('click', this.onPageClick, false);
     this.setState({
       isFocus: isFocus,
@@ -92,7 +93,6 @@ class MaeveInput extends React.Component {
         dropdownProps.addNewItem = this.onAddNewItem;
       }
       dropdown = <MaeveDropdown {...dropdownProps}/>
-      window.addEventListener('click', this.onPageClick, false);
     }
     return dropdown;
   }
