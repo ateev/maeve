@@ -1,12 +1,48 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`render maeve input should render component with autocomplete and source as an array 1`] = `
+<MaeveInput
+  autocomplete={
+    Object {
+      "source": Array [
+        "apple",
+        "banana",
+        "cat",
+        "appollo",
+        "caterpillar",
+      ],
+    }
+  }
+  id="testComponent"
+  label="name"
+  onValueUpdate={[Function]}
+  placeholder="hello"
+>
+  <div
+    className="maeve-input"
+  >
+    <label
+      htmlFor="testComponent"
+    >
+      name
+    </label>
+    <input
+      id="testComponent"
+      onFocus={[Function]}
+      placeholder="hello"
+      type="text"
+      value=""
+    />
+  </div>
+</MaeveInput>
+`;
+
 exports[`render maeve input should render component with just essential props 1`] = `
 <div
   className="maeve-input"
 >
   <input
     id="testComponent"
-    onChange={[Function]}
     onFocus={[Function]}
     type="text"
     value=""
