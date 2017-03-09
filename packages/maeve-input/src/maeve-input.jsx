@@ -98,12 +98,14 @@ class MaeveInput extends React.Component {
   }
 
   render() {
+    const required = this.props.required || false;
     let inputProps = {
       id: this.props.id,
       type: 'text',
       value: this.state.value,
       placeholder: this.props.placeholder,
       onChange: this.handleChange,
+      required,
       onFocus: this.setFocus.bind(null, true),
     };
     let dropdown = '';
