@@ -78,6 +78,9 @@ class App extends Component {
       <MaeveInput
         id="listAutocomplete"
         onValueUpdate={this.onValueUpdate}
+        //Optionals
+        debounceTime={0}
+        required
       />`;
 
     const example2 = `
@@ -179,7 +182,9 @@ class App extends Component {
             // Essentials
             id="listAutocomplete"
             onValueUpdate={this.onValueUpdate}
+            //Optionals
             debounceTime={0}
+            required
           />
         </section>
         <section>

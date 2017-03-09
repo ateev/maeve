@@ -5,6 +5,7 @@ exports[`test render maeve input 1`] = `
   <input
     onChange={[Function]}
     onFocus={[Function]}
+    required={false}
     type="text"
     value="" />
 </div>
