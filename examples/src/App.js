@@ -33,6 +33,16 @@ class App extends Component {
     return newArray;
   }
 
+  getExternalViewComponent = () => {
+    const source = ["apple", "banana", "cat", "appollo", "caterpillar"];
+    return (
+      <div>
+        hello
+        { source.map((item, key) => <div key={key}> {item} </div> ) }
+      </div>
+    );
+  }
+
   render() {
     const autoComplete = {
       source: ["apple", "banana", "cat", "appollo", "caterpillar"],
@@ -154,6 +164,15 @@ class App extends Component {
       </MaeveMulti>
     `;
 
+    const example8 = `
+      <MaeveInput
+        id='anotherComponentInprops'
+        onValueUpdate={this.onValueUpdate}
+      >
+        {this.getExternalViewComponent()}
+      </MaeveInput>
+    `;
+
     return (
       <div className="App">
         <section>
@@ -255,6 +274,16 @@ class App extends Component {
               onValueUpdate={this.onValueUpdate}
             />
           </MaeveMulti>
+        </section>
+        <section>
+          <div> <h2>Maeve Input with custom dropdown support</h2> </div>
+          <Code embed={example8} />
+          <MaeveInput
+            id='anotherComponentInprops'
+            onValueUpdate={this.onValueUpdate}
+          >
+            {this.getExternalViewComponent()}
+          </MaeveInput>
         </section>
       </div>
     );
