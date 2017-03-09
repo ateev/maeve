@@ -4,6 +4,7 @@ class MaeveDropdown extends React.Component {
   constructor(props){
     super(props);
   }
+
   getDropdownItems = (items) => {
     const dropdownItemStyle = {
       'padding': '7px',
@@ -25,7 +26,7 @@ class MaeveDropdown extends React.Component {
           style={dropdownItemStyle}
           className="dropdown-item"
           key={key}
-          onClick={this.props.onSelect.bind(null, value)}
+          onClick={(event) => this.props.onSelect(value, event)}
         >
           { value }
         </li>
