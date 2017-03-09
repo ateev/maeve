@@ -1,0 +1,54 @@
+{
+  "name": "maeve-toggle",
+  "version": "0.0.1",
+  "description": "A simple toggle box for boolean values.",
+  "main": "index.js",
+  "scripts": {
+    "test": "jest",
+    "test-update": "jest -u",
+    "uglify": "uglifyjs dist/maeve-toggle.js --compress -o dist/maeve-toggle.js",
+    "babel": "babel --plugins transform-es2015-modules-umd src --ignore __tests__ --out-dir ./dist",
+    "prepublish": "npm-run-all babel uglify"
+  },
+  "dependencies": {
+    "react": "^15.4.2"
+  },
+  "devDependencies": {
+    "babel-cli": "^6.22.2",
+    "babel-core": "^6.21.0",
+    "babel-eslint": "^7.1.1",
+    "babel-jest": "^18.0.0",
+    "babel-plugin-transform-es2015-modules-umd": "^6.18.0",
+    "babel-polyfill": "^6.20.0",
+    "babel-preset-es2015": "^6.18.0",
+    "babel-preset-react": "^6.16.0",
+    "babel-preset-stage-2": "^6.18.0",
+    "enzyme": "^2.7.0",
+    "jest": "^18.1.0",
+    "jest-cli": "^18.1.0",
+    "jest-serializer-enzyme": "^1.0.0",
+    "npm-run-all": "^4.0.1",
+    "react-addons-test-utils": "^15.4.2",
+    "react-dom": "^15.4.2",
+    "uglify": "^0.1.5",
+    "uglify-js": "^2.7.5"
+  },
+  "jest": {
+    "transform": {
+      "^.+\\.jsx?$": "babel-jest"
+    },
+    "snapshotSerializers": [
+      "<rootDir>/node_modules/jest-serializer-enzyme"
+    ]
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/ateev/maeve/tree/master/packages/maeve-toggle"
+  },
+  "keywords": [
+    "input",
+    "react"
+  ],
+  "author": "ateev",
+  "license": "ISC"
+}

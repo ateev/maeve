@@ -1,0 +1,8 @@
+exports[`test render  1`] = `
+<div
+  className="maeve-toggle">
+  <input
+    name="maeve"
+    type="text" />
+</div>
+`;
