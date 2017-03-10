@@ -1,6 +1,7 @@
 exports[`test render  1`] = `
 <div
   className="maeve-toggle">
+  <label />
   <input
     className="toggle-input"
     type="checkbox" />
