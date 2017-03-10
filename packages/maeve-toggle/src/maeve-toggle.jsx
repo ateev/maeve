@@ -4,7 +4,12 @@ export default class MaeveToggle extends React.Component {
   render() {
     return (
       <div className="maeve-toggle">
-        <input type="text" name="maeve" />
+        <input
+          id={this.props.id}
+          className="toggle-input"
+          type="checkbox"
+        />
+        <label for={this.props.id}></label>
       </div>
     );
   }

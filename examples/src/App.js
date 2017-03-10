@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import MaeveInput from 'maeve-input';
 import MaeveMulti from 'maeve-multi';
+import MaeveToggle from 'maeve-toggle';
 import Code from 'react-embed-code';
 import './App.css';
 
@@ -173,6 +174,10 @@ class App extends Component {
       </MaeveInput>
     `;
 
+    const example9 = `
+      <MaeveToggle id="example-9" />
+    `;
+
     return (
       <div className="App">
         <section>
@@ -284,6 +289,11 @@ class App extends Component {
           >
             {this.getExternalViewComponent()}
           </MaeveInput>
+        </section>
+        <section>
+          <div> <h2>Maeve Toggle</h2> </div>
+          <Code embed={example9} />
+          <MaeveToggle id="example-9" />
         </section>
       </div>
     );
