@@ -2,7 +2,13 @@ exports[`test render  1`] = `
 <div
   className="maeve-toggle">
   <input
-    name="maeve"
-    type="text" />
+    className="toggle-input"
+    type="checkbox" />
+  <label>
+    <span
+      className="label-inner" />
+    <span
+      className="label-switch" />
+  </label>
 </div>
 `;
