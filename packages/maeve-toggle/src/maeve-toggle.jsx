@@ -15,7 +15,7 @@ export default class MaeveToggle extends React.Component {
           className="toggle-input"
           type="checkbox"
         />
-        <label htmlFor={this.props.id}>
+        <label className="toggle-label" htmlFor={this.props.id}>
           <span className="label-inner" />
           <span className="label-switch" />
         </label>

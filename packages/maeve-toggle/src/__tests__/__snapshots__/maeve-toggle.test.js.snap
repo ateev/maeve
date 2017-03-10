@@ -5,7 +5,8 @@ exports[`test render  1`] = `
   <input
     className="toggle-input"
     type="checkbox" />
-  <label>
+  <label
+    className="toggle-label">
     <span
       className="label-inner" />
     <span
