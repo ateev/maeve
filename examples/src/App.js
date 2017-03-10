@@ -175,7 +175,13 @@ class App extends Component {
     `;
 
     const example9 = `
-      <MaeveToggle id="example-9" />
+      <MaeveToggle
+        // essentials
+        id="example-9"
+        onValueUpdate={this.onValueUpdate}
+        // Optionals
+        label="Maeve Toggle"
+      />
     `;
 
     return (
@@ -293,7 +299,13 @@ class App extends Component {
         <section>
           <div> <h2>Maeve Toggle</h2> </div>
           <Code embed={example9} />
-          <MaeveToggle id="example-9" />
+          <MaeveToggle
+            // essentials
+            id="example-9"
+            onValueUpdate={this.onValueUpdate}
+            // Optionals
+            label="Maeve Toggle"
+          />
         </section>
       </div>
     );

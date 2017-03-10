@@ -5,20 +5,24 @@ export default class MaeveToggle extends React.Component {
     return (
       <div className="maeve-toggle">
         { typeof this.props.label !== undefined ?
-          <label>{this.props.label}</label>
+          <div className="toggle-label">{ this.props.label }</div>
           :
           ''
         }
-        <input
-          id={this.props.id}
-          name={this.props.id}
-          className="toggle-input"
-          type="checkbox"
-        />
-        <label className="toggle-label" htmlFor={this.props.id}>
-          <span className="label-inner" />
-          <span className="label-switch" />
-        </label>
+        <div className="onoffswitch">
+          <input
+            type="checkbox"
+            name={this.props.id}
+            className="onoffswitch-checkbox"
+            id={this.props.id}
+            defaultChecked
+            onChange={event => this.props.onValueUpdate(event.target.checked, this.props.id)}
+          />
+          <label className="onoffswitch-label" htmlFor={this.props.id}>
+            <span className="onoffswitch-inner" />
+            <span className="onoffswitch-switch" />
+          </label>
+        </div>
       </div>
     );
   }
