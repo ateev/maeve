@@ -1,5 +1,5 @@
 import React from 'react';
-import { MaeveDropdownList, MaeveDropdownListItem } from './maeve-dropdown.style.js';
+import { MaeveDropdownList, MaeveDropdownListItem, MaeveDropDown } from './maeve-dropdown.style.js';
 
 class MaeveDropdown extends React.Component {
   constructor(props){
@@ -7,12 +7,6 @@ class MaeveDropdown extends React.Component {
   }
 
   getDropdownItems = (items) => {
-    const dropdownItemStyle = {
-      'padding': '7px',
-      'border': '1px solid #ececec',
-      'borderTop': '0px',
-      'cursor': 'pointer',
-    };
     let dropdownItems = [];
     if( items instanceof Array ) {
       if (items.length === 0) {
@@ -24,7 +18,6 @@ class MaeveDropdown extends React.Component {
       }
       dropdownItems = items.map((value, key) => (
         <MaeveDropdownListItem
-          style={dropdownItemStyle}
           className="dropdown-item"
           key={key}
           onClick={(event) => this.props.onSelect(value, event)}
@@ -50,11 +43,11 @@ class MaeveDropdown extends React.Component {
   render() {
     const items = this.props.items;
     return (
-      <div className="maeve-dropdown">
+      <MaeveDropDown>
         <MaeveDropdownList>
           { this.getDropdownItems(items) }
         </MaeveDropdownList>
-      </div>
+      </MaeveDropDown>
     );
   }
 };
