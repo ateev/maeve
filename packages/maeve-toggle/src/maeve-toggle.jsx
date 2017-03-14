@@ -1,4 +1,11 @@
 import React from 'react';
+import {
+  OnOffSwitch,
+  OnOffSwitchCheckBox,
+  OnOffswitchLabel,
+  OnOffswitchInner,
+  OnOffswitchSwitch,
+} from './maeve-toggle.style.js';
 
 export default class MaeveToggle extends React.Component {
   render() {
@@ -9,8 +16,8 @@ export default class MaeveToggle extends React.Component {
           :
           ''
         }
-        <div className="onoffswitch">
-          <input
+        <OnOffSwitch>
+          <OnOffSwitchCheckBox
             type="checkbox"
             name={this.props.id}
             className="onoffswitch-checkbox"
@@ -18,11 +25,11 @@ export default class MaeveToggle extends React.Component {
             defaultChecked
             onChange={event => this.props.onValueUpdate(event.target.checked, this.props.id)}
           />
-          <label className="onoffswitch-label" htmlFor={this.props.id}>
-            <span className="onoffswitch-inner" />
-            <span className="onoffswitch-switch" />
-          </label>
-        </div>
+          <OnOffswitchLabel className="onoffswitch-label" htmlFor={this.props.id}>
+            <OnOffswitchInner className="onoffswitch-inner" />
+            <OnOffswitchSwitch className="onoffswitch-switch" />
+          </OnOffswitchLabel>
+        </OnOffSwitch>
       </div>
     );
   }
