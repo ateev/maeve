@@ -8,7 +8,7 @@ export const InputLabel = styled.label`
 `;
 
 export const InputField = styled.input`
-  width: 358px;
+  width: 100%;
   height: 32px;
   border-radius: 2px;
   border: solid 1px #cccccc;
