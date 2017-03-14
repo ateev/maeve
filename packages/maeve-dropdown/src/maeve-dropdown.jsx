@@ -1,5 +1,5 @@
 import React from 'react';
-import { MaeveDropdownList, MaeveDropdownListItem, MaeveDropDown } from './maeve-dropdown.style.js';
+import { MaeveDropdownList, MaeveDropdownListItem, MaeveDropDown } from './maeve-dropdown-style.js';
 
 class MaeveDropdown extends React.Component {
   constructor(props){

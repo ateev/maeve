@@ -1,7 +1,7 @@
 import React from 'react';
 import MaeveDropdown from 'maeve-dropdown';
 import debounce from 'lodash/debounce';
-import { InputLabel, InputField } from './maeve-input.style.js';
+import { InputLabel, InputField } from './maeve-input-style.js';
 
 class MaeveInput extends React.Component {
 
