@@ -5,7 +5,7 @@ import {
   OnOffswitchLabel,
   OnOffswitchInner,
   OnOffswitchSwitch,
-} from './maeve-toggle.style.js';
+} from './maeve-toggle-style.js';
 
 export default class MaeveToggle extends React.Component {
   render() {
