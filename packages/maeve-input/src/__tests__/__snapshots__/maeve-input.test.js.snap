@@ -21,27 +21,46 @@ exports[`render maeve input should render component with autocomplete and source
   <div
     className="maeve-input"
   >
-    <label
+    <styled.label
       htmlFor="testComponent"
     >
-      name
-    </label>
-    <input
+      <label
+        className="bfLUDv"
+        htmlFor="testComponent"
+      >
+        name
+      </label>
+    </styled.label>
+    <styled.input
       id="testComponent"
+      onChange={[Function]}
       onFocus={[Function]}
       placeholder="hello"
+      required={false}
       type="text"
       value=""
-    />
+    >
+      <input
+        className="jCrKSc"
+        id="testComponent"
+        onChange={[Function]}
+        onFocus={[Function]}
+        placeholder="hello"
+        required={false}
+        type="text"
+        value=""
+      />
+    </styled.input>
   </div>
 </MaeveInput>
 `;
 
 exports[`render maeve input should render component with just essential props 1`] = `
 <div
-  className="maeve-input">
-  <styled.label />
+  className="maeve-input"
+>
   <styled.input
+    id="testComponent"
     onChange={[Function]}
     onFocus={[Function]}
     required={false}
