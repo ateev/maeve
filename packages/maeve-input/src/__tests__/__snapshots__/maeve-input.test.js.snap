@@ -1,8 +1,8 @@
 exports[`test render maeve input 1`] = `
 <div
   className="maeve-input">
-  <label />
-  <input
+  <styled.label />
+  <styled.input
     onChange={[Function]}
     onFocus={[Function]}
     required={false}

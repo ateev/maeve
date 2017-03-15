@@ -1,6 +1,7 @@
 import React from 'react';
 import MaeveDropdown from 'maeve-dropdown';
 import debounce from 'lodash/debounce';
+import { InputLabel, InputField } from './maeve-input-style.js';
 
 class MaeveInput extends React.Component {
 
@@ -121,11 +122,11 @@ class MaeveInput extends React.Component {
     return (
       <div className="maeve-input">
         { typeof this.props.label !== undefined ?
-          <label htmlFor={this.props.id}>{this.props.label}</label>
+          <InputLabel htmlFor={this.props.id}>{this.props.label}</InputLabel>
           :
           ''
         }
-        <input
+        <InputField
           {...inputProps}
         />
         {dropdown}
