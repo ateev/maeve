@@ -3,20 +3,19 @@ exports[`test render  1`] = `
   className="maeve-toggle">
   <div
     className="toggle-label" />
-  <div
-    className="onoffswitch">
-    <input
+  <styled.div>
+    <styled.input
       className="onoffswitch-checkbox"
       defaultChecked={true}
       onChange={[Function]}
       type="checkbox" />
-    <label
+    <styled.label
       className="onoffswitch-label">
-      <span
+      <styled.div
         className="onoffswitch-inner" />
-      <span
+      <styled.label
         className="onoffswitch-switch" />
-    </label>
-  </div>
+    </styled.label>
+  </styled.div>
 </div>
 `;
