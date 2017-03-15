@@ -9,6 +9,13 @@ export const OnOffSwitch = styled.div`
   -ms-user-select: none;
 `;
 
+export const ToggleLabel = styled.label`
+  display: inline-block;
+  width: 100%;
+  margin-bottom: 5px;
+  font-size: 16px;
+`;
+
 export const OnOffSwitchCheckBox = styled.input`
   display: none;
   &:checked + .onoffswitch-label .onoffswitch-switch {

@@ -5,6 +5,7 @@ import {
   OnOffswitchLabel,
   OnOffswitchInner,
   OnOffswitchSwitch,
+  ToggleLabel,
 } from './maeve-toggle-style.js';
 
 export default class MaeveToggle extends React.Component {
@@ -12,7 +13,7 @@ export default class MaeveToggle extends React.Component {
     return (
       <div className="maeve-toggle">
         { typeof this.props.label !== undefined ?
-          <div className="toggle-label">{ this.props.label }</div>
+          <ToggleLabel>{ this.props.label }</ToggleLabel>
           :
           ''
         }
