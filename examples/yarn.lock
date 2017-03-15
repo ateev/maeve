@@ -3310,22 +3310,28 @@ maeve-dropdown:
   dependencies:
     react "^15.4.2"
 
-maeve-dropdown@^0.0.15:
-  version "0.0.15"
-  resolved "https://registry.yarnpkg.com/maeve-dropdown/-/maeve-dropdown-0.0.15.tgz#7b199c0ff5df8ec56afad4e0134a8c16c5ebb9c1"
+maeve-dropdown@^0.1.1:
+  version "0.1.1"
+  resolved "https://registry.yarnpkg.com/maeve-dropdown/-/maeve-dropdown-0.1.1.tgz#ab3a30cbd3d1edd1f70605b8dcb98827b2904d06"
   dependencies:
     react "^15.4.2"
 
-maeve-input@^0.0.30:
-  version "0.0.30"
-  resolved "https://registry.yarnpkg.com/maeve-input/-/maeve-input-0.0.30.tgz#f837a7c0e43bfc60f4595dff4e4d39522ed851e0"
+maeve-input@^0.1.1:
+  version "0.1.1"
+  resolved "https://registry.yarnpkg.com/maeve-input/-/maeve-input-0.1.1.tgz#71122d8a455d27d25a4d9839bc7f665b8fb5a1cb"
   dependencies:
-    maeve-dropdown "^0.0.15"
+    maeve-dropdown "^0.1.1"
     react "^15.4.2"
 
 maeve-multi:
   version "0.0.1"
   resolved "https://registry.yarnpkg.com/maeve-multi/-/maeve-multi-0.0.1.tgz#660bf593b3428cac713a8c794e9775c9996a132a"
+  dependencies:
+    react "^15.4.2"
+
+maeve-toggle@^0.0.3:
+  version "0.0.3"
+  resolved "https://registry.yarnpkg.com/maeve-toggle/-/maeve-toggle-0.0.3.tgz#a1b4503cef7c4166aaf225580a6a79540b5f0ea5"
   dependencies:
     react "^15.4.2"
 

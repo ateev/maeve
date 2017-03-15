@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import MaeveInput from 'maeve-input';
 import MaeveMulti from 'maeve-multi';
+import MaeveToggle from 'maeve-toggle';
 import Code from 'react-embed-code';
 import './App.css';
 
@@ -31,6 +32,16 @@ class App extends Component {
       item => this.filterResults(item, value)
     );
     return newArray;
+  }
+
+  getExternalViewComponent = () => {
+    const source = ["apple", "banana", "cat", "appollo", "caterpillar"];
+    return (
+      <div>
+        hello
+        { source.map((item, key) => <div key={key}> {item} </div> ) }
+      </div>
+    );
   }
 
   render() {
@@ -68,7 +79,9 @@ class App extends Component {
       <MaeveInput
         id="listAutocomplete"
         onValueUpdate={this.onValueUpdate}
+        //Optionals
         debounceTime={0}
+        required
       />`;
 
     const example2 = `
@@ -152,6 +165,25 @@ class App extends Component {
       </MaeveMulti>
     `;
 
+    const example8 = `
+      <MaeveInput
+        id='anotherComponentInprops'
+        onValueUpdate={this.onValueUpdate}
+      >
+        {this.getExternalViewComponent()}
+      </MaeveInput>
+    `;
+
+    const example9 = `
+      <MaeveToggle
+        // essentials
+        id="example-9"
+        onValueUpdate={this.onValueUpdate}
+        // Optionals
+        label="Maeve Toggle"
+      />
+    `;
+
     return (
       <div className="App">
         {/*Example 1*/}
@@ -162,7 +194,9 @@ class App extends Component {
             // Essentials
             id="listAutocomplete"
             onValueUpdate={this.onValueUpdate}
+            //Optionals
             debounceTime={0}
+            required
           />
         </section>
         {/*Example 2*/}
@@ -258,6 +292,27 @@ class App extends Component {
               onValueUpdate={this.onValueUpdate}
             />
           </MaeveMulti>
+        </section>
+        <section>
+          <div> <h2>Maeve Input with custom dropdown support</h2> </div>
+          <Code embed={example8} />
+          <MaeveInput
+            id='anotherComponentInprops'
+            onValueUpdate={this.onValueUpdate}
+          >
+            {this.getExternalViewComponent()}
+          </MaeveInput>
+        </section>
+        <section>
+          <div> <h2>Maeve Toggle</h2> </div>
+          <Code embed={example9} />
+          <MaeveToggle
+            // essentials
+            id="example-9"
+            onValueUpdate={this.onValueUpdate}
+            // Optionals
+            label="Maeve Toggle"
+          />
         </section>
       </div>
     );

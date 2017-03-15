@@ -1,6 +1,7 @@
 import React from 'react';
 import MaeveDropdown from 'maeve-dropdown';
 import debounce from 'lodash/debounce';
+import { InputLabel, InputField } from './maeve-input-style.js';
 
 class MaeveInput extends React.Component {
 
@@ -41,7 +42,8 @@ class MaeveInput extends React.Component {
     this.props.onValueUpdate(newState.value, valueId);
   }
 
-  onItemSelect = (value) => {
+  onItemSelect = (value, event) => {
+    event.stopPropagation();
     this.updateValue({
       value,
     });
@@ -55,9 +57,16 @@ class MaeveInput extends React.Component {
   }
 
   setFocus = (isFocus) => {
+    isFocus === true ?
+      window.addEventListener('click', this.onPageClick, false) :
+      window.removeEventListener('click', this.onPageClick, false);
     this.setState({
       isFocus: isFocus,
     });
+  }
+
+  onPageClick = (event) => {
+    event.target.id !== this.props.id && this.setFocus(false);
   }
 
   getDropdown() {
@@ -90,12 +99,14 @@ class MaeveInput extends React.Component {
   }
 
   render() {
+    const required = this.props.required || false;
     let inputProps = {
       id: this.props.id,
       type: 'text',
       value: this.state.value,
       placeholder: this.props.placeholder,
       onChange: this.handleChange,
+      required,
       onFocus: this.setFocus.bind(null, true),
     };
     let dropdown = '';
@@ -110,14 +121,15 @@ class MaeveInput extends React.Component {
     return (
       <div className="maeve-input">
         { typeof this.props.label !== 'undefined' ?
-          <label htmlFor={this.props.id}>{this.props.label}</label>
+          <InputLabel htmlFor={this.props.id}>{this.props.label}</InputLabel>
           :
           ''
         }
-        <input
+        <InputField
           {...inputProps}
         />
         {dropdown}
+        {this.props.children}
       </div>
     );
   }

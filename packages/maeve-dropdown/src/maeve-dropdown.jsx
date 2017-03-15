@@ -1,34 +1,29 @@
 import React from 'react';
+import { MaeveDropdownList, MaeveDropdownListItem, MaeveDropDown } from './maeve-dropdown-style.js';
 
 class MaeveDropdown extends React.Component {
   constructor(props){
     super(props);
   }
+
   getDropdownItems = (items) => {
-    const dropdownItemStyle = {
-      'padding': '7px',
-      'border': '1px solid #ececec',
-      'borderTop': '0px',
-      'cursor': 'pointer',
-    };
     let dropdownItems = [];
     if( items instanceof Array ) {
       if (items.length === 0) {
         dropdownItems.push(
-          <li>
+          <MaeveDropdownListItem>
             No result
-          </li>
+          </MaeveDropdownListItem>
         );
       }
       dropdownItems = items.map((value, key) => (
-        <li
-          style={dropdownItemStyle}
+        <MaeveDropdownListItem
           className="dropdown-item"
           key={key}
-          onClick={this.props.onSelect.bind(null, value)}
+          onClick={(event) => this.props.onSelect(value, event)}
         >
           { value }
-        </li>
+        </MaeveDropdownListItem>
       ));
     }
     if (items !== null && this.props.addNewItem !== undefined) {
@@ -48,11 +43,11 @@ class MaeveDropdown extends React.Component {
   render() {
     const items = this.props.items;
     return (
-      <div className="maeve-dropdown">
-        <ul>
+      <MaeveDropDown>
+        <MaeveDropdownList>
           { this.getDropdownItems(items) }
-        </ul>
-      </div>
+        </MaeveDropdownList>
+      </MaeveDropDown>
     );
   }
 };

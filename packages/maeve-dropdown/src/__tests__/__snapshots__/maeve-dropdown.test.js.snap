@@ -1,6 +1,5 @@
 exports[`test render maeve input 1`] = `
-<div
-  className="maeve-dropdown">
-  <ul />
-</div>
+<styled.div>
+  <styled.ul />
+</styled.div>
 `;
