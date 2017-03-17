@@ -75,4 +75,22 @@ describe('<MaeveInput />', () => {
     expect(component).toMatchSnapshot();
     expect(component.find('MaeveDropdown').exists()).toBeTruthy();
   });
+
+  it('should render error message when passed', () => {
+    const updateValue = jest.fn();
+    const component = shallow(
+      <MaeveInput
+        id="testComponent"
+        onValueUpdate={updateValue}
+        error={
+          {
+            message: 'The Input field should be like this'
+          }
+        }
+      />
+    );
+    expect(component.find('.error').exists()).toBeTruthy();
+    expect(component).toMatchSnapshot();
+  })
+
 });

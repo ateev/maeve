@@ -361,3 +361,23 @@ exports[`<MaeveInput /> should render component with placeholder and a label 1`]
   </div>
 </MaeveInput>
 `;
+
+exports[`<MaeveInput /> should render error message when passed 1`] = `
+<div
+  className="maeve-input"
+>
+  <styled.div
+    className="error"
+  >
+    The Input field should be like this
+  </styled.div>
+  <styled.input
+    id="testComponent"
+    onChange={[Function]}
+    onFocus={[Function]}
+    required={false}
+    type="text"
+    value=""
+  />
+</div>
+`;
