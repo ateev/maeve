@@ -1,12 +1,363 @@
-exports[`test render maeve input 1`] = `
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<MaeveInput /> should render component with autocomplete and source as an array 1`] = `
+<MaeveInput
+  autocomplete={
+    Object {
+      "source": Array [
+        "apple",
+        "banana",
+        "cat",
+        "appollo",
+        "caterpillar",
+      ],
+    }
+  }
+  id="testComponent"
+  label="name"
+  onValueUpdate={[Function]}
+  placeholder="hello"
+>
+  <div
+    className="maeve-input"
+  >
+    <styled.label
+      htmlFor="testComponent"
+    >
+      <label
+        className="bfLUDv"
+        htmlFor="testComponent"
+      >
+        name
+      </label>
+    </styled.label>
+    <styled.input
+      id="testComponent"
+      onChange={[Function]}
+      onFocus={[Function]}
+      placeholder="hello"
+      required={false}
+      type="text"
+      value=""
+    >
+      <input
+        className="jCrKSc"
+        id="testComponent"
+        onChange={[Function]}
+        onFocus={[Function]}
+        placeholder="hello"
+        required={false}
+        type="text"
+        value=""
+      />
+    </styled.input>
+  </div>
+</MaeveInput>
+`;
+
+exports[`<MaeveInput /> should render component with autocomplete and source as an array 2`] = `
+<MaeveInput
+  autocomplete={
+    Object {
+      "source": Array [
+        "apple",
+        "banana",
+        "cat",
+        "appollo",
+        "caterpillar",
+      ],
+    }
+  }
+  id="testComponent"
+  label="name"
+  onValueUpdate={[Function]}
+  placeholder="hello"
+>
+  <div
+    className="maeve-input"
+  >
+    <styled.label
+      htmlFor="testComponent"
+    >
+      <label
+        className="bfLUDv"
+        htmlFor="testComponent"
+      >
+        name
+      </label>
+    </styled.label>
+    <styled.input
+      id="testComponent"
+      onChange={[Function]}
+      onFocus={[Function]}
+      placeholder="hello"
+      required={false}
+      type="text"
+      value=""
+    >
+      <input
+        className="jCrKSc"
+        id="testComponent"
+        onChange={[Function]}
+        onFocus={[Function]}
+        placeholder="hello"
+        required={false}
+        type="text"
+        value=""
+      />
+    </styled.input>
+    <MaeveDropdown
+      items={
+        Array [
+          "apple",
+          "banana",
+          "cat",
+          "appollo",
+          "caterpillar",
+        ]
+      }
+      onSelect={[Function]}
+    >
+      <styled.div>
+        <div
+          className="iVYffy"
+        >
+          <styled.ul>
+            <ul
+              className="fAAgPE"
+            >
+              <styled.li
+                className="dropdown-item"
+                onClick={[Function]}
+              >
+                <li
+                  className="dropdown-item bDKlVs"
+                  onClick={[Function]}
+                >
+                  apple
+                </li>
+              </styled.li>
+              <styled.li
+                className="dropdown-item"
+                onClick={[Function]}
+              >
+                <li
+                  className="dropdown-item bDKlVs"
+                  onClick={[Function]}
+                >
+                  banana
+                </li>
+              </styled.li>
+              <styled.li
+                className="dropdown-item"
+                onClick={[Function]}
+              >
+                <li
+                  className="dropdown-item bDKlVs"
+                  onClick={[Function]}
+                >
+                  cat
+                </li>
+              </styled.li>
+              <styled.li
+                className="dropdown-item"
+                onClick={[Function]}
+              >
+                <li
+                  className="dropdown-item bDKlVs"
+                  onClick={[Function]}
+                >
+                  appollo
+                </li>
+              </styled.li>
+              <styled.li
+                className="dropdown-item"
+                onClick={[Function]}
+              >
+                <li
+                  className="dropdown-item bDKlVs"
+                  onClick={[Function]}
+                >
+                  caterpillar
+                </li>
+              </styled.li>
+            </ul>
+          </styled.ul>
+        </div>
+      </styled.div>
+    </MaeveDropdown>
+  </div>
+</MaeveInput>
+`;
+
+exports[`<MaeveInput /> should render component with autocomplete source as function 1`] = `
+<MaeveInput
+  autocomplete={
+    Object {
+      "source": [Function],
+    }
+  }
+  id="testComponent"
+  label="name"
+  onValueUpdate={[Function]}
+  placeholder="hello"
+>
+  <div
+    className="maeve-input"
+  >
+    <styled.label
+      htmlFor="testComponent"
+    >
+      <label
+        className="bfLUDv"
+        htmlFor="testComponent"
+      >
+        name
+      </label>
+    </styled.label>
+    <styled.input
+      id="testComponent"
+      onChange={[Function]}
+      onFocus={[Function]}
+      placeholder="hello"
+      required={false}
+      type="text"
+      value=""
+    >
+      <input
+        className="jCrKSc"
+        id="testComponent"
+        onChange={[Function]}
+        onFocus={[Function]}
+        placeholder="hello"
+        required={false}
+        type="text"
+        value=""
+      />
+    </styled.input>
+  </div>
+</MaeveInput>
+`;
+
+exports[`<MaeveInput /> should render component with autocomplete source as function 2`] = `
+<MaeveInput
+  autocomplete={
+    Object {
+      "source": [Function],
+    }
+  }
+  id="testComponent"
+  label="name"
+  onValueUpdate={[Function]}
+  placeholder="hello"
+>
+  <div
+    className="maeve-input"
+  >
+    <styled.label
+      htmlFor="testComponent"
+    >
+      <label
+        className="bfLUDv"
+        htmlFor="testComponent"
+      >
+        name
+      </label>
+    </styled.label>
+    <styled.input
+      id="testComponent"
+      onChange={[Function]}
+      onFocus={[Function]}
+      placeholder="hello"
+      required={false}
+      type="text"
+      value=""
+    >
+      <input
+        className="jCrKSc"
+        id="testComponent"
+        onChange={[Function]}
+        onFocus={[Function]}
+        placeholder="hello"
+        required={false}
+        type="text"
+        value=""
+      />
+    </styled.input>
+    <MaeveDropdown
+      onSelect={[Function]}
+    >
+      <styled.div>
+        <div
+          className="iVYffy"
+        >
+          <styled.ul>
+            <ul
+              className="fAAgPE"
+            />
+          </styled.ul>
+        </div>
+      </styled.div>
+    </MaeveDropdown>
+  </div>
+</MaeveInput>
+`;
+
+exports[`<MaeveInput /> should render component with just essential props 1`] = `
 <div
-  className="maeve-input">
-  <styled.label />
+  className="maeve-input"
+>
   <styled.input
+    id="testComponent"
     onChange={[Function]}
     onFocus={[Function]}
     required={false}
     type="text"
-    value="" />
+    value=""
+  />
 </div>
+`;
+
+exports[`<MaeveInput /> should render component with placeholder and a label 1`] = `
+<MaeveInput
+  id="testComponent"
+  label="name"
+  onValueUpdate={[Function]}
+  placeholder="hello"
+>
+  <div
+    className="maeve-input"
+  >
+    <styled.label
+      htmlFor="testComponent"
+    >
+      <label
+        className="bfLUDv"
+        htmlFor="testComponent"
+      >
+        name
+      </label>
+    </styled.label>
+    <styled.input
+      id="testComponent"
+      onChange={[Function]}
+      onFocus={[Function]}
+      placeholder="hello"
+      required={false}
+      type="text"
+      value=""
+    >
+      <input
+        className="jCrKSc"
+        id="testComponent"
+        onChange={[Function]}
+        onFocus={[Function]}
+        placeholder="hello"
+        required={false}
+        type="text"
+        value=""
+      />
+    </styled.input>
+  </div>
+</MaeveInput>
 `;

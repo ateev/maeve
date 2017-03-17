@@ -186,8 +186,9 @@ class App extends Component {
 
     return (
       <div className="App">
+        {/*Example 1*/}
         <section>
-          <h2>Simple Maeve-input with bare essentials.</h2>
+          <h2>Simple Maeve-input with bare essentials and debounce time.</h2>
           <Code embed={example1} />
           <MaeveInput
             // Essentials
@@ -198,8 +199,9 @@ class App extends Component {
             required
           />
         </section>
+        {/*Example 2*/}
         <section>
-          <h2>Simple Maeve-input with default value and autocomplete.</h2>
+          <h2>Simple Maeve-input with a placeholder and autocomplete.</h2>
           <Code embed={example2} />
           <MaeveInput
             // Essentials
@@ -210,8 +212,9 @@ class App extends Component {
             placeholder="hello"
           />
         </section>
+        {/*Example 3*/}
         <section>
-          <div> <h2>Maeve-input with source as a function and a label</h2> </div>
+          <div> <h2>Maeve-input with a label and source as a function.</h2> </div>
           <Code embed={example4} />
           <MaeveInput
             // Essentials
@@ -222,6 +225,7 @@ class App extends Component {
             label="Searchable Items"
           />
         </section>
+        {/*Example 4*/}
         <section>
           <h2>Multi Maeve without any options. Input with autocomplete.</h2>
           <Code embed={example3} />
@@ -237,6 +241,7 @@ class App extends Component {
             />
           </MaeveMulti>
         </section>
+        {/*Example 5*/}
         <section>
           <h2>Multi-Maeve with callbacks and 0 inital elements. Maeve-Input with autocomplete.</h2>
           <Code embed={example5} />
@@ -255,6 +260,7 @@ class App extends Component {
             />
           </MaeveMulti>
         </section>
+        {/*Example 6*/}
         <section>
           <h2>Maeve-Multi. Maeve-input with autocomplete, trigger and add new callback.</h2>
           <Code embed={example6} />
@@ -272,6 +278,7 @@ class App extends Component {
             />
           </MaeveMulti>
         </section>
+        {/*Example 7*/}
         <section>
           <div> <h2>Multi with auto-filled values, array of inputs.</h2> </div>
           <Code embed={example7} />
