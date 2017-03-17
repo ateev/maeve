@@ -1,8 +1,9 @@
 import React from 'react';
 import { shallow, mount } from 'enzyme';
 import MaeveInput from '../maeve-input.jsx';
+import MaeveDropdown from 'maeve-dropdown';
 
-describe('render maeve input', () => {
+describe('<MaeveInput />', () => {
 
   it('should render component with just essential props', () => {
     const valueUpdated = jest.fn();
@@ -19,18 +20,19 @@ describe('render maeve input', () => {
       component.find('input').value("new value !");
       expect(valueUpdated).toBeCalled();
     });
-
   });
 
   it('should render component with placeholder and a label', () => {
-    const component = shallow(
+    const callback = jest.fn();
+    const component = mount(
       <MaeveInput
         id="testComponent"
-        onValueUpdate={() => console.log('hiee')}
+        onValueUpdate={callback}
         placeholder="hello"
         label="name"
       />
     );
+    expect(component).toMatchSnapshot();
     expect(component.find('label').exists()).toBeTruthy();
   });
 
@@ -49,10 +51,28 @@ describe('render maeve input', () => {
     );
     expect(component).toMatchSnapshot();
     component.find('input').simulate('focus');
-    expect(component.find('.maeve-dropdown').exists()).toBeTruthy();
+    expect(component).toMatchSnapshot();
+    expect(component.find('MaeveDropdown').exists()).toBeTruthy();
   });
 
-  it('should render component with autocomplete source as an array', () => {
-    expect(false).toBe(true);
+  it('should render component with autocomplete source as function', () => {
+    const autocompleteFunction = jest.fn();
+    const autoComplete = {
+      source: autocompleteFunction,
+    };
+    const component = mount(
+      <MaeveInput
+        id="testComponent"
+        onValueUpdate={() => console.log('hiee')}
+        placeholder="hello"
+        label="name"
+        autocomplete={autoComplete}
+      />
+    );
+    expect(component).toMatchSnapshot();
+    component.find('input').simulate('focus');
+    expect(autocompleteFunction).toBeCalled();
+    expect(component).toMatchSnapshot();
+    expect(component.find('MaeveDropdown').exists()).toBeTruthy();
   });
 });
