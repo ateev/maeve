@@ -12,7 +12,7 @@ describe('render maeve input', () => {
         onValueUpdate={() => valueUpdated}
       />
     );
-    expect(component.find('label')).toHaveLength(0);
+    expect(component.find('label').exists()).toBeFalsy();
     expect(component).toMatchSnapshot();
 
     it('should call onValueUpdate when value updated', () => {
@@ -31,7 +31,7 @@ describe('render maeve input', () => {
         label="name"
       />
     );
-    expect(component.find('label')).toHaveLength(1);
+    expect(component.find('label').exists()).toBeTruthy();
   });
 
   it('should render component with autocomplete and source as an array', () => {
@@ -49,7 +49,7 @@ describe('render maeve input', () => {
     );
     expect(component).toMatchSnapshot();
     component.find('input').simulate('focus');
-    expect(component.find('.maeve-dropdown')).toHaveLength(1);
+    expect(component.find('.maeve-dropdown').exists()).toBeTruthy();
   });
 
   it('should render component with autocomplete source as an array', () => {
