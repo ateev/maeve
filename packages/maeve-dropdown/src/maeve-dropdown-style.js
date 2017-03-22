@@ -2,6 +2,7 @@ import styled from 'styled-components';
 
 export const MaeveDropDown = styled.div`
   position: absolute;
+  z-index: 10;
 `;
 
 export const MaeveDropdownList = styled.ul`
