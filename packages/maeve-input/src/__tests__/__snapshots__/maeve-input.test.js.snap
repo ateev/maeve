@@ -120,7 +120,7 @@ exports[`<MaeveInput /> should render component with autocomplete and source as 
     >
       <styled.div>
         <div
-          className="iVYffy"
+          className="bTLcPt"
         >
           <styled.ul>
             <ul
@@ -289,7 +289,7 @@ exports[`<MaeveInput /> should render component with autocomplete source as func
     >
       <styled.div>
         <div
-          className="iVYffy"
+          className="bTLcPt"
         >
           <styled.ul>
             <ul
