@@ -1,4 +1,5 @@
 import React from 'react';
+import { MaeveMultiStyle } from './maeve-multi-style';
 
 class MaeveMulti extends React.Component {
   constructor(props) {
@@ -91,7 +92,7 @@ class MaeveMulti extends React.Component {
     const self = this;
     let removeButtonLimit = this.props.initWithZero === true ? 0 : 1;
     return (
-      <div className="maeve-multi">
+      <MaeveMultiStyle>
         { this.state.childComponents.map((val, key) => (
             <div key={val.componentId} className="maeve-multi-item">
               { val.component }
@@ -108,7 +109,7 @@ class MaeveMulti extends React.Component {
         ))
         }
         <div className="add-button" onClick={ this.addNewComponent.bind(null) }> + </div>
-      </div>
+      </MaeveMultiStyle>
     );
   }
 };
