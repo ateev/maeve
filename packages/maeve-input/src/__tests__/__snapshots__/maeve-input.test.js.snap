@@ -41,7 +41,7 @@ exports[`<MaeveInput /> should render component with autocomplete and source as 
       value=""
     >
       <input
-        className="jCrKSc"
+        className="dnGRrS"
         id="testComponent"
         onChange={[Function]}
         onFocus={[Function]}
@@ -96,7 +96,7 @@ exports[`<MaeveInput /> should render component with autocomplete and source as 
       value=""
     >
       <input
-        className="jCrKSc"
+        className="dnGRrS"
         id="testComponent"
         onChange={[Function]}
         onFocus={[Function]}
@@ -225,7 +225,7 @@ exports[`<MaeveInput /> should render component with autocomplete source as func
       value=""
     >
       <input
-        className="jCrKSc"
+        className="dnGRrS"
         id="testComponent"
         onChange={[Function]}
         onFocus={[Function]}
@@ -274,7 +274,7 @@ exports[`<MaeveInput /> should render component with autocomplete source as func
       value=""
     >
       <input
-        className="jCrKSc"
+        className="dnGRrS"
         id="testComponent"
         onChange={[Function]}
         onFocus={[Function]}
@@ -348,7 +348,7 @@ exports[`<MaeveInput /> should render component with placeholder and a label 1`]
       value=""
     >
       <input
-        className="jCrKSc"
+        className="dnGRrS"
         id="testComponent"
         onChange={[Function]}
         onFocus={[Function]}
