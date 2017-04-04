@@ -1,5 +1,5 @@
 import React from 'react';
-import { MaeveMultiStyle, MaeveMultiItem, AddRemoveButton } from './maeve-multi-style';
+import { MaeveMultiStyle, MaeveMultiItem, AddRemoveButton, ChildComponent } from './maeve-multi-style';
 
 class MaeveMulti extends React.Component {
   constructor(props) {
@@ -95,7 +95,9 @@ class MaeveMulti extends React.Component {
       <MaeveMultiStyle>
         { this.state.childComponents.map((val, key) => (
             <MaeveMultiItem key={val.componentId}>
-              { val.component }
+              <ChildComponent>
+                { val.component }
+              </ChildComponent>
               {
                 this.state.childComponents.length > removeButtonLimit
               ?

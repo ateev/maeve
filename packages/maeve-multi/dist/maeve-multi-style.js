@@ -16,7 +16,7 @@
   Object.defineProperty(exports, "__esModule", {
     value: true
   });
-  exports.AddRemoveButton = exports.MaeveMultiItem = exports.MaeveMultiStyle = undefined;
+  exports.AddRemoveButton = exports.MaeveMultiItem = exports.ChildComponent = exports.MaeveMultiStyle = undefined;
 
   var _styledComponents2 = _interopRequireDefault(_styledComponents);
 
@@ -27,8 +27,9 @@
   }
 
   var _templateObject = _taggedTemplateLiteral(['\n  display: inline-block;\n  width: 100%;\n'], ['\n  display: inline-block;\n  width: 100%;\n']),
-      _templateObject2 = _taggedTemplateLiteral(['\n  width: 80%;\n  display: inline-block;\n'], ['\n  width: 80%;\n  display: inline-block;\n']),
-      _templateObject3 = _taggedTemplateLiteral(['\n  width: 8%;\n  display: inline-block;\n  text-align: center;\n  cursor: pointer;\n'], ['\n  width: 8%;\n  display: inline-block;\n  text-align: center;\n  cursor: pointer;\n']);
+      _templateObject2 = _taggedTemplateLiteral(['\n  display: inline-block;\n  width: 90%;\n'], ['\n  display: inline-block;\n  width: 90%;\n']),
+      _templateObject3 = _taggedTemplateLiteral(['\n  width: 80%;\n  display: inline-block;\n'], ['\n  width: 80%;\n  display: inline-block;\n']),
+      _templateObject4 = _taggedTemplateLiteral(['\n  width: 8%;\n  display: inline-block;\n  text-align: center;\n  cursor: pointer;\n'], ['\n  width: 8%;\n  display: inline-block;\n  text-align: center;\n  cursor: pointer;\n']);
 
   function _taggedTemplateLiteral(strings, raw) {
     return Object.freeze(Object.defineProperties(strings, {
@@ -40,7 +41,9 @@
 
   var MaeveMultiStyle = exports.MaeveMultiStyle = _styledComponents2.default.div(_templateObject);
 
-  var MaeveMultiItem = exports.MaeveMultiItem = _styledComponents2.default.div(_templateObject2);
+  var ChildComponent = exports.ChildComponent = _styledComponents2.default.div(_templateObject2);
 
-  var AddRemoveButton = exports.AddRemoveButton = _styledComponents2.default.div(_templateObject3);
+  var MaeveMultiItem = exports.MaeveMultiItem = _styledComponents2.default.div(_templateObject3);
+
+  var AddRemoveButton = exports.AddRemoveButton = _styledComponents2.default.div(_templateObject4);
 });
