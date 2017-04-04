@@ -51,18 +51,14 @@ class MaeveMulti extends React.Component {
     if(typeof this.props.addCallback !== 'undefined') {
       const component = this.props.children;
       this.props.addCallback(`${component.props.id}-${this.state.componentsCounter + 1}`);
-      this.setState({
-        componentsCounter: this.state.componentsCounter + 1,
-      });
-    } else {
-      const newAddCounter = this.state.componentsCounter + 1;
-      const newComponentObj = this.getNewComponent();
-      const newComponents = [...this.state.childComponents, newComponentObj];
-      this.setState({
-        childComponents: newComponents,
-        componentsCounter: newAddCounter,
-      });
     }
+    const newAddCounter = this.state.componentsCounter + 1;
+    const newComponentObj = this.getNewComponent();
+    const newComponents = [...this.state.childComponents, newComponentObj];
+    this.setState({
+      childComponents: newComponents,
+      componentsCounter: newAddCounter,
+    });
   }
 
   addPropsToComponent = (component, newId) => {
@@ -81,11 +77,10 @@ class MaeveMulti extends React.Component {
     );
     if(typeof this.props.removeCallback !== 'undefined') {
       this.props.removeCallback(componentId);
-    } else {
-      this.setState({
-        childComponents: newComponents,
-      });
     }
+    this.setState({
+      childComponents: newComponents,
+    });
   }
 
   render() {
