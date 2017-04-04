@@ -87,9 +87,9 @@ class MaeveMulti extends React.Component {
     const self = this;
     let removeButtonLimit = this.props.initWithZero === true ? 0 : 1;
     return (
-      <MaeveMultiStyle>
+      <MaeveMultiStyle className="maeve-multi">
         { this.state.childComponents.map((val, key) => (
-            <MaeveMultiItem key={val.componentId}>
+            <MaeveMultiItem key={val.componentId} className="maeve-multi-item">
               <ChildComponent>
                 { val.component }
               </ChildComponent>
@@ -97,6 +97,7 @@ class MaeveMulti extends React.Component {
                 this.state.childComponents.length > removeButtonLimit
               ?
               <AddRemoveButton
+                className="add-remove-button"
                 onClick={ this.removeComponent.bind(null, val.componentId) }
               > - </AddRemoveButton>
               : ''
@@ -104,7 +105,10 @@ class MaeveMulti extends React.Component {
             </MaeveMultiItem>
         ))
         }
-        <AddRemoveButton onClick={ this.addNewComponent.bind(null) }> + </AddRemoveButton>
+        <AddRemoveButton
+          className="add-remove-button"
+          onClick={ this.addNewComponent.bind(null) }> +
+        </AddRemoveButton>
       </MaeveMultiStyle>
     );
   }
