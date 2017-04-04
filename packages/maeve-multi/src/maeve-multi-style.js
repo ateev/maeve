@@ -5,10 +5,14 @@ export const MaeveMultiStyle = styled.div`
   width: 100%;
 `;
 
-export const InputField = styled.input`
-  width: 100%;
-  height: 32px;
-  border-radius: 2px;
-  border: solid 1px #cccccc;
-  padding: 0px 10px;
+export const MaeveMultiItem = styled.div`
+  width: 80%;
+  display: inline-block;
+`;
+
+export const AddRemoveButton = styled.div`
+  width: 8%;
+  display: inline-block;
+  text-align: center;
+  cursor: pointer;
 `;

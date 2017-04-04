@@ -13,4 +13,5 @@ export const InputField = styled.input`
   border-radius: 2px;
   border: solid 1px #cccccc;
   padding: 0px 10px;
+  box-sizing:border-box;
 `;
