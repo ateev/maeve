@@ -1,7 +1,7 @@
 import React from 'react';
 import MaeveDropdown from 'maeve-dropdown';
 import debounce from 'lodash/debounce';
-import { InputLabel, InputField } from './maeve-input-style.js';
+import { InputLabel, InputField, ErrorMessage } from './maeve-input-style.js';
 
 class MaeveInput extends React.Component {
 
@@ -118,6 +118,9 @@ class MaeveInput extends React.Component {
       }
       dropdown = this.getDropdown();
     }
+    const errorMessage = typeof this.props.error !== 'undefined' ?
+      <ErrorMessage className="error">{this.props.error.message}</ErrorMessage> :
+      null;
     return (
       <div className="maeve-input">
         { typeof this.props.label !== 'undefined' ?
@@ -125,6 +128,7 @@ class MaeveInput extends React.Component {
           :
           ''
         }
+        {errorMessage}
         <InputField
           {...inputProps}
         />
@@ -143,6 +147,7 @@ MaeveInput.propTypes = {
   placeholder: React.PropTypes.string,
   autocomplete: React.PropTypes.object,
   label: React.PropTypes.string,
+  error: React.PropTypes.object,
 };
 
 export default MaeveInput;

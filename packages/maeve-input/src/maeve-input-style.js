@@ -7,6 +7,12 @@ export const InputLabel = styled.label`
   font-size: 16px;
 `;
 
+export const ErrorMessage = styled.div`
+  display:  inline-block;
+  width: 100%;
+  color: red;
+`;
+
 export const InputField = styled.input`
   width: 100%;
   height: 32px;

@@ -1,9 +1,13 @@
-exports[`test render maeve multi 1`] = `
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`render maeve multi 1`] = `
 <styled.div
-  className="maeve-multi">
+  className="maeve-multi"
+>
   <styled.div
     className="add-remove-button"
-    onClick={[Function]}>
+    onClick={[Function]}
+  >
      +
   </styled.div>
 </styled.div>
