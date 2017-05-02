@@ -1,10 +1,10 @@
 exports[`test render maeve multi 1`] = `
-<div
+<styled.div
   className="maeve-multi">
-  <div
-    className="add-button"
+  <styled.div
+    className="add-remove-button"
     onClick={[Function]}>
-     + 
-  </div>
-</div>
+     +
+  </styled.div>
+</styled.div>
 `;

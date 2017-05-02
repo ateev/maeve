@@ -1,4 +1,5 @@
 import React from 'react';
+import { MaeveMultiStyle, MaeveMultiItem, AddRemoveButton, ChildComponent } from './maeve-multi-style';
 
 class MaeveMulti extends React.Component {
   constructor(props) {
@@ -50,18 +51,14 @@ class MaeveMulti extends React.Component {
     if(typeof this.props.addCallback !== 'undefined') {
       const component = this.props.children;
       this.props.addCallback(`${component.props.id}-${this.state.componentsCounter + 1}`);
-      this.setState({
-        componentsCounter: this.state.componentsCounter + 1,
-      });
-    } else {
-      const newAddCounter = this.state.componentsCounter + 1;
-      const newComponentObj = this.getNewComponent();
-      const newComponents = [...this.state.childComponents, newComponentObj];
-      this.setState({
-        childComponents: newComponents,
-        componentsCounter: newAddCounter,
-      });
     }
+    const newAddCounter = this.state.componentsCounter + 1;
+    const newComponentObj = this.getNewComponent();
+    const newComponents = [...this.state.childComponents, newComponentObj];
+    this.setState({
+      childComponents: newComponents,
+      componentsCounter: newAddCounter,
+    });
   }
 
   addPropsToComponent = (component, newId) => {
@@ -80,35 +77,39 @@ class MaeveMulti extends React.Component {
     );
     if(typeof this.props.removeCallback !== 'undefined') {
       this.props.removeCallback(componentId);
-    } else {
-      this.setState({
-        childComponents: newComponents,
-      });
     }
+    this.setState({
+      childComponents: newComponents,
+    });
   }
 
   render() {
     const self = this;
     let removeButtonLimit = this.props.initWithZero === true ? 0 : 1;
     return (
-      <div className="maeve-multi">
+      <MaeveMultiStyle className="maeve-multi">
         { this.state.childComponents.map((val, key) => (
-            <div key={val.componentId} className="maeve-multi-item">
-              { val.component }
+            <MaeveMultiItem key={val.componentId} className="maeve-multi-item">
+              <ChildComponent>
+                { val.component }
+              </ChildComponent>
               {
                 this.state.childComponents.length > removeButtonLimit
               ?
-              <div
-                className="remove-button"
+              <AddRemoveButton
+                className="add-remove-button"
                 onClick={ this.removeComponent.bind(null, val.componentId) }
-              > - </div>
+              > - </AddRemoveButton>
               : ''
               }
-            </div>
+            </MaeveMultiItem>
         ))
         }
-        <div className="add-button" onClick={ this.addNewComponent.bind(null) }> + </div>
-      </div>
+        <AddRemoveButton
+          className="add-remove-button"
+          onClick={ this.addNewComponent.bind(null) }> +
+        </AddRemoveButton>
+      </MaeveMultiStyle>
     );
   }
 };
