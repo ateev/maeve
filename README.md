@@ -13,25 +13,25 @@ Feel free to send a request for any new components that you think might help you
 
 ## Maeve Input
 
-### Default
-Maeve Input requires two props for it's working. Rest are optional.
+### Import
+```
+import MaeveInput from 'maeve/packages/maeve-input';
+```
+
+### Usage
+Maeve Input requires "id" and input "type", Rest are optional.
 ```javascript
       <MaeveInput
         id="listAutocomplete" // specify a unique id for each input field.
-        onValueUpdate={this.onValueUpdate} // this function will be called on each value update.
+        type="email"
         //Optionals
-        debounceTime={0} // You can specify a debunce time to get less frequent updates.
-        required // To make input field required.
+        onValueUpdate={this.onValueUpdate} // this function will be called on each value update.
+        debounceTime={0} // You can specify a debunce time to get less frequent updates. default value is 20
       />
 ```
 
-```javascript
-  onValueUpdate // needs to be passed a function that accepts two params 'value' and 'id'
-```
-
-```javascript
-  debounceTime // default value is 20
-```
+Other than these fields, you can always pass attributes for a input field
+as specified in the [MDN docs for <input />](https://developer.mozilla.org/en/docs/Web/HTML/Element/input)
 
 ### With Autocomplete
 
@@ -48,7 +48,6 @@ Autocomplete settings object
     // An Optional key required if you want to create a add new button in the dropdown. The value is a callback function
   };
 ```
-
 
 ```javascript
   <MaeveInput
