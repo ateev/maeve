@@ -1,6 +1,6 @@
 {
   "name": "maeve",
-  "version": "0.0.7",
+  "version": "0.0.8",
   "description": "Coming Soon",
   "main": "index.js",
   "scripts": {
@@ -25,8 +25,8 @@
     "maeve-input": "^0.0.11",
     "maeve-multi": "^0.0.10",
     "react": "^15.4.2",
-    "styled-components": "^1.4.4",
-    "react-embed-code": "^0.1.0"
+    "react-embed-code": "^0.1.0",
+    "styled-components": "^1.4.4"
   },
   "jest": {
     "transform": {
