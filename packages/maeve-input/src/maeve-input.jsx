@@ -30,7 +30,7 @@ class MaeveInput extends React.Component {
   // Triggers whenever input field value changes
   handleChange = (event) => {
     this.updateValue({
-      value: event.currectTarget.value,
+      value: event.target.value,
     });
   }
 
