@@ -1,5 +1,5 @@
 import React from 'react';
-import MaeveDropdown from 'maeve-dropdown';
+import MaeveDropdown from 'maeve/packages/maeve-dropdown';
 import debounce from 'lodash/debounce';
 import { InputLabel, InputField, ErrorMessage } from './maeve-input-style.js';
 
@@ -7,41 +7,47 @@ class MaeveInput extends React.Component {
 
   constructor(props) {
     super(props);
-    let defaultVal = props.value || '';
+
+    // Setting default value to empty string if no val provided.
     this.state = {
-      value: defaultVal,
+      value: (props.value || ''),
       isFocus: false,
     };
+
+    // Calling the value change callblack with 20ms debounce
     this.valueChangeCallback = debounce(this.valueChangeCallback, props.debounceTime || 20);
   }
 
   componentWillReceiveProps(newProps) {
-    if (
-          typeof newProps.value !== 'undefined' &&
-          newProps.value !== this.state.value
-       ) {
+    // Updating the value only if different from the currect value.
+    if (typeof newProps.value !== 'undefined' && newProps.value !== this.state.value) {
       this.setState({
         value: newProps.value,
       });
     }
   }
 
+  // Triggers whenever input field value changes
   handleChange = (event) => {
     this.updateValue({
       value: event.target.value,
     });
   }
 
+  // Updates the state and calls the callback function with updated value
   updateValue = (newState) => {
     this.valueChangeCallback(newState);
     this.setState(newState);
   }
 
   valueChangeCallback = (newState) => {
-    const valueId = this.props.multi === true ? this.props.valueId : this.props.id;
-    this.props.onValueUpdate(newState.value, valueId);
+    if (typeof this.props.onValueUpdate !== 'undefined') {
+      const valueId = this.props.multi === true ? this.props.valueId : this.props.id;
+      this.props.onValueUpdate(newState.value, valueId);
+    }
   }
 
+  // If the input type is dropdown, this gets triggered when an item is selected.
   onItemSelect = (value, event) => {
     event.stopPropagation();
     this.updateValue({
@@ -50,12 +56,15 @@ class MaeveInput extends React.Component {
     this.setFocus(false);
   }
 
+  // In case of dropdown, if there is a button in bottom to add new item,
+  // this function executes the callback
   onAddNewItem = () => {
     const valueId = this.props.multi === true ? this.props.valueId : this.props.id;
     this.props.autocomplete.addNewItem(this.state.value, valueId);
     this.setFocus(false);
   }
 
+  // To Show/Hide the dropdown menu
   setFocus = (isFocus) => {
     isFocus === true ?
       window.addEventListener('click', this.onPageClick, false) :
@@ -65,10 +74,12 @@ class MaeveInput extends React.Component {
     });
   }
 
+  // To close the dropdown, if open
   onPageClick = (event) => {
     event.target.id !== this.props.id && this.setFocus(false);
   }
 
+  // If dropdown menu is there, render using the maeve-dropdown
   getDropdown() {
     let dropdown = '';
     const autocomplete = this.props.autocomplete;
@@ -99,16 +110,14 @@ class MaeveInput extends React.Component {
   }
 
   render() {
-    const required = this.props.required || false;
+    // Setting the input props attributes set up by maeve.
     let inputProps = {
-      id: this.props.id,
-      type: 'text',
       value: this.state.value,
-      placeholder: this.props.placeholder,
       onChange: this.handleChange,
-      required,
       onFocus: this.setFocus.bind(null, true),
     };
+
+    // In case dropdown is required for the input field.
     let dropdown = '';
     const autocomplete = this.props.autocomplete;
     if ( typeof autocomplete !== 'undefined' && this.state.isFocus === true ) {
@@ -118,22 +127,27 @@ class MaeveInput extends React.Component {
       }
       dropdown = this.getDropdown();
     }
+
+    // If error is passed in the props, show this error message
     const errorMessage = typeof this.props.error !== 'undefined' ?
-      <ErrorMessage className="error">{this.props.error.message}</ErrorMessage> :
-      null;
+      <ErrorMessage className="error">{this.props.error.message}</ErrorMessage> : null;
+
+    // Merging the props with the new attributes for input field.
+    inputProps = Object.assign({}, inputProps, this.props);
+
+    // If Label text passed, render a label.
+    const label = typeof this.props.label !== 'undefined' ?
+      <InputLabel htmlFor={this.props.id}>{this.props.label}</InputLabel> : null;
+
+    // Creating the final component
+    const FinalComponent = React.createElement(InputField, inputProps);
     return (
       <div className="maeve-input">
-        { typeof this.props.label !== 'undefined' ?
-          <InputLabel htmlFor={this.props.id}>{this.props.label}</InputLabel>
-          :
-          ''
-        }
-        {errorMessage}
-        <InputField
-          {...inputProps}
-        />
-        {dropdown}
-        {this.props.children}
+        { label }
+        { errorMessage }
+        { FinalComponent }
+        { dropdown }
+        { this.props.children }
       </div>
     );
   }
@@ -141,10 +155,9 @@ class MaeveInput extends React.Component {
 
 MaeveInput.propTypes = {
   id: React.PropTypes.string.isRequired,
-  onValueUpdate: React.PropTypes.func.isRequired,
+  type: React.PropTypes.string.isRequired,
   valueId: React.PropTypes.string,
   multi: React.PropTypes.bool,
-  placeholder: React.PropTypes.string,
   autocomplete: React.PropTypes.object,
   label: React.PropTypes.string,
   error: React.PropTypes.object,
