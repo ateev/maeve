@@ -1,0 +1,58 @@
+{
+  "name": "maeve-select",
+  "version": "0.0.1",
+  "description": "A select input box on steroids",
+  "main": "index.js",
+  "scripts": {
+    "test": "jest",
+    "test-dev": "jest --watch",
+    "test-coverage": "jest --coverage",
+    "test-update": "jest -u",
+    "uglify": "uglifyjs dist/maeve-select.js dist/maeve-select-style.js --compress -o dist/maeve-select.js",
+    "babel": "babel --plugins transform-es2015-modules-umd src --ignore __tests__ --out-dir ./dist",
+    "prepublish": "npm-run-all babel uglify"
+  },
+  "dependencies": {
+    "maeve": "^0.0.4",
+    "react": "^15.4.2",
+    "styled-components": "^1.4.4"
+  },
+  "devDependencies": {
+    "babel-cli": "^6.24.0",
+    "babel-core": "^6.24.0",
+    "babel-jest": "^19.0.0",
+    "babel-plugin-transform-es2015-modules-umd": "^6.24.0",
+    "babel-polyfill": "^6.23.0",
+    "babel-preset-es2015": "^6.24.0",
+    "babel-preset-react": "^6.23.0",
+    "babel-preset-stage-2": "^6.22.0",
+    "enzyme": "^2.7.1",
+    "jest": "^19.0.2",
+    "jest-cli": "^19.0.2",
+    "jest-serializer-enzyme": "^1.0.0",
+    "npm-run-all": "^4.0.1",
+    "react-addons-test-utils": "^15.4.2",
+    "react-dom": "^15.4.2",
+    "uglify": "^0.1.5",
+    "uglify-js": "^2.7.5"
+  },
+  "jest": {
+    "transform": {
+      "^.+\\.jsx?$": "babel-jest"
+    },
+    "snapshotSerializers": [
+      "<rootDir>/node_modules/jest-serializer-enzyme"
+    ]
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/ateev/maeve/tree/master/packages/maeve-select"
+  },
+  "keywords": [
+    "input",
+    "select",
+    "react"
+  ],
+  "author": "ateev",
+  "license": "ISC"
+}

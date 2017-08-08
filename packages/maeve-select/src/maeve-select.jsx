@@ -1,21 +1,15 @@
 import React from 'react';
-import MaeveDropdown from 'maeve/packages/maeve-dropdown';
-import debounce from 'lodash/debounce';
-import { InputLabel, InputField, ErrorMessage } from './maeve-input-style.js';
+import { InputLabel, InputSelect, ErrorMessage } from './maeve-select-style.js';
 
-class MaeveInput extends React.Component {
+class MaeveSelect extends React.Component {
 
   constructor(props) {
     super(props);
-
     // Setting default value to empty string if no val provided.
     this.state = {
       value: (props.value || ''),
       isFocus: false,
     };
-
-    // Calling the value change callblack with 20ms debounce
-    this.valueChangeCallback = debounce(this.valueChangeCallback, props.debounceTime || 20);
   }
 
   componentWillReceiveProps(newProps) {
@@ -56,14 +50,6 @@ class MaeveInput extends React.Component {
     this.setFocus(false);
   }
 
-  // In case of dropdown, if there is a button in bottom to add new item,
-  // this function executes the callback
-  onAddNewItem = () => {
-    const valueId = this.props.multi === true ? this.props.valueId : this.props.id;
-    this.props.autocomplete.addNewItem(this.state.value, valueId);
-    this.setFocus(false);
-  }
-
   // To Show/Hide the dropdown menu
   setFocus = (isFocus) => {
     isFocus === true ?
@@ -79,36 +65,6 @@ class MaeveInput extends React.Component {
     event.target.id !== this.props.id && this.setFocus(false);
   }
 
-  // If dropdown menu is there, render using the maeve-dropdown
-  getDropdown() {
-    let dropdown = '';
-    const autocomplete = this.props.autocomplete;
-    if (
-      typeof autocomplete !== 'undefined' &&
-      this.state.isFocus === true &&
-      (
-        typeof autocomplete.trigger === 'undefined' ||
-        autocomplete.trigger <= this.state.value.length
-      )
-    ) {
-      let source;
-      if ( typeof autocomplete.source === 'object' ) {
-        source = autocomplete.source
-      } else if ( typeof autocomplete.source === 'function' ) {
-        source = autocomplete.source(this.state.value);
-      }
-      let dropdownProps = {
-        items: source,
-        onSelect: this.onItemSelect,
-      }
-      if( typeof autocomplete.addNewItem !== 'undefined' ) {
-        dropdownProps.addNewItem = this.onAddNewItem;
-      }
-      dropdown = <MaeveDropdown {...dropdownProps}/>
-    }
-    return dropdown;
-  }
-
   render() {
     // Setting the input props attributes set up by maeve.
     let inputProps = {
@@ -116,17 +72,6 @@ class MaeveInput extends React.Component {
       onChange: this.handleChange,
       onFocus: this.setFocus.bind(null, true),
     };
-
-    // In case dropdown is required for the input field.
-    let dropdown = '';
-    const autocomplete = this.props.autocomplete;
-    if ( typeof autocomplete !== 'undefined' && this.state.isFocus === true ) {
-      const trigger = autocomplete.trigger;
-      if (trigger === 0) {
-        inputProps.onFocus = this.handleChange;
-      }
-      dropdown = this.getDropdown();
-    }
 
     // If error is passed in the props, show this error message
     const errorMessage = typeof this.props.error !== 'undefined' ?
@@ -140,27 +85,32 @@ class MaeveInput extends React.Component {
       <InputLabel htmlFor={this.props.id}>{this.props.label}</InputLabel> : null;
 
     // Creating the final component
-    const FinalComponent = React.createElement(InputField, inputProps);
+    const FinalComponent = (
+      <InputSelect {...inputProps}>
+        {
+          this.props.options.map(item => (
+            <option>
+              {item}
+            </option>
+          ))
+        }
+      </InputSelect>
+    );
     return (
-      <div className="maeve-input">
+      <div className="maeve-select">
         { label }
         { errorMessage }
         { FinalComponent }
-        { dropdown }
-        { this.props.children }
       </div>
     );
   }
 };
 
-MaeveInput.propTypes = {
+MaeveSelect.propTypes = {
   id: React.PropTypes.string.isRequired,
-  type: React.PropTypes.string.isRequired,
-  valueId: React.PropTypes.string,
-  multi: React.PropTypes.bool,
-  autocomplete: React.PropTypes.object,
   label: React.PropTypes.string,
+  options: React.PropTypes.array.isRequired,
   error: React.PropTypes.object,
 };
 
-export default MaeveInput;
+export default MaeveSelect;
