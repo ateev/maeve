@@ -89,7 +89,7 @@ class MaeveSelect extends React.Component {
       <InputSelect {...inputProps}>
         {
           this.props.options.map(item => (
-            <option>
+            <option value={item}>
               {item}
             </option>
           ))
