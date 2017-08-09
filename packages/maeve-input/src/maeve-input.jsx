@@ -1,7 +1,7 @@
 import React from 'react';
 import MaeveDropdown from 'maeve/packages/maeve-dropdown';
 import debounce from 'lodash/debounce';
-import { InputLabel, InputField, ErrorMessage } from './maeve-input-style.js';
+import { InputLabel, InputField, ErrorMessage, TextAreaField } from './maeve-input-style.js';
 
 class MaeveInput extends React.Component {
 
@@ -139,8 +139,15 @@ class MaeveInput extends React.Component {
     const label = typeof this.props.label !== 'undefined' ?
       <InputLabel htmlFor={this.props.id}>{this.props.label}</InputLabel> : null;
 
+    let Input
+    console.log(this.props.type);
+    if (this.props.type === 'textarea') {
+      Input = TextAreaField;
+    } else {
+      Input = InputField;
+    }
     // Creating the final component
-    const FinalComponent = React.createElement(InputField, inputProps);
+    const FinalComponent = React.createElement(Input, inputProps);
     return (
       <div className="maeve-input">
         { label }
