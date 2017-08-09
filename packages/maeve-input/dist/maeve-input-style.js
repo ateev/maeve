@@ -28,7 +28,7 @@
 
   var _templateObject = _taggedTemplateLiteral(['\n  display: inline-block;\n  width: 100%;\n  margin-bottom: 5px;\n  font-size: 16px;\n'], ['\n  display: inline-block;\n  width: 100%;\n  margin-bottom: 5px;\n  font-size: 16px;\n']),
       _templateObject2 = _taggedTemplateLiteral(['\n  display: inline-block;\n  width: 100%;\n  color: red;\n'], ['\n  display: inline-block;\n  width: 100%;\n  color: red;\n']),
-      _templateObject3 = _taggedTemplateLiteral(['\n  width: 100%;\n  height: 32px;\n  border-radius: 2px;\n  border: solid 1px #cccccc;\n  padding: 0px 10px;\n  box-sizing: border-box;\n'], ['\n  width: 100%;\n  height: 32px;\n  border-radius: 2px;\n  border: solid 1px #cccccc;\n  padding: 0px 10px;\n  box-sizing: border-box;\n']),
+      _templateObject3 = _taggedTemplateLiteral(['\n  width: 100%;\n  height: 32px;\n  border-radius: 2px;\n  border: solid 1px #cccccc;\n  padding: 10px;\n  box-sizing: border-box;\n'], ['\n  width: 100%;\n  height: 32px;\n  border-radius: 2px;\n  border: solid 1px #cccccc;\n  padding: 10px;\n  box-sizing: border-box;\n']),
       _templateObject4 = _taggedTemplateLiteral(['\n  width: 100%;\n  height: 64px;\n  outline: none;\n  border-radius: 2px;\n  border: solid 1px #cccccc;\n  padding: 0px 10px;\n  box-sizing: border-box;\n'], ['\n  width: 100%;\n  height: 64px;\n  outline: none;\n  border-radius: 2px;\n  border: solid 1px #cccccc;\n  padding: 0px 10px;\n  box-sizing: border-box;\n']);
 
   function _taggedTemplateLiteral(strings, raw) {

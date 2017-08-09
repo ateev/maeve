@@ -91,12 +91,7 @@ class MaeveInput extends React.Component {
         autocomplete.trigger <= this.state.value.length
       )
     ) {
-      let source;
-      if ( typeof autocomplete.source === 'object' ) {
-        source = autocomplete.source
-      } else if ( typeof autocomplete.source === 'function' ) {
-        source = autocomplete.source(this.state.value);
-      }
+      let source = autocomplete.source
       let dropdownProps = {
         items: source,
         onSelect: this.onItemSelect,
@@ -140,7 +135,6 @@ class MaeveInput extends React.Component {
       <InputLabel htmlFor={this.props.id}>{this.props.label}</InputLabel> : null;
 
     let Input
-    console.log(this.props.type);
     if (this.props.type === 'textarea') {
       Input = TextAreaField;
     } else {
