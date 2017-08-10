@@ -1,7 +1,14 @@
 import React from 'react';
 import MaeveDropdown from 'maeve/packages/maeve-dropdown';
 import debounce from 'lodash/debounce';
-import { InputLabel, InputField, ErrorMessage, TextAreaField } from './maeve-input-style.js';
+import {
+  InputLabel,
+  InputField,
+  ErrorMessage,
+  TextAreaField,
+  MaeveInputWrapper,
+  DropdownWrapper,
+} from './maeve-input-style.js';
 
 class MaeveInput extends React.Component {
 
@@ -12,6 +19,7 @@ class MaeveInput extends React.Component {
     this.state = {
       value: (props.value || ''),
       isFocus: false,
+      autocompleteSuggestions: [],
     };
 
     // Calling the value change callblack with 20ms debounce
@@ -27,10 +35,32 @@ class MaeveInput extends React.Component {
     }
   }
 
+  filterResults = (item, query) => {
+    if (this.autoCompleteTrigger === 0) {
+      return item;
+    } else {
+      return item.toLowerCase().includes(query.toLowerCase())
+    }
+  }
+
   // Triggers whenever input field value changes
   handleChange = (event) => {
+    let updatedValue = event.target.value;
+    let updatedAutocompleteSuggestions = [];
+    if (
+      typeof this.props.autocomplete !== 'undefined' &&
+      typeof this.props.autocomplete.source !== 'undefined' &&
+      this.props.autocomplete.search === true
+    ) {
+      updatedAutocompleteSuggestions = this.props.autocomplete.source
+        .filter(
+          item => this.filterResults(item, updatedValue)
+        );
+      console.log(updatedAutocompleteSuggestions);
+    }
     this.updateValue({
-      value: event.target.value,
+      value: updatedValue,
+      autocompleteSuggestions: updatedAutocompleteSuggestions,
     });
   }
 
@@ -52,6 +82,7 @@ class MaeveInput extends React.Component {
     event.stopPropagation();
     this.updateValue({
       value,
+      autocompleteSuggestions: [],
     });
     this.setFocus(false);
   }
@@ -92,6 +123,9 @@ class MaeveInput extends React.Component {
       )
     ) {
       let source = autocomplete.source
+      if (autocomplete.search === true) {
+        source = this.state.autocompleteSuggestions;
+      }
       let dropdownProps = {
         items: source,
         onSelect: this.onItemSelect,
@@ -99,7 +133,11 @@ class MaeveInput extends React.Component {
       if( typeof autocomplete.addNewItem !== 'undefined' ) {
         dropdownProps.addNewItem = this.onAddNewItem;
       }
-      dropdown = <MaeveDropdown {...dropdownProps}/>
+      dropdown = (
+        <DropdownWrapper>
+          <MaeveDropdown {...dropdownProps}/>
+        </DropdownWrapper>
+      );
     }
     return dropdown;
   }
@@ -143,13 +181,13 @@ class MaeveInput extends React.Component {
     // Creating the final component
     const FinalComponent = React.createElement(Input, inputProps);
     return (
-      <div className="maeve-input">
+      <MaeveInputWrapper>
         { label }
         { errorMessage }
         { FinalComponent }
         { dropdown }
         { this.props.children }
-      </div>
+      </MaeveInputWrapper>
     );
   }
 };

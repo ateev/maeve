@@ -7,6 +7,17 @@ export const InputLabel = styled.label`
   font-size: 16px;
 `;
 
+export const MaeveInputWrapper = styled.div`
+  position: relative;
+`
+
+export const DropdownWrapper = styled.div`
+  position: absolute;
+  background: #f8f8f8;
+  z-index: 2;
+  border-radius: 2px;
+`
+
 export const ErrorMessage = styled.div`
   display: inline-block;
   width: 100%;
