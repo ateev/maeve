@@ -56,7 +56,6 @@ class MaeveInput extends React.Component {
         .filter(
           item => this.filterResults(item, updatedValue)
         );
-      console.log(updatedAutocompleteSuggestions);
     }
     this.updateValue({
       value: updatedValue,
