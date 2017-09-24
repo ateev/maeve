@@ -92,7 +92,7 @@ class MaeveSelect extends React.Component {
 
     if (typeof this.props.nullOption !== 'undefined') {
       options.push(
-        <option value="" disabled selected>{this.props.nullOption}</option>
+        <option defaultValue="" disabled selected>{this.props.nullOption}</option>
       );
     }
     // Creating the final component
