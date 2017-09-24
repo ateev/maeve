@@ -10,6 +10,14 @@ import {
 
 export default class MaeveToggle extends React.Component {
   render() {
+    let inputProps = {
+      type: "checkbox",
+      name: this.props.id,
+      className: "onoffswitch-checkbox",
+      onChange: event => this.props.onValueUpdate(event.target.checked, this.props.id),
+    }
+    inputProps = Object.assign({}, inputProps, this.props);
+    const FinalComponent = React.createElement(OnOffSwitchCheckBox, inputProps);
     return (
       <div className="maeve-toggle">
         { typeof this.props.label !== undefined ?
@@ -18,14 +26,7 @@ export default class MaeveToggle extends React.Component {
           ''
         }
         <OnOffSwitch>
-          <OnOffSwitchCheckBox
-            type="checkbox"
-            name={this.props.id}
-            className="onoffswitch-checkbox"
-            id={this.props.id}
-            defaultChecked
-            onChange={event => this.props.onValueUpdate(event.target.checked, this.props.id)}
-          />
+          { FinalComponent }
           <OnOffswitchLabel className="onoffswitch-label" htmlFor={this.props.id}>
             <OnOffswitchInner className="onoffswitch-inner" />
             <OnOffswitchSwitch className="onoffswitch-switch" />
