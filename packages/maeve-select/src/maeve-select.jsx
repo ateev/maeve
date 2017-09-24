@@ -84,16 +84,21 @@ class MaeveSelect extends React.Component {
     const label = typeof this.props.label !== 'undefined' ?
       <InputLabel htmlFor={this.props.id}>{this.props.label}</InputLabel> : null;
 
+    const options = this.props.options.map((item, index) => (
+      <option key={`input-select-${index}`} value={item}>
+        {item}
+      </option>
+    ));
+
+    if (typeof this.props.nullOption !== 'undefined') {
+      options.push(
+        <option value="" disabled selected>{this.props.nullOption}</option>
+      );
+    }
     // Creating the final component
     const FinalComponent = (
       <InputSelect {...inputProps}>
-        {
-          this.props.options.map((item, index) => (
-            <option key={`input-select-${index}`} value={item}>
-              {item}
-            </option>
-          ))
-        }
+        { options }
       </InputSelect>
     );
     return (
