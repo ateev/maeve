@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { InputLabel, InputSelect, ErrorMessage } from './maeve-select-style.js';
 
 class MaeveSelect extends React.Component {
@@ -91,7 +92,7 @@ class MaeveSelect extends React.Component {
     ));
 
     if (typeof this.props.nullOption !== 'undefined') {
-      inputProps.defaultSelected = "";
+      inputProps.defaultValue = "";
       options.push(
         <option key="input-select-last" disabled value="">{this.props.nullOption}</option>
       );
@@ -113,10 +114,10 @@ class MaeveSelect extends React.Component {
 };
 
 MaeveSelect.propTypes = {
-  id: React.PropTypes.string.isRequired,
-  label: React.PropTypes.string,
-  options: React.PropTypes.array.isRequired,
-  error: React.PropTypes.object,
+  id: PropTypes.string.isRequired,
+  label: PropTypes.string,
+  options: PropTypes.array.isRequired,
+  error: PropTypes.object,
 };
 
 export default MaeveSelect;

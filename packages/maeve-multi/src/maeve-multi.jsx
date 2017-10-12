@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { MaeveMultiStyle, MaeveMultiItem, AddRemoveButton, ChildComponent } from './maeve-multi-style';
 
 class MaeveMulti extends React.Component {
@@ -115,9 +116,9 @@ class MaeveMulti extends React.Component {
 };
 
 MaeveMulti.propTypes = {
-  addCallback: React.PropTypes.func,
-  removeCallback: React.PropTypes.func,
-  componentProps: React.PropTypes.array,
+  addCallback: PropTypes.func,
+  removeCallback: PropTypes.func,
+  componentProps: PropTypes.array,
 };
 
 export default MaeveMulti;

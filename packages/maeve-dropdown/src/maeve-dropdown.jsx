@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { MaeveDropdownList, MaeveDropdownListItem, MaeveDropDown } from './maeve-dropdown-style.js';
 
 class MaeveDropdown extends React.Component {
@@ -53,9 +54,9 @@ class MaeveDropdown extends React.Component {
 };
 
 MaeveDropdown.PropTypes = {
-  items: React.PropTypes.isRequired,
-  onSelect: React.PropTypes.func.isRequired,
-  addNewItem: React.PropTypes.func.isRequired,
+  items: PropTypes.isRequired,
+  onSelect: PropTypes.func.isRequired,
+  addNewItem: PropTypes.func.isRequired,
 }
 
 export default MaeveDropdown;

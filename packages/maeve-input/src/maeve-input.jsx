@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import MaeveDropdown from 'maeve/packages/maeve-dropdown';
 import debounce from 'lodash/debounce';
 import {
@@ -192,13 +193,13 @@ class MaeveInput extends React.Component {
 };
 
 MaeveInput.propTypes = {
-  id: React.PropTypes.string.isRequired,
-  type: React.PropTypes.string.isRequired,
-  valueId: React.PropTypes.string,
-  multi: React.PropTypes.bool,
-  autocomplete: React.PropTypes.object,
-  label: React.PropTypes.string,
-  error: React.PropTypes.object,
+  id: PropTypes.string.isRequired,
+  type: PropTypes.string.isRequired,
+  valueId: PropTypes.string,
+  multi: PropTypes.bool,
+  autocomplete: PropTypes.object,
+  label: PropTypes.string,
+  error: PropTypes.object,
 };
 
 export default MaeveInput;
