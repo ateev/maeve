@@ -1,6 +1,6 @@
 {
   "name": "maeve-dropdown",
-  "version": "0.1.6",
+  "version": "0.1.7",
   "description": "A simple dropdown",
   "main": "index.js",
   "scripts": {
@@ -13,8 +13,8 @@
     "prepublish": "npm-run-all babel uglify"
   },
   "dependencies": {
-    "react": "16.0.0",
     "prop-types": "15.6.0",
+    "react": "16.0.0",
     "styled-components": "2.1.2"
   },
   "devDependencies": {

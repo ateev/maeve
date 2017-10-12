@@ -1,6 +1,6 @@
 {
   "name": "maeve-input",
-  "version": "0.2.1",
+  "version": "0.2.2",
   "description": "A input box on steroids",
   "main": "index.js",
   "scripts": {
@@ -14,8 +14,8 @@
   },
   "dependencies": {
     "maeve": "^0.0.4",
-    "react": "16.0.0",
     "prop-types": "15.6.0",
+    "react": "16.0.0",
     "styled-components": "2.1.2"
   },
   "devDependencies": {
