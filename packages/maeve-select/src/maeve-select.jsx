@@ -93,7 +93,7 @@ class MaeveSelect extends React.Component {
 
     if (typeof this.props.nullOption !== 'undefined') {
       inputProps.defaultValue = "";
-      options.push(
+      options.unshift(
         <option key="input-select-last" disabled value="">{this.props.nullOption}</option>
       );
     }
