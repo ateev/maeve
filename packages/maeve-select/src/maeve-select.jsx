@@ -86,17 +86,17 @@ class MaeveSelect extends React.Component {
       <InputLabel htmlFor={this.props.id}>{this.props.label}</InputLabel> : null;
 
     // Generating the options
-    let options;
-    if (this.props.options.isArray) {
+    let options = [];
+    if (typeof this.props.options[0] === 'string') {
       options = this.props.options.map((item, index) => (
         <option key={`input-select-${index}`} value={item}>
           {item}
         </option>
       ));
-    } else if (typeof this.props.options === 'object') {
+    } else if (typeof this.props.options[0] === 'object') {
       options = Object.keys(this.props.options).map((item, index) => (
-        <option key={`input-select-${index}`} value={item.value}>
-          {item.label}
+        <option key={`input-select-${index}`} value={this.props.options[item].value}>
+          {this.props.options[item].label}
         </option>
       ));
     }
