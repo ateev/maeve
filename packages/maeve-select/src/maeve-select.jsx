@@ -13,6 +13,12 @@ class MaeveSelect extends React.Component {
     };
   }
 
+  componentDidMount() {
+    if (typeof this.props.onMount !== 'undefined') {
+      this.props.onMount();
+    }
+  }
+
   componentWillReceiveProps(newProps) {
     // Updating the value only if different from the currect value.
     if (typeof newProps.value !== 'undefined' && newProps.value !== this.state.value) {
