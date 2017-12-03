@@ -1,6 +1,6 @@
 {
   "name": "maeve-select",
-  "version": "0.0.15",
+  "version": "0.0.16",
   "description": "A select input box on steroids",
   "main": "index.js",
   "scripts": {
