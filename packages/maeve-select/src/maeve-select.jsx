@@ -26,7 +26,9 @@ class MaeveSelect extends React.Component {
         value: newProps.value,
       });
     }
-    this.props.onReceiveProps(newProps, this.props);
+    if (typeof this.props.onReceiveProps !== 'undefined') {
+      this.props.onReceiveProps(newProps, this.props);
+    }
   }
 
   // Triggers whenever input field value changes
