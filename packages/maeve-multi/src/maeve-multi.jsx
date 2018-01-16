@@ -108,7 +108,7 @@ class MaeveMulti extends React.Component {
         }
         <AddRemoveButton
           className="add-remove-button"
-          onClick={ this.addNewComponent.bind(null) }>{ this.props.addButtonText || '+' }}
+          onClick={ this.addNewComponent.bind(null) }>{this.props.addButtonText || '+'}
         </AddRemoveButton>
       </MaeveMultiStyle>
     );
