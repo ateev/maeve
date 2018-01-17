@@ -88,28 +88,30 @@ class MaeveMulti extends React.Component {
     const self = this;
     let removeButtonLimit = this.props.initWithZero === true ? 0 : 1;
     return (
-      <MaeveMultiStyle className="maeve-multi">
+      <MaeveMultiStyle className={`maeve-multi ${this.props.className || ''}`}>
         { this.state.childComponents.map((val, key) => (
             <MaeveMultiItem key={val.componentId} className="maeve-multi-item">
-              <ChildComponent>
-                { val.component }
-              </ChildComponent>
+              { val.component }
               {
                 this.state.childComponents.length > removeButtonLimit
               ?
-              <AddRemoveButton
-                className="add-remove-button"
-                onClick={ this.removeComponent.bind(null, val.componentId) }
-              > { this.props.removeButtonText || '-' } </AddRemoveButton>
+              <div className="remove-button">
+                <AddRemoveButton
+                  className={this.props.removeButtonClass}
+                  onClick={ this.removeComponent.bind(null, val.componentId) }
+                > { this.props.removeButtonText || '-' } </AddRemoveButton>
+              </div>
               : ''
               }
             </MaeveMultiItem>
         ))
         }
-        <AddRemoveButton
-          className="add-remove-button"
-          onClick={ this.addNewComponent.bind(null) }>{this.props.addButtonText || '+'}
-        </AddRemoveButton>
+        <div className="add-button">
+          <AddRemoveButton
+            className={this.props.addButtonClass}
+            onClick={ this.addNewComponent.bind(null) }>{this.props.addButtonText || '+'}
+          </AddRemoveButton>
+        </div>
       </MaeveMultiStyle>
     );
   }
@@ -119,6 +121,9 @@ MaeveMulti.propTypes = {
   addCallback: PropTypes.func,
   removeCallback: PropTypes.func,
   componentProps: PropTypes.array,
+  addButtonClass: PropTypes.string,
+  removeButtonClass: PropTypes.string,
+  initWithZero: PropTypes.bool,
 };
 
 export default MaeveMulti;
