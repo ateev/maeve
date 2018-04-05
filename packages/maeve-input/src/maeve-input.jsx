@@ -18,7 +18,7 @@ class MaeveInput extends React.Component {
 
     // Setting default value to empty string if no val provided.
     this.state = {
-      value: (props.value || ''),
+      currentValue: (props.value || ''),
       isFocus: false,
       autocompleteSuggestions: [],
     };
@@ -29,9 +29,9 @@ class MaeveInput extends React.Component {
 
   componentWillReceiveProps(newProps) {
     // Updating the value only if different from the currect value.
-    if (typeof newProps.value !== 'undefined' && newProps.value !== this.state.value) {
+    if (typeof newProps.value !== 'undefined' && newProps.value !== this.state.currentValue) {
       this.setState({
-        value: newProps.value,
+        currentValue: newProps.value,
       });
     }
   }
@@ -59,29 +59,29 @@ class MaeveInput extends React.Component {
         );
     }
     this.updateValue({
-      value: updatedValue,
+      currentValue: updatedValue,
       autocompleteSuggestions: updatedAutocompleteSuggestions,
     });
   }
 
   // Updates the state and calls the callback function with updated value
   updateValue = (newState) => {
-    this.valueChangeCallback(newState);
     this.setState(newState);
+    this.valueChangeCallback(newState);
   }
 
   valueChangeCallback = (newState) => {
     if (typeof this.props.onValueUpdate !== 'undefined') {
       const valueId = this.props.multi === true ? this.props.valueId : this.props.id;
-      this.props.onValueUpdate(newState.value, valueId);
+      this.props.onValueUpdate(newState.currentValue, valueId);
     }
   }
 
   // If the input type is dropdown, this gets triggered when an item is selected.
-  onItemSelect = (value, event) => {
+  onItemSelect = (currentValue, event) => {
     event.stopPropagation();
     this.updateValue({
-      value,
+      currentValue,
       autocompleteSuggestions: [],
     });
     this.setFocus(false);
@@ -145,7 +145,7 @@ class MaeveInput extends React.Component {
   render() {
     // Setting the input props attributes set up by maeve.
     let inputProps = {
-      value: this.state.value,
+      value: this.state.currentValue,
       onChange: this.handleChange,
       onFocus: this.setFocus.bind(null, true),
     };
@@ -166,7 +166,7 @@ class MaeveInput extends React.Component {
       <ErrorMessage className="error">{this.props.error.message}</ErrorMessage> : null;
 
     // Merging the props with the new attributes for input field.
-    inputProps = Object.assign({}, inputProps, this.props);
+    inputProps = Object.assign({}, this.props, inputProps);
 
     // If Label text passed, render a label.
     const label = typeof this.props.label !== 'undefined' ?
