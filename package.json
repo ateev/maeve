@@ -3,7 +3,7 @@
     "lerna": "2.11.0",
     "lodash": "4.17.10",
     "maeve-dropdown": "^0.1.8",
-    "maeve-input": "^0.2.5",
+    "maeve-input": "^0.2.6",
     "maeve-multi": "^0.2.1",
     "react": "16.4.0",
     "react-embed-code": "0.1.0",
@@ -11,12 +11,30 @@
   },
   "name": "maeve",
   "description": "Maeve is a react component library for building forms quickly. There are 4 components that you can use in combination/inidvidually to make your forms awesome.",
-  "version": "0.1.25",
+  "version": "0.1.26",
   "main": "index.js",
   "directories": {
     "example": "examples"
   },
-  "devDependencies": {},
+  "devDependencies": {
+    "babel-cli": "^6.24.0",
+    "babel-core": "^6.24.0",
+    "babel-jest": "^19.0.0",
+    "babel-plugin-transform-es2015-modules-umd": "^6.24.0",
+    "babel-polyfill": "^6.23.0",
+    "babel-preset-es2015": "^6.24.0",
+    "babel-preset-react": "^6.23.0",
+    "babel-preset-stage-2": "^6.22.0",
+    "enzyme": "^2.7.1",
+    "jest": "^19.0.2",
+    "jest-cli": "^19.0.2",
+    "jest-serializer-enzyme": "^1.0.0",
+    "npm-run-all": "4.1.3",
+    "react-addons-test-utils": "^15.4.2",
+    "react-dom": "^15.4.2",
+    "uglify": "^0.1.5",
+    "uglify-js": "^2.7.5"
+  },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },

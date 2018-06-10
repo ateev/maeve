@@ -1,6 +1,6 @@
 {
   "name": "maeve-input",
-  "version": "0.2.5",
+  "version": "0.2.6",
   "description": "A input box on steroids",
   "main": "index.js",
   "scripts": {
@@ -10,7 +10,7 @@
     "test-update": "jest -u",
     "uglify": "uglifyjs dist/maeve-input.js dist/maeve-input-style.js --compress -o dist/maeve-input.js",
     "babel": "babel --plugins transform-es2015-modules-umd src --ignore __tests__ --out-dir ./dist",
-    "prepublish": "npm-run-all babel"
+    "prepublish": "npm-run-all babel uglify"
   },
   "dependencies": {
     "maeve": "0.1.24",
@@ -31,7 +31,7 @@
     "jest": "^19.0.2",
     "jest-cli": "^19.0.2",
     "jest-serializer-enzyme": "^1.0.0",
-    "npm-run-all": "^4.0.1",
+    "npm-run-all": "4.1.3",
     "react-addons-test-utils": "^15.4.2",
     "react-dom": "^15.4.2",
     "uglify": "^0.1.5",
