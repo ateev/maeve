@@ -1,12 +1,33 @@
 {
-	"dependencies": {
-		"lerna": "2.11.0",
-		"lodash": "4.17.10",
-		"maeve-dropdown": "^0.1.8",
-		"maeve-input": "^0.2.5",
-		"maeve-multi": "^0.2.1",
-		"react": "16.4.0",
-		"react-embed-code": "0.1.0",
-		"styled-components": "3.3.2"
-	}
+  "dependencies": {
+    "lerna": "2.11.0",
+    "lodash": "4.17.10",
+    "maeve-dropdown": "^0.1.8",
+    "maeve-input": "^0.2.5",
+    "maeve-multi": "^0.2.1",
+    "react": "16.4.0",
+    "react-embed-code": "0.1.0",
+    "styled-components": "3.3.2"
+  },
+  "name": "maeve",
+  "description": "Maeve is a react component library for building forms quickly. There are 4 components that you can use in combination/inidvidually to make your forms awesome.",
+  "version": "0.1.25",
+  "main": "index.js",
+  "directories": {
+    "example": "examples"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ateev/maeve.git"
+  },
+  "author": "ateev",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ateev/maeve/issues"
+  },
+  "homepage": "https://github.com/ateev/maeve#readme"
 }
