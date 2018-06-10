@@ -1,6 +1,6 @@
 {
   "name": "maeve-input",
-  "version": "0.2.4",
+  "version": "0.2.5",
   "description": "A input box on steroids",
   "main": "index.js",
   "scripts": {
@@ -10,13 +10,13 @@
     "test-update": "jest -u",
     "uglify": "uglifyjs dist/maeve-input.js dist/maeve-input-style.js --compress -o dist/maeve-input.js",
     "babel": "babel --plugins transform-es2015-modules-umd src --ignore __tests__ --out-dir ./dist",
-    "prepublish": "npm-run-all babel uglify"
+    "prepublish": "npm-run-all babel"
   },
   "dependencies": {
-    "maeve": "^0.0.4",
-    "prop-types": "15.6.0",
-    "react": "16.0.0",
-    "styled-components": "2.1.2"
+    "maeve": "0.1.24",
+    "prop-types": "15.6.1",
+    "react": "16.4.0",
+    "styled-components": "3.3.2"
   },
   "devDependencies": {
     "babel-cli": "^6.24.0",

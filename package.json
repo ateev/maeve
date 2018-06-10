@@ -1,39 +1,12 @@
 {
-  "name": "maeve",
-  "version": "0.1.24",
-  "description": "Coming Soon",
-  "main": "index.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/ateev/maeve.git"
-  },
-  "author": "ateev",
-  "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/ateev/maeve/issues"
-  },
-  "homepage": "https://github.com/ateev/maeve#readme",
-  "devDependencies": {
-    "lerna": "^2.0.0-beta.38"
-  },
-  "dependencies": {
-    "lodash": "^4.17.4",
-    "maeve-dropdown": "^0.0.10",
-    "maeve-input": "^0.0.11",
-    "maeve-multi": "^0.0.10",
-    "react": "^15.4.2",
-    "react-embed-code": "^0.1.0",
-    "styled-components": "^1.4.4"
-  },
-  "jest": {
-    "transform": {
-      "^.+\\.jsx?$": "babel-jest"
-    },
-    "snapshotSerializers": [
-      "<rootDir>/node_modules/jest-serializer-enzyme"
-    ]
-  }
+	"dependencies": {
+		"lerna": "2.11.0",
+		"lodash": "4.17.10",
+		"maeve-dropdown": "^0.1.8",
+		"maeve-input": "^0.2.5",
+		"maeve-multi": "^0.2.1",
+		"react": "16.4.0",
+		"react-embed-code": "0.1.0",
+		"styled-components": "3.3.2"
+	}
 }

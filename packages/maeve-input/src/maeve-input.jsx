@@ -181,7 +181,7 @@ class MaeveInput extends React.Component {
     // Creating the final component
     const FinalComponent = React.createElement(Input, inputProps);
     return (
-      <MaeveInputWrapper>
+      <MaeveInputWrapper className={inputProps.className || ''}>
         { label }
         { errorMessage }
         { FinalComponent }

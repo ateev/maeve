@@ -1,6 +1,6 @@
 {
   "name": "maeve-multi",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "description": "A component to add multi superpwers to any component",
   "main": "index.js",
   "scripts": {
@@ -14,9 +14,9 @@
   "author": "ateev",
   "license": "ISC",
   "dependencies": {
-    "prop-types": "15.6.0",
-    "react": "16.0.0",
-    "styled-components": "2.1.2"
+    "prop-types": "15.6.1",
+    "react": "16.4.0",
+    "styled-components": "3.3.2"
   },
   "devDependencies": {
     "babel-cli": "^6.24.1",

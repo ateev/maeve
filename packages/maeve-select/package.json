@@ -1,6 +1,6 @@
 {
   "name": "maeve-select",
-  "version": "0.0.18",
+  "version": "0.0.19",
   "description": "A select input box on steroids",
   "main": "index.js",
   "scripts": {
@@ -13,10 +13,10 @@
     "prepublish": "npm-run-all babel uglify"
   },
   "dependencies": {
-    "maeve": "^0.0.4",
-    "prop-types": "15.6.0",
-    "react": "16.0.0",
-    "styled-components": "2.1.2"
+    "maeve": "0.1.24",
+    "prop-types": "15.6.1",
+    "react": "16.4.0",
+    "styled-components": "3.3.2"
   },
   "devDependencies": {
     "babel-cli": "^6.24.0",
