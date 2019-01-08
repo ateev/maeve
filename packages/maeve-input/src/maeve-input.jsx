@@ -1,90 +1,92 @@
-import React from 'react';
-import MaeveDropdown from 'maeve-dropdown';
-import debounce from 'lodash/debounce';
+import React from "react";
+import MaeveDropdown from "maeve-dropdown";
+import debounce from "lodash/debounce";
 
 class MaeveInput extends React.Component {
-
   constructor(props) {
     super(props);
-    let defaultVal = props.value || '';
+    let defaultVal = props.value || "";
     this.state = {
       value: defaultVal,
-      isFocus: false,
+      isFocus: false
     };
-    this.valueChangeCallback = debounce(this.valueChangeCallback, props.debounceTime || 20);
+    this.valueChangeCallback = debounce(
+      this.valueChangeCallback,
+      props.debounceTime || 20
+    );
   }
 
   componentWillReceiveProps(newProps) {
     if (
-          typeof newProps.value !== 'undefined' &&
-          newProps.value !== this.state.value
-       ) {
+      typeof newProps.value !== "undefined" &&
+      newProps.value !== this.state.value
+    ) {
       this.setState({
-        value: newProps.value,
+        value: newProps.value
       });
     }
   }
 
-  handleChange = (event) => {
+  handleChange = event => {
     this.updateValue({
-      value: event.target.value,
+      value: event.target.value
     });
-  }
+  };
 
-  updateValue = (newState) => {
+  updateValue = newState => {
     this.valueChangeCallback(newState);
     this.setState(newState);
-  }
+  };
 
-  valueChangeCallback = (newState) => {
-    const valueId = this.props.multi === true ? this.props.valueId : this.props.id;
+  valueChangeCallback = newState => {
+    const valueId =
+      this.props.multi === true ? this.props.valueId : this.props.id;
     this.props.onValueUpdate(newState.value, valueId);
-  }
+  };
 
-  onItemSelect = (value) => {
+  onItemSelect = value => {
     this.updateValue({
-      value,
+      value
     });
     this.setFocus(false);
-  }
+  };
 
   onAddNewItem = () => {
-    const valueId = this.props.multi === true ? this.props.valueId : this.props.id;
+    const valueId =
+      this.props.multi === true ? this.props.valueId : this.props.id;
     this.props.autocomplete.addNewItem(this.state.value, valueId);
     this.setFocus(false);
-  }
+  };
 
-  setFocus = (isFocus) => {
+  setFocus = isFocus => {
     this.setState({
-      isFocus: isFocus,
+      isFocus: isFocus
     });
-  }
+  };
 
   getDropdown() {
-    let dropdown = '';
+    let dropdown = "";
     const autocomplete = this.props.autocomplete;
     if (
-      typeof autocomplete !== 'undefined' &&
+      typeof autocomplete !== "undefined" &&
       this.state.isFocus === true &&
-      (
-        typeof autocomplete.trigger === 'undefined' ||
-        autocomplete.trigger <= this.state.value.length
-      )
+      (typeof autocomplete.trigger === "undefined" ||
+        autocomplete.trigger <= this.state.value.length)
     ) {
       let source;
-      if ( typeof autocomplete.source === 'object' ) {
+      if (typeof autocomplete.source === "object") {
         source = autocomplete.source;
-      } else if ( typeof autocomplete.source === 'function' ) {
+      } else if (typeof autocomplete.source === "function") {
         source = autocomplete.source(this.state.value);
       }
       let dropdownProps = {
         items: source,
-        onSelect: this.onItemSelect,
-      }
-      if( typeof autocomplete.addNewItem !== 'undefined' ) {
+        onSelect: this.onItemSelect
+      };
+      if (typeof autocomplete.addNewItem !== "undefined") {
         dropdownProps.addNewItem = this.onAddNewItem;
       }
-      dropdown = <MaeveDropdown {...dropdownProps}/>
+      dropdown = <MaeveDropdown {...dropdownProps} />;
     }
     return dropdown;
   }
@@ -92,15 +94,16 @@ class MaeveInput extends React.Component {
   render() {
     let inputProps = {
       id: this.props.id,
-      type: 'text',
+      type: "text",
       value: this.state.value,
       placeholder: this.props.placeholder,
       onChange: this.handleChange,
-      onFocus: this.setFocus.bind(null, true),
+      autoComplete: this.props.autoComplete,
+      onFocus: this.setFocus.bind(null, true)
     };
-    let dropdown = '';
+    let dropdown = "";
     const autocomplete = this.props.autocomplete;
-    if ( typeof autocomplete !== 'undefined' && this.state.isFocus === true ) {
+    if (typeof autocomplete !== "undefined" && this.state.isFocus === true) {
       const trigger = autocomplete.trigger;
       if (trigger === 0) {
         inputProps.onFocus = this.handleChange;
@@ -110,19 +113,17 @@ class MaeveInput extends React.Component {
 
     return (
       <div className="maeve-input">
-        { typeof this.props.label !== undefined ?
+        {typeof this.props.label !== undefined ? (
           <label htmlFor={this.props.id}>{this.props.label}</label>
-          :
-          ''
-        }
-        <input
-          {...inputProps}
-        />
+        ) : (
+          ""
+        )}
+        <input {...inputProps} />
         {dropdown}
       </div>
     );
   }
-};
+}
 
 MaeveInput.propTypes = {
   id: React.PropTypes.string,
@@ -131,7 +132,7 @@ MaeveInput.propTypes = {
   multi: React.PropTypes.bool,
   placeholder: React.PropTypes.string,
   autocomplete: React.PropTypes.object,
-  label: React.PropTypes.string,
+  label: React.PropTypes.string
 };
 
 export default MaeveInput;
